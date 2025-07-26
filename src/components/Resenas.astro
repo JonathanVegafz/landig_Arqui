@@ -9,8 +9,8 @@ const reseñas = [
 ---
 <article class="resenas" aria-label="Reseñas de Clientes">
   <h2>Reseñas de Clientes</h2>
-  <div class="carrusel-slider-outer">
-    <div class="carrusel-slider" role="region" aria-label="Carrusel de reseñas">
+  <div class="carrusel-slider-outer container">
+    <div class="carrusel-slider container" role="region" aria-label="Carrusel de reseñas">
       {reseñas.map((reseña, i) => (
         <div class="carrusel-slide" id={`slide-${i}`}
           style={`left: 50%`}>
@@ -152,6 +152,9 @@ h2 {
   transform: scale(1.2);
 }
 @media (max-width: 700px) {
+  h2 {
+    margin-bottom: 3rem;
+  }
   .carrusel-slider-outer {
     padding: 1.7rem 0.5rem;
     margin: 2rem auto 2rem auto;
@@ -162,14 +165,14 @@ h2 {
   .carrusel-slider {
     width: 100vw;
     min-width: 0;
-    max-width: 100vw;
+    max-width: 80%;
     height: auto;
     box-sizing: border-box;
   }
   .carrusel-slide {
     width: 96vw;
     min-width: 0;
-    max-width: 100vw;
+    max-width: 80%;
     height: auto;
     padding: 1rem 0.7rem 1.5rem 0.7rem;
     border-radius: 12px;
@@ -181,6 +184,19 @@ h2 {
   .carrusel-slide.right {
     transform: translate(10%, -50%) scale(0.9) rotateY(-10deg);
     max-width: 96vw;
+  }
+}
+@media (max-width: 480px) {
+  h2 {
+    margin-bottom: 6rem;
+  }
+}
+@media (max-width: 360px) {
+  h2 {
+    margin-bottom: 8rem;
+  }
+  .carrusel-dots {
+    padding: 6rem 0 0 0;
   }
 }
 </style>
