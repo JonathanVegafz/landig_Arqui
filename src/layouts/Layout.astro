@@ -1,0 +1,119 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+const {
+  title = 'IG Construcciones - Arquitectura y Construcción en la V Región',
+  description = 'IG Construcciones: Arquitectura y construcción en la V Región. Diseño, obras nuevas y eficiencia energética. Calidad, confianza y experiencia.',
+  canonical = 'https://igconstrucciones.cl/',
+  ogImage = undefined,
+  ogType = 'website',
+  ogLocale = 'es_CL'
+} = Astro.props;
+---
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="IG Construcciones" />
+    <meta name="keywords" content="arquitectura, construcción, V Región, Chile, diseño arquitectónico, obras nuevas, eficiencia energética, Maitencillo" />
+    <meta name="geo.region" content="CL-V" />
+    <meta name="geo.placename" content="Maitencillo, V Región, Chile" />
+    <link rel="canonical" href={canonical} />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="IG Construcciones" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    
+    <title>{title}</title>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	</head>
+	<body>
+    <div id="preloader" role="status" aria-label="Cargando página">
+      <span class="preloader-logo">IG Construcciones</span>
+    </div>
+    <div id="main-content" style="display:none; opacity:0; transition: opacity 0.7s cubic-bezier(.4,0,.2,1);">
+      <Header id="main-header" style="opacity:0; transition: opacity 0.5s;" />
+      <slot />
+      <Footer />
+    </div>
+    <script is:inline>
+      window.addEventListener('DOMContentLoaded', () => {
+        const preloader = document.getElementById('preloader');
+        const main = document.getElementById('main-content');
+        const header = document.getElementById('main-header');
+        if (header) header.style.opacity = '0';
+        let headerShown = false;
+        setTimeout(() => {
+          preloader.classList.add('preloader-hide');
+          setTimeout(() => {
+            preloader.style.display = 'none';
+            main.style.display = '';
+            setTimeout(() => {
+              main.style.opacity = '1';
+              // Animación scroll-fade
+              const fadeEls = document.querySelectorAll('.scroll-fade');
+              const fadeInOnScroll = () => {
+                fadeEls.forEach(el => {
+                  const rect = el.getBoundingClientRect();
+                  if (rect.top < window.innerHeight - 80) {
+                    el.classList.add('visible');
+                  }
+                });
+              };
+              fadeInOnScroll();
+              window.addEventListener('scroll', fadeInOnScroll, { passive: true });
+            }, 50);
+            // Mostrar header solo al hacer scroll
+            window.addEventListener('scroll', () => {
+              if (!headerShown && window.scrollY > 30) {
+                header.style.opacity = '1';
+                headerShown = true;
+              }
+            }, { passive: true });
+          }, 700);
+        }, 500);
+      });
+    </script>
+    <style>
+      #preloader {
+        position: fixed;
+        z-index: 9999;
+        inset: 0;
+        background: var(--color-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.7s cubic-bezier(.4,0,.2,1);
+      }
+      .preloader-logo {
+        color: #fff;
+        font-size: 2.2rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        animation: logo-scale 1.1s cubic-bezier(.4,0,.2,1) infinite alternate;
+      }
+      @keyframes logo-scale {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.08); }
+      }
+      #preloader.preloader-hide {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+	</body>
+</html>

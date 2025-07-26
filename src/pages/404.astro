@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Página no encontrada - IG Construcciones">
+  <main class="notfound">
+    <h1>404</h1>
+    <p>La página que buscas no existe o fue movida.</p>
+    <a href="/" class="back-home">Volver al inicio</a>
+  </main>
+  <style>
+    .notfound {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    .notfound h1 {
+      font-size: 5rem;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+    .notfound p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
+    .back-home {
+      background: var(--color-secondary);
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .back-home:hover {
+      background: var(--color-primary);
+      color: var(--color-secondary);
+    }
+  </style>
+</Layout> 

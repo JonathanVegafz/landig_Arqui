@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/about.astro';
+import Servicios from '../components/Servicios.astro';
+import NuestroProceso from '../components/NuestroProceso.astro';
+import Resenas from '../components/Resenas.astro';
+import Cotiza from '../components/Cotiza.astro';
+---
+
+<Layout 
+  title="IG Construcciones - Arquitectura y Construcción en la V Región"
+  description="IG Construcciones: Arquitectura y construcción en la V Región. Diseño, obras nuevas y eficiencia energética. Calidad, confianza y experiencia."
+  canonical="https://igconstrucciones.cl/"
+  ogImage={undefined}
+  ogType="website"
+  ogLocale="es_CL"
+>
+  <main>
+    <Hero />
+    <About class="scroll-fade" />
+    <Servicios class="scroll-fade" />
+    <NuestroProceso class="scroll-fade" />
+    <Resenas class="scroll-fade" />
+    <Cotiza class="scroll-fade" />
+  </main>
+</Layout>

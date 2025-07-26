@@ -1,0 +1,73 @@
+/* Reseteo básico */
+@import 'aos/dist/aos.css';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  background: #f7f7f7;
+  color: #222;
+  line-height: 1.6;
+ /* margin: var(--margin-container);*/
+}
+
+
+/* Variables de color para IG Construcciones */
+:root {
+  --color-primary: #77bcdb;
+  --color-secondary: #294758;
+  --color-bg: #fff;
+  --color-text: #333333;
+  --margin-container: 0 3rem 0 3rem;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--color-secondary);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h2, p, h3, h4, h5, h6 {
+  margin: 0 2rem 0 2rem;
+}
+
+.container {
+  max-width: 90%;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+  .container {
+    width: 98%;
+  }
+}
+
+/* Animaciones de scroll (fade-in) */
+.scroll-fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+}
+.scroll-fade.visible {
+  opacity: 1;
+  transform: none;
+} 

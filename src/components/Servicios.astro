@@ -1,0 +1,76 @@
+---
+// Componente de Servicios para IG Construcciones
+---
+<article class="servicios" id="servicios" aria-label="Servicios de IG Construcciones">
+  <div class="container">
+    <h2>Soluciones Integrales para tu Hogar</h2>
+    <div class="servicios__grid">
+      <div class="servicio">
+        <div class="servicio__icono" aria-hidden="true">🏛️</div>
+        <h3>Diseño Arquitectónico Personalizado</h3>
+        <p>Creamos planos únicos que combinan estética y funcionalidad, optimizando cada metro cuadrado para reflejar tu esencia.</p>
+      </div>
+      <div class="servicio">
+        <div class="servicio__icono" aria-hidden="true">🏗️</div>
+        <h3>Construcción de Obras Nuevas</h3>
+        <p>Ejecutamos tu proyecto desde cero con los más altos estándares de calidad y materiales de vanguardia como Metalcom, Paneles SIP y soluciones EIFS.</p>
+      </div>
+      <div class="servicio">
+        <div class="servicio__icono" aria-hidden="true">🌱</div>
+        <h3>Eficiencia Energética y Climatización</h3>
+        <p>Integramos soluciones sostenibles para asegurar que tu hogar sea confortable y eficiente, reduciendo costos y cuidando el medio ambiente.</p>
+      </div>
+    </div>
+  </div>
+  <style>
+    .servicios {
+      background: #f7fafd;
+      padding: 4rem 0;
+    }
+    .servicios h2 {
+      color: var(--color-primary);
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-size: 2rem;
+    }
+    .servicios__grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .servicio {
+      background: #f7fafd;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 2rem 1.5rem;
+      max-width: 340px;
+      flex: 1 1 260px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .servicio__icono {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .servicio h3 {
+      color: var(--color-secondary);
+      margin-bottom: 0.7rem;
+      font-size: 1.2rem;
+    }
+    .servicio p {
+      color: #333;
+      font-size: 1rem;
+    }
+    .servicio:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 6px 32px rgba(0,0,0,0.13);
+    }
+    @media (max-width: 900px) {
+      .servicios__grid {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</article>

@@ -1,0 +1,156 @@
+---
+// Componente: Línea de tiempo vertical animada para el proceso de construcción
+---
+<article class="proceso-timeline" id="proceso" aria-label="Nuestro Proceso">
+  <h2>¿Cómo trabajamos? <span class="proceso-timeline__sub">Tu proyecto, paso a paso</span></h2>
+  <ol class="timeline">
+    <li class="timeline__item">
+      <div class="timeline__icon" aria-hidden="true">💡</div>
+      <div class="timeline__content">
+        <h3>Paso 1: Visión y Asesoramiento</h3>
+        <p>Nos reunimos contigo para comprender a fondo tus ideas, necesidades y presupuesto. Te guiamos con asesoría experta y te proponemos soluciones y materiales innovadores, adaptados a tu proyecto.</p>
+      </div>
+    </li>
+    <li class="timeline__item">
+      <div class="timeline__icon" aria-hidden="true">📐</div>
+      <div class="timeline__content">
+        <h3>Paso 2: Diseño y Propuesta</h3>
+        <p>Desarrollamos un diseño arquitectónico detallado y transparente, donde cada espacio refleja tu estilo. Presentamos una propuesta clara con plazos y valores definidos, sin sorpresas.</p>
+      </div>
+    </li>
+    <li class="timeline__item">
+      <div class="timeline__icon" aria-hidden="true">🏗️</div>
+      <div class="timeline__content">
+        <h3>Paso 3: Construcción y Supervisión</h3>
+        <p>Con el diseño aprobado, nuestro equipo da vida a tu proyecto. Supervisamos cada etapa con rigurosidad, asegurando calidad, seguridad y cumplimiento de los estándares más altos.</p>
+      </div>
+    </li>
+    <li class="timeline__item">
+      <div class="timeline__icon" aria-hidden="true">🔑</div>
+      <div class="timeline__content">
+        <h3>Paso 4: Entrega y Satisfacción</h3>
+        <p>Te entregamos las llaves de tu nuevo hogar, cumpliendo todo lo acordado y asegurando tu completa satisfacción. ¡Disfruta de un espacio hecho a tu medida!</p>
+      </div>
+    </li>
+  </ol>
+  <style>
+    .proceso-timeline {
+      background: #fff;
+      padding: 4rem 0 3rem 0;
+      position: relative;
+    }
+    .proceso-timeline h2 {
+      text-align: center;
+      color: var(--color-primary);
+      font-size: 2.2rem;
+      margin-bottom: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .proceso-timeline__sub {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--color-secondary);
+      font-weight: 400;
+      margin-top: 0.3rem;
+      letter-spacing: 0.5px;
+    }
+    .timeline {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      list-style: none;
+    }
+    .timeline:before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      border-radius: 3px;
+      opacity: 0.18;
+      z-index: 0;
+    }
+    .timeline__item {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 0.9s cubic-bezier(.4,0,.2,1) forwards;
+    }
+    .timeline__item:nth-child(1) { animation-delay: 0.1s; }
+    .timeline__item:nth-child(2) { animation-delay: 0.4s; }
+    .timeline__item:nth-child(3) { animation-delay: 0.7s; }
+    .timeline__item:nth-child(4) { animation-delay: 1s; }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .timeline__icon {
+      flex-shrink: 0;
+      width: 54px;
+      height: 54px;
+      background: linear-gradient(135deg, var(--color-primary) 60%, var(--color-secondary) 100%);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translate(-50%, 0);
+      z-index: 2;
+      border: 3px solid #fff;
+    }
+    .timeline__content {
+      background: #f7fafd;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 2.2rem 1.7rem 1.7rem 1.7rem;
+      margin: 0 auto;
+      margin-top: 1.2rem;
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline__content h3 {
+      color: var(--color-secondary);
+      font-size: 1.25rem;
+      margin-bottom: 0.7rem;
+      font-weight: 600;
+    }
+    .timeline__content p {
+      color: #333;
+      font-size: 1.08rem;
+      margin: 0;
+    }
+    @media (max-width: 700px) {
+      .timeline__content {
+        padding: 1.3rem 0.7rem 1.1rem 0.7rem;
+        width: 98%;
+      }
+      .timeline__icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+      }
+      .timeline {
+        padding: 0;
+      }
+    }
+  </style>
+</article>

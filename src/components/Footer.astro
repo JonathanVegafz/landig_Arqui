@@ -1,0 +1,52 @@
+<footer class="footer">
+  <div class="container footer__content">
+    <small class="footer__credits">
+      © {new Date().getFullYear()} IG Construcciones. Todos los derechos reservados.
+    </small>
+    <nav class="footer__social" aria-label="Redes sociales">
+      <a href="#" aria-label="Instagram">Instagram</a>
+      <a href="#" aria-label="LinkedIn">LinkedIn</a>
+      <a href="#" aria-label="Twitter">Twitter</a>
+    </nav>
+  </div>
+  <style>
+    .footer {
+      background: var(--color-footer);
+      color: var(--color-footer-text);
+      padding: 2rem 0 1rem 0;
+    }
+    .footer__content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer__credits {
+      font-size: 1rem;
+    }
+    .footer__social {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer__social a {
+      color: var(--color-footer-text);
+      font-size: 1.1rem;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .footer__social a:hover {
+      color: var(--color-secondary);
+    }
+    @media (max-width: 700px) {
+      .footer__content {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+      }
+      .footer__social {
+        gap: 0.7rem;
+      }
+    }
+  </style>
+</footer> 
