@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="es" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="IG Construcciones: Arquitectura y construcción en la V Región. Diseño, obras nuevas y eficiencia energética. Calidad, confianza y experiencia."><meta name="robots" content="index, follow"><meta name="author" content="IG Construcciones"><meta name="keywords" content="arquitectura, construcción, V Región, Chile, diseño arquitectónico, obras nuevas, eficiencia energética, Maitencillo"><meta name="geo.region" content="CL-V"><meta name="geo.placename" content="Maitencillo, V Región, Chile"><link rel="canonical" href="https://igconstrucciones.cl/"><!-- Open Graph --><meta property="og:title" content="Página no encontrada - IG Construcciones"><meta property="og:description" content="IG Construcciones: Arquitectura y construcción en la V Región. Diseño, obras nuevas y eficiencia energética. Calidad, confianza y experiencia."><meta property="og:type" content="website"><meta property="og:locale" content="es_CL"><meta property="og:url" content="https://igconstrucciones.cl/"><meta property="og:site_name" content="IG Construcciones"><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Página no encontrada - IG Construcciones"><meta name="twitter:description" content="IG Construcciones: Arquitectura y construcción en la V Región. Diseño, obras nuevas y eficiencia energética. Calidad, confianza y experiencia."><title>Página no encontrada - IG Construcciones</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/landig_Arqu/_astro/index.BUfemEVz.css">
+<style>.notfound[data-astro-cid-zetdm5md]{min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 1rem}.notfound[data-astro-cid-zetdm5md] h1[data-astro-cid-zetdm5md]{font-size:5rem;color:var(--color-primary);margin-bottom:1rem}.notfound[data-astro-cid-zetdm5md] p[data-astro-cid-zetdm5md]{font-size:1.3rem;margin-bottom:2rem}.back-home[data-astro-cid-zetdm5md]{background:var(--color-secondary);color:#fff;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:600;transition:background .2s}.back-home[data-astro-cid-zetdm5md]:hover{background:var(--color-primary);color:var(--color-secondary)}
+</style></head> <body data-astro-cid-sckkx6r4> <div id="preloader" role="status" aria-label="Cargando página" data-astro-cid-sckkx6r4> <span class="preloader-logo" data-astro-cid-sckkx6r4>IG Construcciones</span> </div> <div id="main-content" style="display:none; opacity:0; transition: opacity 0.7s cubic-bezier(.4,0,.2,1);" data-astro-cid-sckkx6r4> <header class="header" data-astro-cid-3ef6ksr2> <div class="container header__content" data-astro-cid-3ef6ksr2> <a href="#inicio" class="header__logo" aria-label="Ir al inicio" data-astro-cid-3ef6ksr2> <img src="/landig_Arqu/_astro/Logo.BcLSv46j.png" alt="Logo IG Construcciones" class="logo-img" data-astro-cid-3ef6ksr2> <span data-astro-cid-3ef6ksr2>IG Construcciones</span> </a> <nav class="header__nav" role="navigation" aria-label="Navegación principal" data-astro-cid-3ef6ksr2> <a href="#inicio" data-astro-cid-3ef6ksr2>Inicio</a> <a href="#sobre-mi" data-astro-cid-3ef6ksr2>Sobre Nosotros</a> <a href="#proceso" data-astro-cid-3ef6ksr2>Proceso</a> <a href="#cotiza" data-astro-cid-3ef6ksr2>Contacto</a> </nav> </div>  </header>  <main class="notfound" data-astro-cid-zetdm5md> <h1 data-astro-cid-zetdm5md>404</h1> <p data-astro-cid-zetdm5md>La página que buscas no existe o fue movida.</p> <a href="/" class="back-home" data-astro-cid-zetdm5md>Volver al inicio</a> </main>   <footer class="footer" data-astro-cid-sz7xmlte> <div class="container footer__content" data-astro-cid-sz7xmlte> <small class="footer__credits" data-astro-cid-sz7xmlte>
+© 2025 IG Construcciones. Todos los derechos reservados.
+</small> <nav class="footer__social" aria-label="Redes sociales" data-astro-cid-sz7xmlte> <a href="#" aria-label="Instagram" data-astro-cid-sz7xmlte>Instagram</a> <a href="#" aria-label="LinkedIn" data-astro-cid-sz7xmlte>LinkedIn</a> <a href="#" aria-label="Twitter" data-astro-cid-sz7xmlte>Twitter</a> </nav> </div>  </footer> </div> <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const preloader = document.getElementById('preloader');
+        const main = document.getElementById('main-content');
+        const header = document.getElementById('main-header');
+        if (header) header.style.opacity = '0';
+        let headerShown = false;
+        setTimeout(() => {
+          preloader.classList.add('preloader-hide');
+          setTimeout(() => {
+            preloader.style.display = 'none';
+            main.style.display = '';
+            setTimeout(() => {
+              main.style.opacity = '1';
+              // Animación scroll-fade
+              const fadeEls = document.querySelectorAll('.scroll-fade');
+              const fadeInOnScroll = () => {
+                fadeEls.forEach(el => {
+                  const rect = el.getBoundingClientRect();
+                  if (rect.top < window.innerHeight - 80) {
+                    el.classList.add('visible');
+                  }
+                });
+              };
+              fadeInOnScroll();
+              window.addEventListener('scroll', fadeInOnScroll, { passive: true });
+            }, 50);
+            // Mostrar header solo al hacer scroll
+            window.addEventListener('scroll', () => {
+              if (!headerShown && window.scrollY > 30) {
+                header.style.opacity = '1';
+                headerShown = true;
+              }
+            }, { passive: true });
+          }, 700);
+        }, 500);
+      });
+    </script>  </body> </html>
