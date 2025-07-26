@@ -6,6 +6,6 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
   integrations: [react()],
-  site: 'https://jonathanvegafz.github.io',
+  site: 'https://JonathanVegafz.github.io',
   base: 'landig_Arqui'
 });
