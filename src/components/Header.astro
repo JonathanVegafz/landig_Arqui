@@ -1,11 +1,12 @@
 ---
 import Logo from '../assets/Logo.png';
 ---
+
 <header class="header">
   <div class="container header__content">
     <a href="#inicio" class="header__logo" aria-label="Ir al inicio">
       <img src={Logo.src} alt="Logo IG Construcciones" class="logo-img" />
-      <span>IG Construcciones</span>
+      <span class="logo-text">IG Construcciones</span>
     </a>
     
     <!-- Botón hamburguesa para móviles -->
@@ -17,18 +18,18 @@ import Logo from '../assets/Logo.png';
     
     <!-- Navegación desktop -->
     <nav class="header__nav" role="navigation" aria-label="Navegación principal">
-      <a href="#inicio">Inicio</a>
-      <a href="#sobre-mi">Sobre Nosotros</a>
-      <a href="#proceso">Proceso</a>
-      <a href="#cotiza">Contacto</a>
+      <a href="#inicio" class="nav-link">Inicio</a>
+      <a href="#sobre-mi" class="nav-link">Sobre Nosotros</a>
+      <a href="#proceso" class="nav-link">Proceso</a>
+      <a href="#cotiza" class="nav-link">Contacto</a>
     </nav>
     
     <!-- Navegación móvil -->
     <nav class="header__nav-mobile" role="navigation" aria-label="Navegación móvil">
-      <a href="#inicio">Inicio</a>
-      <a href="#sobre-mi">Sobre Nosotros</a>
-      <a href="#proceso">Proceso</a>
-      <a href="#cotiza">Contacto</a>
+      <a href="#inicio" class="mobile-nav-link">Inicio</a>
+      <a href="#sobre-mi" class="mobile-nav-link">Sobre Nosotros</a>
+      <a href="#proceso" class="mobile-nav-link">Proceso</a>
+      <a href="#cotiza" class="mobile-nav-link">Contacto</a>
     </nav>
   </div>
   
@@ -79,12 +80,15 @@ import Logo from '../assets/Logo.png';
   
   <style>
     .header {
-      background: var(--color-secondary);
-      color: #fff;
-      padding: 1.5rem 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      color: var(--color-neutral-900);
+      padding: var(--spacing-md) 0;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
+      border-bottom: 1px solid var(--color-neutral-200);
+      transition: all var(--transition-normal);
     }
     
     .header__content {
@@ -97,77 +101,115 @@ import Logo from '../assets/Logo.png';
     .header__logo {
       display: flex;
       align-items: center;
-      gap: 0.7rem;
-      font-size: 1.7rem;
-      font-weight: bold;
-      letter-spacing: 2px;
+      gap: var(--spacing-sm);
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
       text-decoration: none;
-      color: inherit;
+      color: var(--color-neutral-900);
       z-index: 12;
+      transition: all var(--transition-fast);
+    }
+    
+    .header__logo:hover {
+      transform: translateY(-1px);
     }
     
     .logo-img {
-      height: 38px;
+      height: 42px;
       width: auto;
-      border-radius: 6px;
-      background: #fff;
-      padding: 2px;
+      border-radius: var(--border-radius-sm);
+      background: white;
+      padding: 4px;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .logo-text {
+      font-weight: 600;
+      letter-spacing: -0.5px;
     }
     
     .header__nav {
       display: flex;
-      gap: 2rem;
+      gap: var(--spacing-xl);
+      align-items: center;
     }
     
-    .header__nav a {
-      color: #fff;
+    .nav-link {
+      color: var(--color-neutral-700);
       font-size: 1rem;
       font-weight: 500;
-      transition: color 0.2s;
+      transition: all var(--transition-fast);
       text-decoration: none;
+      position: relative;
+      padding: var(--spacing-xs) 0;
     }
     
-    .header__nav a:hover {
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-primary);
+      transition: width var(--transition-normal);
+    }
+    
+    .nav-link:hover {
       color: var(--color-primary);
     }
     
-    /* Botón hamburguesa */
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    /* Botón hamburguesa mejorado */
     .header__menu-toggle {
       display: none;
       flex-direction: column;
       justify-content: space-around;
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       background: transparent;
       border: none;
       cursor: pointer;
       padding: 0;
       z-index: 12;
+      border-radius: var(--border-radius-sm);
+      transition: all var(--transition-fast);
+    }
+    
+    .header__menu-toggle:hover {
+      background: var(--color-neutral-100);
     }
     
     .hamburger-line {
       width: 100%;
-      height: 3px;
-      background: #fff;
-      border-radius: 2px;
-      transition: all 0.3s ease;
+      height: 2px;
+      background: var(--color-neutral-700);
+      border-radius: 1px;
+      transition: all var(--transition-normal);
       transform-origin: center;
     }
     
     /* Animación del botón hamburguesa */
     .header__menu-toggle.active .hamburger-line:nth-child(1) {
       transform: rotate(45deg) translate(6px, 6px);
+      background: var(--color-primary);
     }
     
     .header__menu-toggle.active .hamburger-line:nth-child(2) {
       opacity: 0;
+      transform: scale(0);
     }
     
     .header__menu-toggle.active .hamburger-line:nth-child(3) {
       transform: rotate(-45deg) translate(6px, -6px);
+      background: var(--color-primary);
     }
     
-    /* Navegación móvil */
+    /* Navegación móvil mejorada */
     .header__nav-mobile {
       display: none;
       position: fixed;
@@ -175,15 +217,16 @@ import Logo from '../assets/Logo.png';
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(41, 71, 88, 0.98);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 2rem;
+      gap: var(--spacing-xl);
       z-index: 11;
       opacity: 0;
       visibility: hidden;
-      transition: all 0.3s ease;
+      transition: all var(--transition-normal);
     }
     
     .header__nav-mobile.active {
@@ -191,21 +234,37 @@ import Logo from '../assets/Logo.png';
       visibility: visible;
     }
     
-    .header__nav-mobile a {
-      color: #fff;
+    .mobile-nav-link {
+      color: var(--color-neutral-700);
       font-size: 1.5rem;
       font-weight: 500;
       text-decoration: none;
-      transition: color 0.2s;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
+      transition: all var(--transition-fast);
+      padding: var(--spacing-md) var(--spacing-xl);
+      border-radius: var(--border-radius-lg);
+      background: transparent;
+      position: relative;
+      overflow: hidden;
     }
     
-    .header__nav-mobile a:hover {
-      color: var(--color-primary);
-      background: rgba(255, 255, 255, 0.2);
+    .mobile-nav-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--color-primary);
+      transition: left var(--transition-normal);
+      z-index: -1;
+    }
+    
+    .mobile-nav-link:hover {
+      color: white;
+    }
+    
+    .mobile-nav-link:hover::before {
+      left: 0;
     }
     
     /* Prevenir scroll cuando el menú está abierto */
@@ -236,6 +295,16 @@ import Logo from '../assets/Logo.png';
     @media (min-width: 769px) {
       .header__nav-mobile {
         display: none !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .logo-text {
+        font-size: 1.25rem;
+      }
+      
+      .logo-img {
+        height: 36px;
       }
     }
   </style>

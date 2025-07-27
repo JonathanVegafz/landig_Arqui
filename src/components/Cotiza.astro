@@ -1,232 +1,583 @@
 ---
 // Componente Cotiza (Contacto y Cierre) para IG Construcciones
 ---
-<article class="cotiza" id="cotiza" aria-label="Formulario de Contacto y Cotización">
-  <div class="cotiza__content">
-    <div class="cotiza__info">
-      <h2>¿Listo para Construir tu Sueño?</h2>
-      <p>Cuéntanos sobre tu proyecto. Ya sea una idea inicial o un plan definido, estamos aquí para ayudarte a dar el siguiente paso. Ofrecemos proyectos desde 28 UF por m², adaptándonos a la materialidad y terminaciones que necesites.</p>
-      <address class="cotiza__datos">
-        <dl>
-          <dt><strong>Teléfono:</strong></dt>
-          <dd><a href="https://wa.me/56945150212" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">+56 9 4515 0212</a></dd>
-          <dt><strong>Ubicación:</strong></dt>
-          <dd>Maitencillo, V Región, Chile</dd>
-          <dt><strong>Email:</strong></dt>
-          <dd><a href="mailto:contacto@igconstrucciones.cl" target="_blank" rel="noopener" aria-label="Enviar email">contacto@igconstrucciones.cl</a></dd>
-        </dl>
-      </address>
+
+<section class="cotiza section-bg-white" id="cotiza" aria-label="Cotiza tu Proyecto">
+  <div class="container">
+    <div class="cotiza__header">
+      <span class="cotiza__subtitle">Contacto</span>
+      <h2 class="cotiza__title">¿Listo para Construir tu Sueño?</h2>
+      <p class="cotiza__description">
+        Cuéntanos sobre tu proyecto. Ya sea una idea inicial o un plan definido, estamos aquí para ayudarte a dar el siguiente paso. Ofrecemos proyectos desde 28 UF por m², adaptándonos a la materialidad y terminaciones que necesites.
+      </p>
     </div>
-    <form class="cotiza__form" method="POST" action="#" aria-label="Formulario de contacto" id="contactForm">
-      <fieldset>
-        <legend class="sr-only">Información de contacto</legend>
-        <div class="form-group">
-          <label for="nombre">Nombre *</label>
-          <input type="text" id="nombre" name="nombre" required />
-          <span class="error-message" id="nombre-error"></span>
+    
+    <div class="cotiza__content">
+      <div class="cotiza__info glassmorphism">
+        <div class="info-item">
+          <div class="info-item__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div class="info-item__content">
+            <h3 class="info-item__title">Teléfono</h3>
+            <a href="https://wa.me/56945150212" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp" class="info-item__link">
+              +56 9 4515 0212
+            </a>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="email">Email *</label>
-          <input type="email" id="email" name="email" required />
-          <span class="error-message" id="email-error"></span>
+        
+        <div class="info-item">
+          <div class="info-item__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div class="info-item__content">
+            <h3 class="info-item__title">Ubicación</h3>
+            <p class="info-item__text">Maitencillo, V Región, Chile</p>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="telefono">Teléfono *</label>
-          <input type="tel" id="telefono" name="telefono" required />
-          <span class="error-message" id="telefono-error"></span>
-        </div>
-        <div class="form-group">
-          <label for="mensaje">Mensaje * (mínimo 5 palabras)</label>
-          <textarea id="mensaje" name="mensaje" rows="5" required placeholder="¿En qué tipo de proyecto estás pensando?"></textarea>
-          <span class="error-message" id="mensaje-error"></span>
-        </div>
-        <button type="submit">Enviar Solicitud</button>
-      </fieldset>
-      <div class="success-message" id="success-message">
-        <div class="success-content">
-          <span class="success-icon">✓</span>
-          <p>¡Formulario enviado correctamente! Nos pondremos en contacto contigo pronto.</p>
+        
+        <div class="info-item">
+          <div class="info-item__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div class="info-item__content">
+            <h3 class="info-item__title">Email</h3>
+            <a href="mailto:contacto@igconstrucciones.cl" target="_blank" rel="noopener" aria-label="Enviar email" class="info-item__link">
+              contacto@igconstrucciones.cl
+            </a>
+          </div>
         </div>
       </div>
-    </form>
+      
+      <form class="cotiza__form glassmorphism" method="POST" action="#" aria-label="Formulario de contacto" id="contactForm">
+        <div class="form-header">
+          <h3 class="form-title">Envíanos tu Proyecto</h3>
+          <p class="form-subtitle">Completa el formulario y nos pondremos en contacto contigo</p>
+        </div>
+        
+        <div class="form-fields">
+          <div class="form-group">
+            <label for="nombre" class="form-label">Nombre *</label>
+            <div class="input-wrapper">
+              <input type="text" id="nombre" name="nombre" required class="form-input" placeholder="Tu nombre completo" />
+              <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <span class="error-message" id="nombre-error"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="email" class="form-label">Email *</label>
+            <div class="input-wrapper">
+              <input type="email" id="email" name="email" required class="form-input" placeholder="tu@email.com" />
+              <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <span class="error-message" id="email-error"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="telefono" class="form-label">Teléfono *</label>
+            <div class="input-wrapper">
+              <input type="tel" id="telefono" name="telefono" required class="form-input" placeholder="+56 9 1234 5678" />
+              <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <span class="error-message" id="telefono-error"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="mensaje" class="form-label">Mensaje * (mínimo 5 palabras)</label>
+            <div class="input-wrapper">
+              <textarea id="mensaje" name="mensaje" rows="5" required class="form-input" placeholder="¿En qué tipo de proyecto estás pensando? Cuéntanos más detalles..."></textarea>
+              <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <span class="error-message" id="mensaje-error"></span>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <span>Enviar Solicitud</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
+  
+  <div class="success-message" id="success-message">
+    <div class="success-content">
+      <svg class="success-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 12l2 2 4-4"/>
+        <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/>
+      </svg>
+      <p>¡Formulario enviado correctamente! Nos pondremos en contacto contigo pronto.</p>
+    </div>
+  </div>
+  
   <style>
     .cotiza {
-      background: #fff;
-      padding: 4rem 0;
+      padding: var(--spacing-2xl) 0;
+      position: relative;
     }
-    fieldset {
-      border: none;
+    
+    .cotiza__header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto var(--spacing-xl) auto;
+      position: relative;
+      z-index: 2;
     }
+    
+    .cotiza__subtitle {
+      display: inline-block;
+      color: var(--color-primary);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--spacing-sm);
+      background: rgba(119, 188, 219, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius-sm);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(119, 188, 219, 0.2);
+    }
+    
+    .cotiza__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--color-neutral-900);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .cotiza__description {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: var(--color-neutral-600);
+      margin: 0;
+    }
+    
     .cotiza__content {
-      display: flex;
-      gap: 3rem;
-      flex-wrap: wrap;
-      max-width: 60%;
-      align-items: flex-start;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: var(--spacing-xl);
+      max-width: 1000px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
+    
     .cotiza__info {
-      flex: 1 1 320px;
-      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+      padding: var(--spacing-xl);
+      border-radius: var(--border-radius-xl);
+      position: relative;
+      z-index: 2;
     }
-    .cotiza__info h2 {
-      color: var(--color-primary);
-      font-size: 2rem;
-      margin: 0 1.5rem 0 0;
+    
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius-lg);
+      transition: all var(--transition-normal);
     }
-    .cotiza__info p {
-      color: #333;
-      margin: 0 1.5rem 1rem 0;
+    
+    .info-item:hover {
+      background: rgba(119, 188, 219, 0.1);
+      transform: translateX(8px);
     }
-    .cotiza__datos {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      color: var(--color-secondary);
+    
+    .info-item__icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      border-radius: var(--border-radius-lg);
+      color: white;
+      transition: all var(--transition-normal);
+      flex-shrink: 0;
+    }
+    
+    .info-item:hover .info-item__icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 8px 24px rgba(119, 188, 219, 0.4);
+    }
+    
+    .info-item__content {
+      flex: 1;
+    }
+    
+    .info-item__title {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--color-neutral-900);
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .info-item__text,
+    .info-item__link {
       font-size: 1rem;
-    }
-    .cotiza__datos dl {
-      margin: 0;
-      padding: 0;
-    }
-    .cotiza__datos dt {
-      font-weight: bold;
-      margin-bottom: 0.2rem;
-    }
-    .cotiza__datos dd {
-      margin: 0 0 0.8rem 0;
-    }
-    .cotiza__datos a {
-      color: inherit;
+      color: var(--color-neutral-700);
       text-decoration: none;
+      transition: color var(--transition-fast);
     }
-    .cotiza__datos a:hover {
-      text-decoration: underline;
-    }
-    .cotiza__form {
-      flex: 1 1 340px;
-      min-width: 300px;
-      background: #f7fafd;
-      border-radius: 12px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-      padding: 2rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: 100%;
-    }
-    .form-group label {
-      font-weight: 500;
-      margin-bottom: 0.5rem;
+    
+    .info-item__link:hover {
       color: var(--color-primary);
     }
-    .form-group input,
-    .form-group textarea {
+    
+    .cotiza__form {
+      position: relative;
+      border-radius: var(--border-radius-xl);
+      padding: var(--spacing-xl);
+      transition: all var(--transition-normal);
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    
+    .cotiza__form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      transform: scaleX(0);
+      transition: transform var(--transition-normal);
+    }
+    
+    .cotiza__form:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .form-header {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--color-neutral-900);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .form-subtitle {
+      font-size: 1rem;
+      color: var(--color-neutral-600);
+      margin: 0;
+    }
+    
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+    
+    .form-group {
+      position: relative;
+    }
+    
+    .form-label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: var(--spacing-xs);
+      color: var(--color-neutral-800);
+      font-size: 0.875rem;
+    }
+    
+    .input-wrapper {
+      position: relative;
+    }
+    
+    .form-input {
       width: 100%;
-      padding: 0.7rem 1rem;
-      border: 1.5px solid #ccc;
-      border-radius: 6px;
+      padding: var(--spacing-md) var(--spacing-lg) var(--spacing-md) 3rem;
+      border: 2px solid var(--color-primary);
+      border-radius: var(--border-radius-lg);
       font-size: 1rem;
       font-family: inherit;
-      resize: none;
-      transition: border 0.2s;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--color-neutral-900);
+      transition: all var(--transition-normal);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border: 1.5px solid var(--color-secondary);
+    
+    .form-input::placeholder {
+      color: var(--color-neutral-500);
+    }
+    
+    .form-input:focus {
       outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(119, 188, 219, 0.2);
+      background: rgba(255, 255, 255, 0.2);
     }
-    .form-group input.error,
-    .form-group textarea.error {
-      border: 1.5px solid #e74c3c;
+    
+    .form-input.error {
+      border-color: var(--color-error);
+      box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
     }
+    
+    /* Estilos específicos para textarea */
+    textarea.form-input {
+      resize: vertical;
+      min-height: 120px;
+      font-family: inherit;
+      line-height: 1.5;
+    }
+    
+    .input-icon {
+      position: absolute;
+      left: var(--spacing-md);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-neutral-500);
+      transition: color var(--transition-fast);
+    }
+    
+    .form-input:focus + .input-icon {
+      color: var(--color-primary);
+    }
+    
     .error-message {
-      color: #e74c3c;
-      font-size: 0.85rem;
-      margin-top: 0.3rem;
-      min-height: 1.2rem;
+      color: var(--color-error);
+      font-size: 0.75rem;
+      margin-top: var(--spacing-xs);
+      min-height: 1rem;
+      display: block;
     }
+    
+    .submit-btn {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-md) var(--spacing-xl);
+      border-radius: var(--border-radius-lg);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-xs);
+      box-shadow: 0 4px 16px rgba(119, 188, 219, 0.3);
+      margin-top: var(--spacing-md);
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(119, 188, 219, 0.4);
+    }
+    
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+    
     .success-message {
       position: fixed;
       top: 20px;
       right: 20px;
-      background: #27ae60;
+      background: linear-gradient(135deg, var(--color-success) 0%, #2ecc71 100%);
       color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      padding: var(--spacing-lg);
+      border-radius: var(--border-radius-lg);
+      box-shadow: 0 8px 32px rgba(39, 174, 96, 0.3);
       z-index: 1000;
       transform: translateX(400px);
       opacity: 0;
       transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       max-width: 350px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
+    
     .success-message.show {
       transform: translateX(0);
       opacity: 1;
     }
+    
     .success-content {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: var(--spacing-sm);
     }
+    
     .success-icon {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #fff;
+      flex-shrink: 0;
+      color: white;
     }
+    
     .success-message p {
       margin: 0;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       line-height: 1.4;
     }
-    button[type="submit"] {
-      background: var(--color-primary);
-      color: #fff;
-      border: none;
-      padding: 0.9rem 2.2rem;
-      border-radius: 6px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 1rem;
-    }
-    button[type="submit"]:hover {
-      background: var(--color-secondary);
-      color: var(--color-primary);
-    }
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-    @media (max-width: 900px) {
+    
+    /* Responsive mejorado */
+    @media (max-width: 1024px) {
       .cotiza__content {
-        flex-direction: column;
-        align-items: center;
-        max-width: 80%;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
       }
-      .cotiza__form, .cotiza__info {
-        min-width: 0;
-        width: 100%;
+      
+      .cotiza__info {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .info-item {
+        flex: 1;
+        min-width: 250px;
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .cotiza {
+        padding: var(--spacing-2xl) 0;
+      }
+      
+      .cotiza__content {
+        gap: var(--spacing-lg);
+      }
+      
+      .cotiza__info {
+        flex-direction: column;
+      }
+      
+      .info-item {
+        min-width: auto;
+      }
+      
+      .cotiza__form {
+        padding: var(--spacing-lg);
+      }
+      
+      .cotiza__description {
+        font-size: 1.125rem;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .cotiza {
+        padding: var(--spacing-xl) 0;
+      }
+      
+      .cotiza__header {
+        margin-bottom: var(--spacing-xl);
+      }
+      
+      .cotiza__form {
+        padding: var(--spacing-md);
+      }
+      
+      .form-title {
+        font-size: 1.25rem;
+      }
+      
+      .form-subtitle {
+        font-size: 0.9rem;
+      }
+      
+      .cotiza__title {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+      }
+      
+      .cotiza__description {
+        font-size: 1rem;
+      }
+      
+      .info-item {
+        padding: var(--spacing-md);
+      }
+      
+      .info-item__icon {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .info-item__title {
+        font-size: 1rem;
+      }
+      
+      .info-item__text,
+      .info-item__link {
+        font-size: 0.9rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .cotiza__content {
+        gap: var(--spacing-md);
+      }
+      
+      .cotiza__form {
+        padding: var(--spacing-sm);
+      }
+      
+      .form-input {
+        padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) 2.5rem;
+        font-size: 0.9rem;
+      }
+      
+      .input-icon {
+        left: var(--spacing-sm);
+        width: 16px;
+        height: 16px;
+      }
+      
+      .submit-btn {
+        padding: var(--spacing-sm) var(--spacing-lg);
+        font-size: 0.9rem;
+      }
+      
+      .success-message {
+        max-width: 300px;
+        padding: var(--spacing-md);
+      }
+      
+      .success-message p {
+        font-size: 0.8rem;
       }
     }
   </style>
-</article>
+</section>
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
