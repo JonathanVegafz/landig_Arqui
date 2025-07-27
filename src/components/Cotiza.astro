@@ -2,42 +2,52 @@
 // Componente Cotiza (Contacto y Cierre) para IG Construcciones
 ---
 <article class="cotiza" id="cotiza" aria-label="Formulario de Contacto y Cotización">
-  <div class="cotiza__content container">
+  <div class="cotiza__content">
     <div class="cotiza__info">
       <h2>¿Listo para Construir tu Sueño?</h2>
       <p>Cuéntanos sobre tu proyecto. Ya sea una idea inicial o un plan definido, estamos aquí para ayudarte a dar el siguiente paso. Ofrecemos proyectos desde 28 UF por m², adaptándonos a la materialidad y terminaciones que necesites.</p>
       <address class="cotiza__datos">
         <dl>
           <dt><strong>Teléfono:</strong></dt>
-          <dd><a href="tel:+56945150212">+56 9 4515 0212</a></dd>
+          <dd><a href="https://wa.me/56945150212" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">+56 9 4515 0212</a></dd>
           <dt><strong>Ubicación:</strong></dt>
           <dd>Maitencillo, V Región, Chile</dd>
           <dt><strong>Email:</strong></dt>
-          <dd><a href="mailto:contacto@igconstrucciones.cl">contacto@igconstrucciones.cl</a></dd>
+          <dd><a href="mailto:contacto@igconstrucciones.cl" target="_blank" rel="noopener" aria-label="Enviar email">contacto@igconstrucciones.cl</a></dd>
         </dl>
       </address>
     </div>
-    <form class="cotiza__form" method="POST" action="#" aria-label="Formulario de contacto">
+    <form class="cotiza__form" method="POST" action="#" aria-label="Formulario de contacto" id="contactForm">
       <fieldset>
         <legend class="sr-only">Información de contacto</legend>
         <div class="form-group">
-          <label for="nombre">Nombre</label>
+          <label for="nombre">Nombre *</label>
           <input type="text" id="nombre" name="nombre" required />
+          <span class="error-message" id="nombre-error"></span>
         </div>
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="email">Email *</label>
           <input type="email" id="email" name="email" required />
+          <span class="error-message" id="email-error"></span>
         </div>
         <div class="form-group">
-          <label for="telefono">Teléfono</label>
+          <label for="telefono">Teléfono *</label>
           <input type="tel" id="telefono" name="telefono" required />
+          <span class="error-message" id="telefono-error"></span>
         </div>
         <div class="form-group">
-          <label for="mensaje">Mensaje</label>
+          <label for="mensaje">Mensaje * (mínimo 5 palabras)</label>
           <textarea id="mensaje" name="mensaje" rows="5" required placeholder="¿En qué tipo de proyecto estás pensando?"></textarea>
+          <span class="error-message" id="mensaje-error"></span>
         </div>
         <button type="submit">Enviar Solicitud</button>
       </fieldset>
+      <div class="success-message" id="success-message">
+        <div class="success-content">
+          <span class="success-icon">✓</span>
+          <p>¡Formulario enviado correctamente! Nos pondremos en contacto contigo pronto.</p>
+        </div>
+      </div>
     </form>
   </div>
   <style>
@@ -52,6 +62,7 @@
       display: flex;
       gap: 3rem;
       flex-wrap: wrap;
+      max-width: 60%;
       align-items: flex-start;
       justify-content: center;
       margin: 0 auto;
@@ -132,6 +143,50 @@
       border: 1.5px solid var(--color-secondary);
       outline: none;
     }
+    .form-group input.error,
+    .form-group textarea.error {
+      border: 1.5px solid #e74c3c;
+    }
+    .error-message {
+      color: #e74c3c;
+      font-size: 0.85rem;
+      margin-top: 0.3rem;
+      min-height: 1.2rem;
+    }
+    .success-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #27ae60;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      z-index: 1000;
+      transform: translateX(400px);
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      max-width: 350px;
+    }
+    .success-message.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .success-content {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .success-icon {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+    .success-message p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
     button[type="submit"] {
       background: var(--color-primary);
       color: #fff;
@@ -163,6 +218,7 @@
       .cotiza__content {
         flex-direction: column;
         align-items: center;
+        max-width: 80%;
       }
       .cotiza__form, .cotiza__info {
         min-width: 0;
@@ -171,3 +227,108 @@
     }
   </style>
 </article>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    const nombreInput = document.getElementById('nombre');
+    const emailInput = document.getElementById('email');
+    const telefonoInput = document.getElementById('telefono');
+    const mensajeInput = document.getElementById('mensaje');
+    
+    const nombreError = document.getElementById('nombre-error');
+    const emailError = document.getElementById('email-error');
+    const telefonoError = document.getElementById('telefono-error');
+    const mensajeError = document.getElementById('mensaje-error');
+
+    // Función para limpiar errores
+    function clearError(input, errorElement) {
+      input.classList.remove('error');
+      errorElement.textContent = '';
+    }
+
+    // Función para mostrar error
+    function showError(input, errorElement, message) {
+      input.classList.add('error');
+      errorElement.textContent = message;
+    }
+
+    // Validación en tiempo real
+    nombreInput.addEventListener('input', () => {
+      if (nombreInput.value.trim()) {
+        clearError(nombreInput, nombreError);
+      }
+    });
+
+    emailInput.addEventListener('input', () => {
+      if (emailInput.value.trim()) {
+        clearError(emailInput, emailError);
+      }
+    });
+
+    telefonoInput.addEventListener('input', () => {
+      if (telefonoInput.value.trim()) {
+        clearError(telefonoInput, telefonoError);
+      }
+    });
+
+    mensajeInput.addEventListener('input', () => {
+      if (mensajeInput.value.trim()) {
+        clearError(mensajeInput, mensajeError);
+      }
+    });
+
+    // Validación del formulario
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let isValid = true;
+
+      // Validar nombre
+      if (!nombreInput.value.trim()) {
+        showError(nombreInput, nombreError, 'El nombre es obligatorio');
+        isValid = false;
+      }
+
+      // Validar email
+      if (!emailInput.value.trim()) {
+        showError(emailInput, emailError, 'El email es obligatorio');
+        isValid = false;
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+        showError(emailInput, emailError, 'Ingresa un email válido');
+        isValid = false;
+      }
+
+      // Validar teléfono
+      if (!telefonoInput.value.trim()) {
+        showError(telefonoInput, telefonoError, 'El teléfono es obligatorio');
+        isValid = false;
+      }
+
+      // Validar mensaje (mínimo 5 palabras)
+      const mensaje = mensajeInput.value.trim();
+      if (!mensaje) {
+        showError(mensajeInput, mensajeError, 'El mensaje es obligatorio');
+        isValid = false;
+      } else {
+        const palabras = mensaje.split(/\s+/).filter(palabra => palabra.length > 0);
+        if (palabras.length < 5) {
+          showError(mensajeInput, mensajeError, 'El mensaje debe tener al menos 5 palabras');
+          isValid = false;
+        }
+      }
+
+      if (isValid) {
+        // Aquí puedes agregar la lógica para enviar el formulario
+        const successMessage = document.getElementById('success-message');
+        successMessage.classList.add('show');
+        
+        // Ocultar el mensaje después de 4 segundos
+        setTimeout(() => {
+          successMessage.classList.remove('show');
+        }, 4000);
+        
+        form.reset();
+      }
+    });
+  });
+</script>

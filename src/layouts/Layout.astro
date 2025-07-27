@@ -55,35 +55,58 @@ const {
         const preloader = document.getElementById('preloader');
         const main = document.getElementById('main-content');
         const header = document.getElementById('main-header');
-        if (header) header.style.opacity = '0';
+        
+        // Verificar que los elementos existan antes de usarlos
+        if (header) {
+          header.style.opacity = '0';
+        }
+        
         let headerShown = false;
+        
         setTimeout(() => {
-          preloader.classList.add('preloader-hide');
+          if (preloader) {
+            preloader.classList.add('preloader-hide');
+          }
+          
           setTimeout(() => {
-            preloader.style.display = 'none';
-            main.style.display = '';
+            if (preloader) {
+              preloader.style.display = 'none';
+            }
+            if (main) {
+              main.style.display = '';
+            }
+            
             setTimeout(() => {
-              main.style.opacity = '1';
+              if (main) {
+                main.style.opacity = '1';
+              }
+              
               // Animación scroll-fade
               const fadeEls = document.querySelectorAll('.scroll-fade');
               const fadeInOnScroll = () => {
                 fadeEls.forEach(el => {
                   const rect = el.getBoundingClientRect();
-                  if (rect.top < window.innerHeight - 80) {
+                  const triggerPoint = window.innerHeight * 0.8; // 80% de la altura de la ventana
+                  if (rect.top < triggerPoint) {
                     el.classList.add('visible');
                   }
                 });
               };
-              fadeInOnScroll();
+              
+              // Ejecutar inmediatamente y en scroll
+              setTimeout(() => {
+                fadeInOnScroll();
+              }, 100);
               window.addEventListener('scroll', fadeInOnScroll, { passive: true });
+              
+              // Mostrar header solo al hacer scroll
+              window.addEventListener('scroll', () => {
+                if (!headerShown && window.scrollY > 30 && header) {
+                  header.style.opacity = '1';
+                  headerShown = true;
+                }
+              }, { passive: true });
             }, 50);
-            // Mostrar header solo al hacer scroll
-            window.addEventListener('scroll', () => {
-              if (!headerShown && window.scrollY > 30) {
-                header.style.opacity = '1';
-                headerShown = true;
-              }
-            }, { passive: true });
           }, 700);
         }, 500);
       });

@@ -1,12 +1,12 @@
 ---
 import Logo from '../assets/Logo.png';
-import imagen1 from '../assets/hero.jpg';
+import imagen1 from '../assets/hero.webp';
 ---
 
 <section class="hero parallax" id="inicio" aria-label="Sección principal: Arquitectura que Inspira" style={`background-image: url('${imagen1.src}');`}>
   <div class="hero__overlay">
     <div class="container hero__content">
-      <h1>Arquitectura que Inspira. Construcción que Perdura.</h1>
+      <h1>Arquitectura que Inspira. <br> Construcción que Perdura.</h1>
       <p id="typewriter-p" class="typewriter" aria-live="polite"></p>
       
       <div class="hero-btns">
@@ -24,29 +24,26 @@ import imagen1 from '../assets/hero.jpg';
     .hero.parallax { background: center center / cover no-repeat; min-height: 100vh; display: flex; align-items: center; position: relative; }
     .hero__overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.65); display: flex; align-items: center; justify-content: center; z-index: 1; }
     .hero__content { color: #fff; text-align: center; padding: 2rem 1rem; position: relative; z-index: 2; }
-    .hero__content h1 { font-size: 2.7rem; font-weight: 800; margin-bottom: 1rem; }
+    .hero__content h1 { font-size: 2.7rem; font-weight: 800; margin-bottom: 1rem; text-align: center;}
     .hero__content p { font-size: 1.3rem; margin-bottom: 2rem; }
     .hero-btns { display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; }
     .cta-btn { background: var(--color-primary); color: #fff; padding: 0.9rem 2.2rem; border-radius: 6px; font-weight: 600; text-decoration: none; transition: background 0.2s; box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
     .cta-btn:hover { background: var(--color-secondary); }
     
     .whatsapp-btn { 
-      background: #128C7E;
+      background: #078071;
     }
     .whatsapp-btn:hover {
       background: #25D366;
     }
 
     .typewriter {
-      min-height: 3.2em; 
-      font-size: 1.3rem;
+      min-height: 1.8em; 
       font-weight: 400;
-      margin-bottom: 2rem;
       max-width: 90%;
       margin-left: auto;
       margin-right: auto;
       display: inline-block; 
-
       width: var(--steps);
       overflow: hidden;
       white-space: nowrap; 

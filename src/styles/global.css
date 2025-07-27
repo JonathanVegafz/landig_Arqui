@@ -26,6 +26,8 @@ body {
   --color-secondary: #294758;
   --color-bg: #fff;
   --color-text: #333333;
+  --color-footer: #294758;
+  --color-footer-text: #fff;
   --margin-container: 0 3rem 0 3rem;
 }
 
