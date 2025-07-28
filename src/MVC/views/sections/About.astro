@@ -1,5 +1,9 @@
 ---
-import logo from '../../assets/logo.webp'
+import logo from '../../../assets/logo.webp'
+import { ContactController } from '../../controllers/ContactController';
+
+// Obtener datos del controlador (MVC)
+const companyInfo = ContactController.getCompanyInfo();
 ---
 
 <section class="about section-bg-gray" id="about" aria-label="Sobre nosotros">
@@ -38,15 +42,15 @@ import logo from '../../assets/logo.webp'
         
         <dl class="about__stats" role="list" aria-label="Estadísticas de la empresa">
           <dt class="stat">
-            <span class="stat__number" aria-label="Más de 20">20+</span>
+            <span class="stat__number" aria-label={`Más de ${companyInfo.experience}`}>{companyInfo.experience}</span>
             <dd class="stat__label">Años de Experiencia</dd>
           </dt>
           <dt class="stat">
-            <span class="stat__number" aria-label="Más de 100">100+</span>
+            <span class="stat__number" aria-label={`Más de ${companyInfo.projects}`}>{companyInfo.projects}</span>
             <dd class="stat__label">Proyectos Completados</dd>
           </dt>
           <dt class="stat">
-            <span class="stat__number" aria-label="Cien por ciento">100%</span>
+            <span class="stat__number" aria-label={`${companyInfo.satisfaction} satisfacción`}>{companyInfo.satisfaction}</span>
             <dd class="stat__label">Satisfacción del Cliente</dd>
           </dt>
         </dl>

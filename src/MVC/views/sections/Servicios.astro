@@ -1,7 +1,10 @@
 ---
 import SectionHeader from '../ui/SectionHeader.astro';
 import ServiceCard from '../ui/ServiceCard.astro';
-// Componente de Servicios para IG Construcciones
+import { ServiceController } from '../../controllers/ServiceController';
+
+// Obtener datos del controlador (MVC)
+const servicios = ServiceController.getAllServices();
 ---
 
 <section class="servicios section-bg-white" id="servicios" aria-label="Nuestros Servicios">
@@ -13,23 +16,13 @@ import ServiceCard from '../ui/ServiceCard.astro';
     />
     
     <div class="servicios__grid" aria-label="Servicios ofrecidos">
-      <ServiceCard 
-        icon='<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>'
-        title="Diseño Arquitectónico Personalizado"
-        features={["Planos detallados y renders 3D", "Optimización de espacios", "Integración con el entorno"]}
-      />
-      
-      <ServiceCard 
-        icon='<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>'
-        title="Construcción de Obras Nuevas"
-        features={["Materiales de alta calidad", "Tecnologías modernas", "Supervisión profesional"]}
-      />
-      
-      <ServiceCard 
-        icon='<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/><path d="M12 2a10 10 0 0 1 0 20 10 10 0 0 1 0-20z"/></svg>'
-        title="Eficiencia Energética y Climatización"
-        features={["Aislamiento térmico", "Sistemas de climatización", "Energías renovables"]}
-      />
+      {servicios.map(servicio => (
+        <ServiceCard 
+          icon={servicio.icon}
+          title={servicio.title}
+          features={servicio.features}
+        />
+      ))}
     </div>
   </div>
   

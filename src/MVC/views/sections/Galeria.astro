@@ -1,60 +1,9 @@
 ---
-import imagen1 from '../../assets/imagen1.webp';
-import imagen2 from '../../assets/imagen2.webp';
-import imagen3 from '../../assets/imagen3.webp';
-import imagen4 from '../../assets/imagen4.webp';
-import imagen5 from '../../assets/imagen5.webp';
+import { ProjectController } from '../../controllers/ProjectController';
 
-const proyectos = [
-  {
-    id: 1,
-    titulo: "Casa Moderna en Maitencillo",
-    descripcion: "Diseño arquitectónico contemporáneo con eficiencia energética",
-    imagen: imagen1.src,
-    categoria: "Residencial",
-    area: "180m²"
-  },
-  {
-    id: 2,
-    titulo: "Oficinas Corporativas",
-    descripcion: "Espacios de trabajo optimizados con tecnología moderna",
-    imagen: imagen2.src,
-    categoria: "Comercial",
-    area: "250m²"
-  },
-  {
-    id: 3,
-    titulo: "Casa de Playa",
-    descripcion: "Integración perfecta con el entorno costero",
-    imagen: imagen3.src,
-    categoria: "Residencial",
-    area: "200m²"
-  },
-  {
-    id: 4,
-    titulo: "Centro Comercial",
-    descripcion: "Diseño funcional y atractivo para el comercio",
-    imagen: imagen4.src,
-    categoria: "Comercial",
-    area: "500m²"
-  },
-  {
-    id: 5,
-    titulo: "Casa Sustentable",
-    descripcion: "Construcción eco-friendly con paneles solares",
-    imagen: imagen5.src,
-    categoria: "Residencial",
-    area: "150m²"
-  },
-  {
-    id: 6,
-    titulo: "Edificio Residencial",
-    descripcion: "Complejo habitacional con amenities modernos",
-    imagen: imagen1.src,
-    categoria: "Residencial",
-    area: "800m²"
-  }
-];
+// Obtener datos del controlador (MVC)
+const proyectos = ProjectController.getAllProjects();
+const categorias = ProjectController.getCategories();
 ---
 
 <section class="galeria section-bg-gray" id="galeria" aria-label="Galería de Proyectos">
@@ -68,18 +17,23 @@ const proyectos = [
     </div>
     
     <div class="galeria__filtros">
-      <button class="filtro-btn active" data-categoria="todos">Todos</button>
-      <button class="filtro-btn" data-categoria="residencial">Residencial</button>
-      <button class="filtro-btn" data-categoria="comercial">Comercial</button>
+      {categorias.map(categoria => (
+        <button 
+          class={`filtro-btn ${categoria === 'todos' ? 'active' : ''}`} 
+          data-categoria={categoria}
+        >
+          {categoria === 'todos' ? 'Todos' : categoria.charAt(0).toUpperCase() + categoria.slice(1)}
+        </button>
+      ))}
     </div>
     
     <div class="galeria__grid">
       {proyectos.map((proyecto) => (
-        <div class="proyecto-card" data-categoria={proyecto.categoria.toLowerCase()}>
+        <div class="proyecto-card" data-categoria={proyecto.category.toLowerCase()}>
           <div class="proyecto-card__image">
             <img 
-              src={proyecto.imagen} 
-              alt={proyecto.titulo} 
+              src={proyecto.image} 
+              alt={proyecto.title} 
               loading="lazy"
               decoding="async"
               width="382"
@@ -89,9 +43,9 @@ const proyectos = [
             />
             <div class="proyecto-card__overlay">
               <div class="proyecto-card__info">
-                <span class="proyecto-card__categoria">{proyecto.categoria}</span>
-                <h3 class="proyecto-card__titulo">{proyecto.titulo}</h3>
-                <p class="proyecto-card__descripcion">{proyecto.descripcion}</p>
+                <span class="proyecto-card__categoria">{proyecto.category}</span>
+                <h3 class="proyecto-card__titulo">{proyecto.title}</h3>
+                <p class="proyecto-card__descripcion">{proyecto.description}</p>
                 <div class="proyecto-card__meta">
                   <span class="proyecto-card__area">{proyecto.area}</span>
                 </div>

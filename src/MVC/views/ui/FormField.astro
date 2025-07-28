@@ -2,7 +2,7 @@
 interface Props {
   id: string;
   name: string;
-  type: string;
+  type: 'text' | 'email' | 'tel' | 'password' | 'number' | 'url' | 'search';
   label: string;
   placeholder?: string;
   required?: boolean;

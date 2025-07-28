@@ -1,6 +1,3 @@
-/* Fuentes optimizadas - cargadas via preload en Layout.astro */
-/* AOS cargado dinámicamente en Layout.astro */
-
 /* Reseteo básico */
 * {
   margin: 0;
@@ -130,7 +127,7 @@ body::before {
   pointer-events: none;
 }
 
-/* Tipografía mejorada */
+/* Tipografía */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 600;
@@ -153,7 +150,7 @@ p {
   margin: 0;
 }
 
-/* Enlaces mejorados */
+/* Enlaces */
 a {
   color: var(--color-primary);
   text-decoration: none;
@@ -173,7 +170,7 @@ img {
   display: block;
 }
 
-/* Container mejorado */
+/* Container */
 .container {
   max-width: var(--container-max-width);
   margin: 0 auto;
@@ -236,7 +233,7 @@ img {
   box-shadow: var(--shadow-xl);
 }
 
-/* Animaciones de scroll mejoradas */
+/* Animaciones de scroll */
 .scroll-fade {
   opacity: 0;
   transform: translateY(40px);
