@@ -16,10 +16,15 @@ export default defineConfig({
             'vendor': ['aos']
           }
         }
-      }
+      },
+      assetsInlineLimit: 4096
     },
     css: {
       devSourcemap: false
+    },
+    optimizeDeps: {
+      include: ['aos']
     }
-  }
+  },
+
 });
