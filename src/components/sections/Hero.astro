@@ -4,7 +4,14 @@ import heroImage from '../../assets/hero.webp';
 
 <section class="hero parallax section-bg-white" id="inicio" aria-label="Sección principal: Arquitectura que Inspira">
   <div class="hero__background">
-    <img src={heroImage.src} alt="Arquitectura moderna" class="hero__image" />
+    <img 
+      src={heroImage.src} 
+      alt="Arquitectura moderna" 
+      class="hero__image" 
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
   </div>
   <div class="hero__overlay">
     <div class="container hero__content">

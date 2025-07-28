@@ -77,7 +77,14 @@ const proyectos = [
       {proyectos.map((proyecto) => (
         <div class="proyecto-card" data-categoria={proyecto.categoria.toLowerCase()}>
           <div class="proyecto-card__image">
-            <img src={proyecto.imagen} alt={proyecto.titulo} loading="lazy" />
+            <img 
+              src={proyecto.imagen} 
+              alt={proyecto.titulo} 
+              loading="lazy"
+              decoding="async"
+              width="382"
+              height="217"
+            />
             <div class="proyecto-card__overlay">
               <div class="proyecto-card__info">
                 <span class="proyecto-card__categoria">{proyecto.categoria}</span>
