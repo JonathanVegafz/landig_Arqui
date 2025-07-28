@@ -1,0 +1,508 @@
+---
+import imagen1 from '../../assets/imagen1.webp';
+import imagen2 from '../../assets/imagen2.webp';
+import imagen3 from '../../assets/imagen3.webp';
+import imagen4 from '../../assets/imagen4.webp';
+import imagen5 from '../../assets/imagen5.webp';
+
+const proyectos = [
+  {
+    id: 1,
+    titulo: "Casa Moderna en Maitencillo",
+    descripcion: "Diseño arquitectónico contemporáneo con eficiencia energética",
+    imagen: imagen1.src,
+    categoria: "Residencial",
+    area: "180m²"
+  },
+  {
+    id: 2,
+    titulo: "Oficinas Corporativas",
+    descripcion: "Espacios de trabajo optimizados con tecnología moderna",
+    imagen: imagen2.src,
+    categoria: "Comercial",
+    area: "250m²"
+  },
+  {
+    id: 3,
+    titulo: "Casa de Playa",
+    descripcion: "Integración perfecta con el entorno costero",
+    imagen: imagen3.src,
+    categoria: "Residencial",
+    area: "200m²"
+  },
+  {
+    id: 4,
+    titulo: "Centro Comercial",
+    descripcion: "Diseño funcional y atractivo para el comercio",
+    imagen: imagen4.src,
+    categoria: "Comercial",
+    area: "500m²"
+  },
+  {
+    id: 5,
+    titulo: "Casa Sustentable",
+    descripcion: "Construcción eco-friendly con paneles solares",
+    imagen: imagen5.src,
+    categoria: "Residencial",
+    area: "150m²"
+  },
+  {
+    id: 6,
+    titulo: "Edificio Residencial",
+    descripcion: "Complejo habitacional con amenities modernos",
+    imagen: imagen1.src,
+    categoria: "Residencial",
+    area: "800m²"
+  }
+];
+---
+
+<section class="galeria section-bg-gray" id="galeria" aria-label="Galería de Proyectos">
+  <div class="container">
+    <div class="galeria__header">
+      <span class="galeria__subtitle">Nuestros Proyectos</span>
+      <h2 class="galeria__title">Portafolio de Obras</h2>
+      <p class="galeria__description">
+        Descubre algunos de nuestros proyectos más destacados, donde la innovación se encuentra con la funcionalidad.
+      </p>
+    </div>
+    
+    <div class="galeria__filtros">
+      <button class="filtro-btn active" data-categoria="todos">Todos</button>
+      <button class="filtro-btn" data-categoria="residencial">Residencial</button>
+      <button class="filtro-btn" data-categoria="comercial">Comercial</button>
+    </div>
+    
+    <div class="galeria__grid">
+      {proyectos.map((proyecto) => (
+        <div class="proyecto-card" data-categoria={proyecto.categoria.toLowerCase()}>
+          <div class="proyecto-card__image">
+            <img src={proyecto.imagen} alt={proyecto.titulo} loading="lazy" />
+            <div class="proyecto-card__overlay">
+              <div class="proyecto-card__info">
+                <span class="proyecto-card__categoria">{proyecto.categoria}</span>
+                <h3 class="proyecto-card__titulo">{proyecto.titulo}</h3>
+                <p class="proyecto-card__descripcion">{proyecto.descripcion}</p>
+                <div class="proyecto-card__meta">
+                  <span class="proyecto-card__area">{proyecto.area}</span>
+                </div>
+                <button class="proyecto-card__btn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                  </svg>
+                  Ver Detalles
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="galeria__cta">
+      <p>¿Te gustó nuestro trabajo? ¡Conversemos sobre tu proyecto!</p>
+      <a href="#cotiza" class="btn btn-primary">
+        <span>Cotiza tu Proyecto</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  
+  <style>
+    .galeria {
+      padding: var(--spacing-2xl) 0;
+    }
+    
+    .galeria__header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto var(--spacing-xl) auto;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .galeria__subtitle {
+      display: inline-block;
+      color: var(--color-primary);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--spacing-sm);
+      background: rgba(119, 188, 219, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius-sm);
+    }
+    
+    .galeria__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--color-neutral-900);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .galeria__description {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: var(--color-neutral-600);
+      margin: 0;
+    }
+    
+    .galeria__filtros {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-2xl);
+      flex-wrap: wrap;
+    }
+    
+    .filtro-btn {
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--color-neutral-200);
+      background: transparent;
+      color: var(--color-neutral-600);
+      border-radius: var(--border-radius-lg);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      font-family: var(--font-primary);
+    }
+    
+    .filtro-btn:hover,
+    .filtro-btn.active {
+      border-color: var(--color-primary);
+      background: var(--color-primary);
+      color: white;
+    }
+    
+    .galeria__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-2xl);
+    }
+    
+    .proyecto-card {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+    
+    .proyecto-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .proyecto-card__image {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+    }
+    
+    .proyecto-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+    
+    .proyecto-card:hover .proyecto-card__image img {
+      transform: scale(1.1);
+    }
+    
+    .proyecto-card__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(41, 71, 88, 0.9) 100%);
+      display: flex;
+      align-items: flex-end;
+      opacity: 0;
+      transition: all var(--transition-normal);
+      padding: var(--spacing-lg);
+    }
+    
+    .proyecto-card:hover .proyecto-card__overlay {
+      opacity: 1;
+    }
+    
+    .proyecto-card__info {
+      color: white;
+      width: 100%;
+      height: 100%;	
+    }
+    
+    .proyecto-card__categoria {
+      display: inline-block;
+      background: var(--color-primary);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--border-radius-sm);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .proyecto-card__titulo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+      color: white;
+    }
+    
+    .proyecto-card__descripcion {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 0;
+      margin-bottom: var(--spacing-sm);
+      opacity: 0.9;
+      color: var(--color-neutral-50);
+    }
+    
+    .proyecto-card__meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .proyecto-card__area {
+      font-size: 0.875rem;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+    
+    .proyecto-card__btn {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius-sm);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+    }
+    
+    .proyecto-card__btn:hover {
+      background: white;
+      color: var(--color-neutral-900);
+    }
+    
+    .galeria__cta {
+      text-align: center;
+      padding: var(--spacing-2xl);
+      background: var(--color-neutral-50);
+      border-radius: var(--border-radius-xl);
+      margin-top: var(--spacing-2xl);
+    }
+    
+    .galeria__cta p {
+      font-size: 1.25rem;
+      color: var(--color-neutral-700);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    /* Responsive mejorado */
+    @media (max-width: 1024px) {
+      .galeria__grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-lg);
+      }
+      
+      .proyecto-card__image {
+        height: 260px;
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .galeria {
+        padding: var(--spacing-2xl) 0;
+      }
+      
+      .galeria__grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--spacing-lg);
+      }
+      
+      .proyecto-card__image {
+        height: 240px;
+      }
+      
+      .galeria__cta {
+        padding: var(--spacing-xl);
+      }
+      
+      .galeria__cta p {
+        font-size: 1.125rem;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .galeria {
+        padding: var(--spacing-xl) 0;
+      }
+      
+      .galeria__header {
+        margin-bottom: var(--spacing-xl);
+      }
+      
+      .galeria__filtros {
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-xl);
+      }
+      
+      .filtro-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+      
+      .galeria__grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+      
+      .proyecto-card__image {
+        height: 200px;
+      }
+      
+      .proyecto-card__overlay {
+        padding: var(--spacing-md);
+      }
+      
+      .proyecto-card__titulo {
+        font-size: 1.125rem;
+      }
+      
+      .proyecto-card__descripcion {
+        font-size: 0.875rem;
+      }
+      
+      .galeria__title {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+      }
+      
+      .galeria__description {
+        font-size: 1rem;
+      }
+      
+      .galeria__cta {
+        padding: var(--spacing-lg);
+      }
+      
+      .galeria__cta p {
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .galeria__filtros {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-sm);
+      }
+      
+      .filtro-btn {
+        width: 100%;
+        max-width: 200px;
+        justify-content: center;
+      }
+      
+      .proyecto-card__image {
+        height: 180px;
+      }
+      
+      .proyecto-card__overlay {
+        padding: var(--spacing-sm);
+      }
+      
+      .proyecto-card__titulo {
+        font-size: 1rem;
+      }
+      
+      .proyecto-card__descripcion {
+        font-size: 0.8rem;
+      }
+      
+      .proyecto-card__btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+      }
+      
+      .galeria__cta {
+        padding: var(--spacing-md);
+      }
+      
+      .galeria__cta p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filtros = document.querySelectorAll('.filtro-btn');
+    const proyectos = document.querySelectorAll('.proyecto-card');
+    
+    filtros.forEach(filtro => {
+      filtro.addEventListener('click', () => {
+        // Remover clase active de todos los filtros
+        filtros.forEach(f => f.classList.remove('active'));
+        // Agregar clase active al filtro clickeado
+        filtro.classList.add('active');
+        
+        const categoria = filtro.getAttribute('data-categoria');
+        
+        proyectos.forEach(proyecto => {
+          const proyectoCategoria = proyecto.getAttribute('data-categoria');
+          
+          if (categoria === 'todos' || proyectoCategoria === categoria) {
+            proyecto.style.display = 'block';
+            proyecto.style.animation = 'fadeIn 0.5s ease-out';
+          } else {
+            proyecto.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+  
+  // Animación para los proyectos
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const proyectos = document.querySelectorAll('.proyecto-card');
+    proyectos.forEach(proyecto => {
+      proyecto.style.opacity = '0';
+      proyecto.style.transform = 'translateY(30px)';
+      proyecto.style.transition = 'all 0.6s ease-out';
+      observer.observe(proyecto);
+    });
+  });
+</script> 

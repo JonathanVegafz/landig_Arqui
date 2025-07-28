@@ -1,0 +1,57 @@
+---
+interface Props {
+  subtitle: string;
+  title: string;
+  description?: string;
+  class?: string;
+}
+
+const { subtitle, title, description, class: className } = Astro.props;
+---
+
+<div class={`section-header ${className || ''}`}>
+  <span class="section-subtitle">{subtitle}</span>
+  <h2 class="section-title">{title}</h2>
+  {description && <p class="section-description">{description}</p>}
+</div>
+
+<style>
+  .section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl) auto;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .section-subtitle {
+    display: inline-block;
+    color: var(--color-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--spacing-sm);
+    background: rgba(119, 188, 219, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-sm);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(119, 188, 219, 0.2);
+  }
+  
+  .section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--color-neutral-900);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.2;
+  }
+  
+  .section-description {
+    font-size: 1.125rem;
+    color: var(--color-neutral-700);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+</style> 

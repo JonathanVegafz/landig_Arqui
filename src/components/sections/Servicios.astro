@@ -1,0 +1,328 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import ServiceCard from '../ui/ServiceCard.astro';
+// Componente de Servicios para IG Construcciones
+---
+
+<section class="servicios section-bg-white" id="servicios" aria-label="Nuestros Servicios">
+  <div class="container">
+    <SectionHeader 
+      subtitle="Nuestros Servicios"
+      title="Soluciones Integrales para tu Hogar"
+      description="Ofrecemos servicios especializados que combinan innovación, calidad y eficiencia para crear espacios que trascienden el tiempo."
+    />
+    
+    <div class="servicios__grid" role="list" aria-label="Servicios ofrecidos">
+      <div class="servicio-item">
+        <ServiceCard 
+          icon='<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>'
+          title="Diseño Arquitectónico Personalizado"
+          features={["Planos detallados y renders 3D", "Optimización de espacios", "Integración con el entorno"]}
+        />
+      </div>
+      
+      <div class="servicio-item">
+        <ServiceCard 
+          icon='<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>'
+          title="Construcción de Obras Nuevas"
+          features={["Materiales de alta calidad", "Tecnologías modernas", "Supervisión profesional"]}
+        />
+      </div>
+      
+      <div class="servicio-item">
+        <ServiceCard 
+          icon='<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/><path d="M12 2a10 10 0 0 1 0 20 10 10 0 0 1 0-20z"/></svg>'
+          title="Eficiencia Energética y Climatización"
+          features={["Aislamiento térmico", "Sistemas de climatización", "Energías renovables"]}
+        />
+      </div>
+    </div>
+  </div>
+  
+  <style>
+    .servicios {
+      padding: var(--spacing-2xl) 0;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+    }
+    
+    .servicios__header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto var(--spacing-2xl) auto;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .servicios__subtitle {
+      display: inline-block;
+      color: var(--color-primary);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--spacing-sm);
+      background: rgba(119, 188, 219, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius-sm);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(119, 188, 219, 0.2);
+    }
+    
+    .servicios__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--color-neutral-900);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .servicios__description {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: var(--color-neutral-600);
+      margin: 0;
+    }
+    
+    .servicios__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-xl);
+      position: relative;
+      z-index: 2;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .servicio-item {
+      list-style: none;
+    }
+    
+    .servicio-card {
+      position: relative;
+      border-radius: var(--border-radius-xl);
+      padding: var(--spacing-xl);
+      transition: all var(--transition-normal);
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .servicio-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      transform: scaleX(0);
+      transition: transform var(--transition-normal);
+    }
+    
+    .servicio-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+      pointer-events: none;
+    }
+    
+    .servicio-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        0 8px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      border-color: rgba(119, 188, 219, 0.3);
+    }
+    
+    .servicio-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .servicio-card:hover::after {
+      opacity: 1;
+    }
+    
+    .servicio-card__icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      border-radius: var(--border-radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--spacing-lg);
+      color: white;
+      transition: all var(--transition-normal);
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 4px 16px rgba(119, 188, 219, 0.3);
+    }
+    
+    .servicio-card:hover .servicio-card__icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 8px 24px rgba(119, 188, 219, 0.4);
+    }
+    
+    .servicio-card__title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--color-neutral-900);
+      margin-bottom: var(--spacing-md);
+      line-height: 1.3;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .servicio-card__description {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--color-neutral-700);
+      margin-bottom: var(--spacing-lg);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .servicio-card__features {
+      padding: 0;
+      margin: 0;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .servicio-card__feature {
+      position: relative;
+      padding-left: var(--spacing-md);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1rem;
+      color: var(--color-neutral-600);
+      transition: color var(--transition-fast);
+    }
+    
+    .servicio-card__feature::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--color-primary);
+      font-weight: bold;
+      font-size: 1.125rem;
+      transition: transform var(--transition-fast);
+    }
+    
+    .servicio-card:hover .servicio-card__feature {
+      color: var(--color-neutral-800);
+    }
+    
+    .servicio-card:hover .servicio-card__feature::before {
+      transform: scale(1.2);
+    }
+    
+    /* Responsive mejorado */
+    @media (max-width: 1024px) {
+      .servicios__grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-lg);
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .servicios {
+        padding: var(--spacing-2xl) 0;
+        min-height: auto;
+      }
+      
+      .servicios__grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+        max-width: 500px;
+      }
+      
+      .servicio-card {
+        padding: var(--spacing-lg);
+      }
+      
+      .servicio-card__icon {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .servicio-card__title {
+        font-size: 1.25rem;
+      }
+      
+      .servicios__description {
+        font-size: 1.125rem;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .servicios {
+        padding: var(--spacing-xl) 0;
+      }
+      
+      .servicios__header {
+        margin-bottom: var(--spacing-xl);
+      }
+      
+      .servicio-card {
+        padding: var(--spacing-md);
+        backdrop-filter: blur(10px);
+      }
+      
+      .servicio-card__icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: var(--spacing-md);
+      }
+      
+      .servicio-card__title {
+        font-size: 1.125rem;
+      }
+      
+      .servicio-card__description {
+        font-size: 1rem;
+      }
+      
+      .servicios__title {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+      }
+      
+      .servicios__description {
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .servicios__grid {
+        gap: var(--spacing-md);
+      }
+      
+      .servicio-card {
+        padding: var(--spacing-sm);
+      }
+      
+      .servicio-card__feature {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</section>

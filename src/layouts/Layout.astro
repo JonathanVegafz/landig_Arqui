@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
 const {
   title = 'IG Construcciones - Arquitectura y Construcción en la V Región',
   description = 'IG Construcciones: Arquitectura y construcción en la V Región. Diseño, obras nuevas y eficiencia energética. Calidad, confianza y experiencia.',
@@ -18,10 +18,19 @@ const {
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="IG Construcciones" />
-    <meta name="keywords" content="arquitectura, construcción, V Región, Chile, diseño arquitectónico, obras nuevas, eficiencia energética, Maitencillo" />
+    <meta name="keywords" content="arquitectura, construcción, V Región, Chile, diseño arquitectónico, obras nuevas, eficiencia energética, Maitencillo, construcción sustentable, paneles SIP, metalcom, EIFS" />
     <meta name="geo.region" content="CL-V" />
     <meta name="geo.placename" content="Maitencillo, V Región, Chile" />
+    <meta name="geo.position" content="-32.5;-71.5" />
+    <meta name="ICBM" content="-32.5, -71.5" />
+    <meta name="DC.title" content={title} />
+    <meta name="DC.description" content={description} />
+    <meta name="DC.language" content="es" />
+    <meta name="DC.coverage" content="V Región, Chile" />
+    <meta name="DC.subject" content="Arquitectura, Construcción, Diseño" />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
     
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -40,6 +49,59 @@ const {
     
     <title>{title}</title>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		
+		<!-- Structured Data -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "LocalBusiness",
+			"name": "IG Construcciones",
+			"description": "Arquitectura y construcción en la V Región de Chile. Diseño, obras nuevas y eficiencia energética.",
+			"url": "https://igconstrucciones.cl",
+			"telephone": "+56945150212",
+			"email": "contacto@igconstrucciones.cl",
+			"address": {
+				"@type": "PostalAddress",
+				"addressLocality": "Maitencillo",
+				"addressRegion": "V Región",
+				"addressCountry": "CL"
+			},
+			"geo": {
+				"@type": "GeoCoordinates",
+				"latitude": "-32.5",
+				"longitude": "-71.5"
+			},
+			"openingHours": "Mo-Fr 09:00-18:00",
+			"priceRange": "$$",
+			"serviceType": ["Arquitectura", "Construcción", "Diseño"],
+			"areaServed": "V Región, Chile",
+			"hasOfferCatalog": {
+				"@type": "OfferCatalog",
+				"name": "Servicios de Construcción",
+				"itemListElement": [
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Diseño Arquitectónico Personalizado"
+						}
+					},
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Construcción de Obras Nuevas"
+						}
+					},
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Eficiencia Energética y Climatización"
+						}
+					}
+				]
+			}
+		})} />
 	</head>
 	<body>
     <div id="preloader" role="status" aria-label="Cargando página">
