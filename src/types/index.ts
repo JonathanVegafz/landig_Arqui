@@ -82,7 +82,7 @@ export interface ProjectProps {
   description: string;
   category: string;
   area: string;
-  image: string;
-  imageOriginal?: string;
+  image: any; // Astro Image object
+  imageOriginal?: any; // Astro Image object
   details: ProjectDetails;
 } 

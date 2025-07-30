@@ -1,16 +1,21 @@
 ---
+import { Image } from 'astro:assets';
 import heroImage from '../../assets/optimized/hero-hero.webp';
 ---
 
 <section class="hero parallax section-bg-white" id="inicio" aria-label="Sección principal: Arquitectura que Inspira">
   <div class="hero__background">
-    <img 
-      src={heroImage.src} 
+    <Image 
+      src={heroImage} 
       alt="Arquitectura moderna" 
       class="hero__image" 
       loading="eager"
       fetchpriority="high"
       decoding="async"
+      format="webp"
+      quality={90}
+      width={1920}
+      height={1080}
     />
   </div>
   <div class="hero__overlay">

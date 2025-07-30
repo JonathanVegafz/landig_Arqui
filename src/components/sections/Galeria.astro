@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { PROJECT_CATEGORIES } from '../../lib/constants-loader';
 import { getProjects } from '../../lib/projects-loader';
 
@@ -30,13 +31,15 @@ const PROJECTS = getProjects();
       {PROJECTS.map((proyecto) => (
         <div class="proyecto-card" data-categoria={proyecto.category.toLowerCase()}>
           <div class="proyecto-card__image">
-            <img 
+            <Image 
               src={proyecto.image} 
               alt={proyecto.title} 
+              width={600}
+              height={400}
+              format="webp"
+              quality={80}
               loading="lazy"
               decoding="async"
-              width="600"
-              height="400"
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               style="aspect-ratio: 3/2;"
             />
@@ -45,9 +48,6 @@ const PROJECTS = getProjects();
                 <span class="proyecto-card__categoria">{proyecto.category}</span>
                 <h3 class="proyecto-card__titulo">{proyecto.title}</h3>
                 <p class="proyecto-card__descripcion">{proyecto.description}</p>
-                <div class="proyecto-card__meta">
-                  <span class="proyecto-card__area">{proyecto.area}</span>
-                </div>
                 <a href={`/landig_Arqui/proyecto/${proyecto.id}`} class="proyecto-card__btn">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
@@ -231,12 +231,6 @@ const PROJECTS = getProjects();
       color: var(--color-neutral-50);
     }
     
-    .proyecto-card__meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: var(--spacing-sm);
-    }
     
     .proyecto-card__area {
       font-size: 0.875rem;

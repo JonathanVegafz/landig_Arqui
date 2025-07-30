@@ -16,11 +16,11 @@ const reseñas = getTestimonials();
       ))}
     </div>
   </div>
-  <nav class="carrusel-dots" role="tablist" aria-label="Navegación de reseñas">
+  <div class="carrusel-dots" aria-label="Navegación de reseñas">
     {reseñas.map((_, i) => (
-      <button class="dot" id={`dot-${i}`} role="tab" aria-selected={i === 0 ? "true" : "false"} aria-label={`Ver reseña ${i + 1}`}></button>
+      <button class="dot" id={`dot-${i}`} aria-selected={i === 0 ? "true" : "false"} aria-label={`Ver reseña ${i + 1}`}></button>
     ))}
-  </nav>
+  </div>
 </section>
 <style>
 .resenas {

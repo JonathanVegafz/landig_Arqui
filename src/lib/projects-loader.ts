@@ -30,8 +30,8 @@ const imageMap = {
 export function getProjects(): ProjectProps[] {
   return projectsData.projects.map(project => ({
     ...project,
-    image: imageMap[project.imageCard as keyof typeof imageMap].src,
-    imageOriginal: imageMap[project.imageOriginal as keyof typeof imageMap].src,
+    image: imageMap[project.imageCard as keyof typeof imageMap],
+    imageOriginal: imageMap[project.imageOriginal as keyof typeof imageMap],
   }));
 }
 

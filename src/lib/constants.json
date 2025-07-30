@@ -14,7 +14,6 @@
     {
       "id": 1,
       "title": "Diseño Arquitectónico Personalizado",
-      "icon": "🏗️",
       "features": [
         "Diseño adaptado a tu estilo de vida",
         "Optimización de espacios y funcionalidad",
@@ -26,7 +25,6 @@
     {
       "id": 2,
       "title": "Construcción de Obras Nuevas",
-      "icon": "🏠",
       "features": [
         "Construcción desde cimientos hasta acabados",
         "Sistema constructivo eficiente",
@@ -38,7 +36,6 @@
     {
       "id": 3,
       "title": "Eficiencia Energética y Climatización",
-      "icon": "🌱",
       "features": [
         "Aislamiento térmico optimizado",
         "Sistemas de climatización eficientes",

@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import logo from '../../assets/optimized/logo-hero.webp'
 import { COMPANY_INFO } from '../../lib/constants-loader';
 ---
@@ -8,13 +9,15 @@ import { COMPANY_INFO } from '../../lib/constants-loader';
     <div class="about__content">
       <div class="about__image-wrapper">
         <figure class="about__img">
-          <img 
-            src={logo.src} 
+          <Image 
+            src={logo} 
             alt="Logo IG Construcciones" 
             loading="lazy"
             decoding="async"
-            width="312"
-            height="250"
+            width={312}
+            height={250}
+            format="webp"
+            quality={85}
             style="aspect-ratio: 312/250;"
           />
         </figure>
@@ -37,19 +40,19 @@ import { COMPANY_INFO } from '../../lib/constants-loader';
           </p>
         </div>
         
-        <dl class="about__stats" role="list" aria-label="Estadísticas de la empresa">
-          <dt class="stat">
-            <span class="stat__number" aria-label={`Más de ${COMPANY_INFO.experience}`}>{COMPANY_INFO.experience}</span>
+        <dl class="about__stats" aria-label="Estadísticas de la empresa">
+          <div class="stat">
+            <dt class="stat__number" aria-label={`Más de ${COMPANY_INFO.experience}`}>{COMPANY_INFO.experience}</dt>
             <dd class="stat__label">Años de Experiencia</dd>
-          </dt>
-          <dt class="stat">
-            <span class="stat__number" aria-label={`Más de ${COMPANY_INFO.projects}`}>{COMPANY_INFO.projects}</span>
+          </div>
+          <div class="stat">
+            <dt class="stat__number" aria-label={`Más de ${COMPANY_INFO.projects}`}>{COMPANY_INFO.projects}</dt>
             <dd class="stat__label">Proyectos Completados</dd>
-          </dt>
-          <dt class="stat">
-            <span class="stat__number" aria-label={`${COMPANY_INFO.satisfaction} satisfacción`}>{COMPANY_INFO.satisfaction}</span>
+          </div>
+          <div class="stat">
+            <dt class="stat__number" aria-label={`${COMPANY_INFO.satisfaction} satisfacción`}>{COMPANY_INFO.satisfaction}</dt>
             <dd class="stat__label">Satisfacción del Cliente</dd>
-          </dt>
+          </div>
         </dl>
       </div>
     </div>

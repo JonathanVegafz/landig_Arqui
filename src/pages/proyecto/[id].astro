@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 import { getProjects } from '../../lib/projects-loader';
 
 // Función getStaticPaths requerida para rutas dinámicas en Astro
@@ -57,11 +58,13 @@ const description = proyecto.description;
           </div>
         </div>
         <div class="proyecto-header__image">
-          <img 
+          <Image 
             src={proyecto.image} 
             alt={proyecto.title}
-            width="600"
-            height="400"
+            width={600}
+            height={400}
+            format="webp"
+            quality={80}
             loading="eager"
             decoding="async"
           />
