@@ -1,5 +1,2 @@
-node_modules/
-nginx/
-dist/
-.git
-cerbot/
+node_modules
+dist

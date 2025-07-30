@@ -1,12 +1,16 @@
 # Etapa de construcción
-FROM node:20-alpine AS builder
+FROM node:lts-alpine AS build
+
 WORKDIR /app
 COPY . .
 RUN npm install
 RUN npm run build
 
-# Etapa de producción
-FROM nginx:alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Etapa de ejecución
+FROM node:lts-alpine AS runtime
+
+WORKDIR /app
+COPY --from=build /app/dist /app
+
+EXPOSE 4321
+CMD ["npx", "serve", "-s", ".", "-l", "4321"]
