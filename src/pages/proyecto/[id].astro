@@ -1,0 +1,493 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getProjects } from '../../lib/projects-loader';
+
+// Función getStaticPaths requerida para rutas dinámicas en Astro
+export async function getStaticPaths() {
+  const PROJECTS = getProjects();
+  
+  return PROJECTS.map((proyecto) => ({
+    params: { id: proyecto.id.toString() },
+    props: { proyecto }
+  }));
+}
+
+// Obtener el proyecto desde las props
+const { proyecto } = Astro.props;
+
+// Datos de los proyectos para la navegación
+const PROJECTS = getProjects();
+
+// Generar metadatos dinámicos
+const title = `${proyecto.title} - IG Construcciones`;
+const description = proyecto.description;
+---
+
+<Layout title={title} description={description}>
+  <main class="proyecto-detalle">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Navegación">
+        <a href="/landig_Arqui/" class="breadcrumb__link">Inicio</a>
+        <span class="breadcrumb__separator">/</span>
+        <a href="/landig_Arqui/#galeria" class="breadcrumb__link">Galería</a>
+        <span class="breadcrumb__separator">/</span>
+        <span class="breadcrumb__current">{proyecto.title}</span>
+      </nav>
+
+      <!-- Header del proyecto -->
+      <header class="proyecto-header">
+        <div class="proyecto-header__content">
+          <span class="proyecto-header__categoria">{proyecto.category}</span>
+          <h1 class="proyecto-header__titulo">{proyecto.title}</h1>
+          <p class="proyecto-header__descripcion">{proyecto.description}</p>
+          <div class="proyecto-header__meta">
+            <div class="meta-item">
+              <span class="meta-label">Superficie</span>
+              <span class="meta-value">{proyecto.area}</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Duración</span>
+              <span class="meta-value">{proyecto.details.duracion}</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Ubicación</span>
+              <span class="meta-value">{proyecto.details.ubicacion}</span>
+            </div>
+          </div>
+        </div>
+        <div class="proyecto-header__image">
+          <img 
+            src={proyecto.image} 
+            alt={proyecto.title}
+            width="600"
+            height="400"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </header>
+
+      <!-- Contenido principal -->
+      <div class="proyecto-content">
+        <div class="proyecto-content__main">
+          <section class="proyecto-section">
+            <h2 class="proyecto-section__title">Descripción del Proyecto</h2>
+            <p class="proyecto-section__text">{proyecto.details.descripcionCompleta}</p>
+          </section>
+
+          <section class="proyecto-section">
+            <h2 class="proyecto-section__title">Características Principales</h2>
+            <ul class="caracteristicas-list">
+              {proyecto.details.caracteristicas.map(caracteristica => (
+                <li class="caracteristica-item">
+                  <svg class="caracteristica-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 6L9 17l-5-5"/>
+                  </svg>
+                  {caracteristica}
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+
+        <aside class="proyecto-sidebar">
+          <div class="proyecto-sidebar__card">
+            <h3 class="proyecto-sidebar__title">Detalles del Proyecto</h3>
+            <div class="detalles-list">
+              <div class="detalle-item">
+                <span class="detalle-label">Superficie</span>
+                <span class="detalle-value">{proyecto.details.superficie}</span>
+              </div>
+              <div class="detalle-item">
+                <span class="detalle-label">Habitaciones</span>
+                <span class="detalle-value">{proyecto.details.habitaciones}</span>
+              </div>
+              <div class="detalle-item">
+                <span class="detalle-label">Baños</span>
+                <span class="detalle-value">{proyecto.details.baños}</span>
+              </div>
+              <div class="detalle-item">
+                <span class="detalle-label">Duración</span>
+                <span class="detalle-value">{proyecto.details.duracion}</span>
+              </div>
+              <div class="detalle-item">
+                <span class="detalle-label">Ubicación</span>
+                <span class="detalle-value">{proyecto.details.ubicacion}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="proyecto-sidebar__card">
+            <h3 class="proyecto-sidebar__title">¿Te gusta este proyecto?</h3>
+            <p class="proyecto-sidebar__text">Conversemos sobre cómo podemos adaptar este diseño a tus necesidades.</p>
+            <a href="/landig_Arqui/#cotiza" class="btn btn-primary">
+              <span>Cotiza tu Proyecto</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Navegación entre proyectos -->
+      <nav class="proyecto-navigation">
+        {PROJECTS.map((proyectoItem, index) => {
+          const isCurrent = proyectoItem.id === proyecto.id;
+          const isFirst = index === 0;
+          const isLast = index === PROJECTS.length - 1;
+          
+          if (isCurrent) {
+            const prevProyecto = isFirst ? PROJECTS[PROJECTS.length - 1] : PROJECTS[index - 1];
+            const nextProyecto = isLast ? PROJECTS[0] : PROJECTS[index + 1];
+            
+            return (
+              <>
+                <a href={`/landig_Arqui/proyecto/${prevProyecto.id}`} class="nav-btn nav-btn--prev">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                  </svg>
+                  <span>Proyecto Anterior</span>
+                </a>
+                <a href="/landig_Arqui/#galeria" class="nav-btn nav-btn--center">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21,15 16,10 5,21"/>
+                  </svg>
+                  <span>Ver Todos</span>
+                </a>
+                <a href={`/landig_Arqui/proyecto/${nextProyecto.id}`} class="nav-btn nav-btn--next">
+                  <span>Próximo Proyecto</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                  </svg>
+                </a>
+              </>
+            );
+          }
+          return null;
+        })}
+      </nav>
+    </div>
+  </main>
+
+  <style>
+    .proyecto-detalle {
+      padding: var(--spacing-2xl) 0;
+      min-height: 100vh;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      margin-bottom: var(--spacing-xl);
+      font-size: 0.875rem;
+    }
+
+    .breadcrumb__link {
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: color var(--transition-normal);
+    }
+
+    .breadcrumb__link:hover {
+      color: var(--color-primary-dark);
+    }
+
+    .breadcrumb__separator {
+      color: var(--color-neutral-400);
+    }
+
+    .breadcrumb__current {
+      color: var(--color-neutral-600);
+      font-weight: 500;
+    }
+
+    .proyecto-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-2xl);
+      margin-bottom: var(--spacing-3xl);
+      align-items: center;
+    }
+
+    .proyecto-header__categoria {
+      display: inline-block;
+      background: var(--color-primary);
+      color: white;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius-sm);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .proyecto-header__titulo {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--color-neutral-900);
+      margin-bottom: var(--spacing-md);
+      line-height: 1.2;
+    }
+
+    .proyecto-header__descripcion {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: var(--color-neutral-600);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .proyecto-header__meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: var(--spacing-md);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+
+    .meta-label {
+      font-size: 0.875rem;
+      color: var(--color-neutral-500);
+      font-weight: 500;
+    }
+
+    .meta-value {
+      font-size: 1rem;
+      color: var(--color-neutral-900);
+      font-weight: 600;
+    }
+
+    .proyecto-header__image {
+      border-radius: var(--border-radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .proyecto-header__image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .proyecto-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: var(--spacing-2xl);
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .proyecto-section {
+      margin-bottom: var(--spacing-2xl);
+    }
+
+    .proyecto-section__title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--color-neutral-900);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .proyecto-section__text {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--color-neutral-700);
+    }
+
+    .caracteristicas-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: var(--spacing-md);
+    }
+
+    .caracteristica-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-neutral-700);
+    }
+
+    .caracteristica-icon {
+      color: var(--color-primary);
+      flex-shrink: 0;
+      margin-top: 0.125rem;
+    }
+
+    .proyecto-sidebar__card {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow-md);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .proyecto-sidebar__title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-neutral-900);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .detalles-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+
+    .detalle-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 1px solid var(--color-neutral-200);
+    }
+
+    .detalle-item:last-child {
+      border-bottom: none;
+    }
+
+    .detalle-label {
+      font-size: 0.875rem;
+      color: var(--color-neutral-600);
+      font-weight: 500;
+    }
+
+    .detalle-value {
+      font-size: 0.875rem;
+      color: var(--color-neutral-900);
+      font-weight: 600;
+    }
+
+    .proyecto-sidebar__text {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--color-neutral-600);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .proyecto-navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--spacing-lg);
+      padding-top: var(--spacing-2xl);
+      border-top: 1px solid var(--color-neutral-200);
+    }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--color-neutral-200);
+      background: white;
+      color: var(--color-neutral-700);
+      text-decoration: none;
+      border-radius: var(--border-radius-lg);
+      font-weight: 500;
+      transition: all var(--transition-normal);
+    }
+
+    .nav-btn:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    .nav-btn--center {
+      background: var(--color-primary);
+      color: white;
+      border-color: var(--color-primary);
+    }
+
+    .nav-btn--center:hover {
+      background: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+      color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .proyecto-header {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+      }
+
+      .proyecto-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+      }
+
+      .proyecto-navigation {
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+
+      .nav-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .proyecto-detalle {
+        padding: var(--spacing-xl) 0;
+      }
+
+      .proyecto-header__titulo {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+      }
+
+      .proyecto-header__descripcion {
+        font-size: 1rem;
+      }
+
+      .proyecto-header__meta {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+      }
+
+      .proyecto-section__title {
+        font-size: 1.5rem;
+      }
+
+      .proyecto-section__text {
+        font-size: 1rem;
+      }
+
+      .caracteristica-item {
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .breadcrumb {
+        font-size: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      .proyecto-header__categoria {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .nav-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+</Layout> 

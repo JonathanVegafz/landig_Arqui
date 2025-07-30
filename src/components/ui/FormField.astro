@@ -1,0 +1,33 @@
+---
+interface Props {
+  id: string;
+  name: string;
+  type: 'text' | 'email' | 'tel' | 'password' | 'number' | 'url' | 'search';
+  label: string;
+  placeholder?: string;
+  required?: boolean;
+  icon?: string;
+  errorId?: string;
+}
+
+const { id, name, type, label, placeholder, required = false, icon, errorId } = Astro.props;
+---
+
+<div class="form-group">
+  <label for={id} class="form-label">{label} {required && '*'}</label>
+  <div class="input-wrapper">
+    <input 
+      type={type} 
+      id={id} 
+      name={name} 
+      {required} 
+      class="form-input" 
+      placeholder={placeholder}
+      aria-describedby={errorId}
+    />
+    {icon && (
+      <div class="input-icon" set:html={icon}></div>
+    )}
+  </div>
+  {errorId && <span class="error-message" id={errorId}></span>}
+</div> 

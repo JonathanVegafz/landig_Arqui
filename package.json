@@ -6,13 +6,15 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "optimize-images": "node scripts/optimize-images.js"
   },
   "dependencies": {
     "@glidejs/glide": "^3.7.1",
     "aos": "^2.3.4",
     "astro": "^5.12.1",
     "embla-carousel": "^8.6.0",
-    "embla-carousel-autoplay": "^8.6.0"
+    "embla-carousel-autoplay": "^8.6.0",
+    "sharp": "^0.34.3"
   }
 }

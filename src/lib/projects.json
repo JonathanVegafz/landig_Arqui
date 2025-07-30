@@ -1,0 +1,129 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Casa Moderna en Maitencillo",
+      "description": "Diseño contemporáneo con vista al mar, optimizada para el clima costero",
+      "category": "Residencial",
+      "area": "180m²",
+      "imageCard": "/src/assets/optimized/imagen1-card.webp",
+      "imageOriginal": "/src/assets/optimized/imagen1-original.webp",
+      "details": {
+        "ubicacion": "Maitencillo, V Región",
+        "duracion": "8 meses",
+        "superficie": "180m²",
+        "habitaciones": "3 dormitorios",
+        "baños": "2 baños completos",
+        "caracteristicas": [
+          "Vista panorámica al océano",
+          "Terraza con deck de madera",
+          "Cocina integrada con isla central",
+          "Sistema de climatización eficiente",
+          "Aislamiento térmico optimizado",
+          "Jardín nativo de bajo mantenimiento"
+        ],
+        "descripcionCompleta": "Esta casa moderna en Maitencillo combina elegancia contemporánea con funcionalidad. Diseñada para aprovechar las vistas al océano, cuenta con grandes ventanales y una distribución que maximiza la luz natural. La construcción incluye materiales de alta calidad y sistemas eficientes para el clima costero."
+      }
+    },
+    {
+      "id": 2,
+      "title": "Oficinas Corporativas",
+      "description": "Espacios de trabajo modernos con eficiencia energética",
+      "category": "Comercial",
+      "area": "250m²",
+      "imageCard": "/src/assets/optimized/imagen2-card.webp",
+      "imageOriginal": "/src/assets/optimized/imagen2-original.webp",
+      "details": {
+        "ubicacion": "Viña del Mar, V Región",
+        "duracion": "6 meses",
+        "superficie": "250m²",
+        "habitaciones": "8 oficinas privadas",
+        "baños": "3 baños",
+        "caracteristicas": [
+          "Sistema de iluminación LED inteligente",
+          "Sala de reuniones con tecnología audiovisual",
+          "Área de coworking flexible",
+          "Sistema de climatización centralizado",
+          "Estacionamiento subterráneo",
+          "Terraza con vista panorámica"
+        ],
+        "descripcionCompleta": "Oficinas corporativas modernas diseñadas para maximizar la productividad y el bienestar de los empleados. El espacio incluye áreas de trabajo colaborativo, oficinas privadas y zonas de descanso, todo integrado con tecnología de última generación."
+      }
+    },
+    {
+      "id": 3,
+      "title": "Casa Sustentable",
+      "description": "Vivienda con paneles solares y sistema de recolección de aguas lluvias",
+      "category": "Residencial",
+      "area": "150m²",
+      "imageCard": "/src/assets/optimized/imagen3-card.webp",
+      "imageOriginal": "/src/assets/optimized/imagen3-original.webp",
+      "details": {
+        "ubicacion": "Quilpué, V Región",
+        "duracion": "10 meses",
+        "superficie": "150m²",
+        "habitaciones": "2 dormitorios",
+        "baños": "2 baños",
+        "caracteristicas": [
+          "Paneles solares fotovoltaicos",
+          "Sistema de recolección de aguas lluvias",
+          "Aislamiento térmico avanzado",
+          "Ventanas de triple vidrio",
+          "Jardín con especies nativas",
+          "Sistema de compostaje integrado"
+        ],
+        "descripcionCompleta": "Casa sustentable que demuestra que es posible vivir con confort sin comprometer el medio ambiente. Incorpora tecnologías verdes y materiales ecológicos, logrando una reducción significativa en el consumo energético y de agua."
+      }
+    },
+    {
+      "id": 4,
+      "title": "Restaurante Costero",
+      "description": "Local gastronómico con terraza panorámica al océano",
+      "category": "Comercial",
+      "area": "120m²",
+      "imageCard": "/src/assets/optimized/imagen4-card.webp",
+      "imageOriginal": "/src/assets/optimized/imagen4-original.webp",
+      "details": {
+        "ubicacion": "Reñaca, V Región",
+        "duracion": "4 meses",
+        "superficie": "120m²",
+        "habitaciones": "Sala principal y terraza",
+        "baños": "2 baños públicos",
+        "caracteristicas": [
+          "Terraza panorámica al océano",
+          "Cocina industrial equipada",
+          "Sistema de ventilación especializado",
+          "Iluminación atmosférica",
+          "Bar con vista al mar",
+          "Área de estacionamiento"
+        ],
+        "descripcionCompleta": "Restaurante costero que aprovecha su ubicación privilegiada para ofrecer una experiencia gastronómica única. El diseño prioriza las vistas al océano y la comodidad de los comensales, con espacios interiores y exteriores perfectamente integrados."
+      }
+    },
+    {
+      "id": 5,
+      "title": "Casa Familiar",
+      "description": "Vivienda amplia para familia numerosa con espacios integrados",
+      "category": "Residencial",
+      "area": "220m²",
+      "imageCard": "/src/assets/optimized/imagen5-card.webp",
+      "imageOriginal": "/src/assets/optimized/imagen5-original.webp",
+      "details": {
+        "ubicacion": "Villa Alemana, V Región",
+        "duracion": "12 meses",
+        "superficie": "220m²",
+        "habitaciones": "4 dormitorios",
+        "baños": "3 baños",
+        "caracteristicas": [
+          "Sala de estar de doble altura",
+          "Cocina gourmet con isla central",
+          "Sala de juegos para niños",
+          "Oficina en casa",
+          "Jardín con piscina",
+          "Bodega y lavandería"
+        ],
+        "descripcionCompleta": "Casa familiar diseñada para crecer con la familia. Espacios amplios y funcionales que se adaptan a las necesidades cambiantes, con áreas de convivencia y privacidad perfectamente balanceadas."
+      }
+    }
+  ]
+} 

@@ -1,0 +1,67 @@
+{
+  "COMPANY_INFO": {
+    "name": "IG Construcciones",
+    "description": "Arquitectura y construcción en la V Región de Chile",
+    "location": "Maitencillo, V Región, Chile",
+    "phone": "+56945150212",
+    "email": "contacto@igconstrucciones.cl",
+    "whatsapp": "https://wa.me/56945150212",
+    "experience": "20+",
+    "projects": "100+",
+    "satisfaction": "98%"
+  },
+  "SERVICES": [
+    {
+      "id": 1,
+      "title": "Diseño Arquitectónico Personalizado",
+      "icon": "🏗️",
+      "features": [
+        "Diseño adaptado a tu estilo de vida",
+        "Optimización de espacios y funcionalidad",
+        "Integración con el entorno natural",
+        "Planos técnicos detallados",
+        "Asesoría en materiales y acabados"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Construcción de Obras Nuevas",
+      "icon": "🏠",
+      "features": [
+        "Construcción desde cimientos hasta acabados",
+        "Sistema constructivo eficiente",
+        "Control de calidad en cada etapa",
+        "Cumplimiento de plazos garantizado",
+        "Supervisión técnica especializada"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Eficiencia Energética y Climatización",
+      "icon": "🌱",
+      "features": [
+        "Aislamiento térmico optimizado",
+        "Sistemas de climatización eficientes",
+        "Ventilación natural estratégica",
+        "Orientación solar aprovechada",
+        "Reducción de consumo energético"
+      ]
+    }
+  ],
+  "SEO_CONFIG": {
+    "defaultTitle": "IG Construcciones - Arquitectura y Construcción en la V Región",
+    "defaultDescription": "IG Construcciones: Arquitectura y construcción en la V Región. Diseño, obras nuevas y eficiencia energética.",
+    "canonicalUrl": "https://igconstrucciones.cl/",
+    "locale": "es_CL",
+    "type": "website"
+  },
+  "VALIDATION_RULES": {
+    "email": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+    "phone": "^\\+?[1-9]\\d{1,14}$",
+    "minNameLength": 2,
+    "maxNameLength": 50,
+    "minMessageLength": 10,
+    "maxMessageLength": 1000
+  },
+  "PROJECT_CATEGORIES": ["todos", "Residencial", "Comercial"]
+} 

@@ -57,4 +57,32 @@ export interface ProcessStepProps extends BaseProps {
   title: string;
   description: string;
   icon?: string;
+}
+
+export interface ServiceProps {
+  id: number;
+  title: string;
+  icon: string;
+  features: string[];
+}
+
+export interface ProjectDetails {
+  ubicacion: string;
+  duracion: string;
+  superficie: string;
+  habitaciones: string;
+  baños: string;
+  caracteristicas: string[];
+  descripcionCompleta: string;
+}
+
+export interface ProjectProps {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  area: string;
+  image: string;
+  imageOriginal?: string;
+  details: ProjectDetails;
 } 
