@@ -5,4 +5,4 @@ export * from './constants-loader';
 export * from './utils';
 
 // Validaciones
-export * from './validations'; 
+export * from './validations';

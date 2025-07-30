@@ -1,14 +1,23 @@
 {
   "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false
+  },
   "include": [
-    ".astro/types.d.ts",
-    "**/*"
+    "src/**/*",
+    ".astro/types.d.ts"
   ],
   "exclude": [
-    "dist"
-  ],
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
-  }
+    "dist",
+    "node_modules"
+  ]
 }

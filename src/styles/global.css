@@ -11,7 +11,13 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
   background: linear-gradient(135deg, var(--color-neutral-50) 0%, white 100%);
   color: #1a1a1a;
   line-height: 1.6;
@@ -41,13 +47,13 @@ body::before {
   /* Colores principales (mantener del logo) */
   --color-primary: #77bcdb;
   --color-secondary: #294758;
-  
+
   /* Paleta expandida */
   --color-accent: #f39c12;
   --color-success: #27ae60;
   --color-warning: #f1c40f;
   --color-error: #e74c3c;
-  
+
   /* Neutros */
   --color-neutral-50: #fafafa;
   --color-neutral-100: #f5f5f5;
@@ -59,12 +65,12 @@ body::before {
   --color-neutral-700: #616161;
   --color-neutral-800: #424242;
   --color-neutral-900: #212121;
-  
+
   /* Tipografía */
   --font-primary: 'Inter', sans-serif;
   --font-secondary: 'Poppins', sans-serif;
   --font-display: 'Poppins', sans-serif;
-  
+
   /* Espaciado */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.75rem;
@@ -73,31 +79,31 @@ body::before {
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
   --spacing-3xl: 4rem;
-  
+
   /* Bordes */
   --border-radius-sm: 4px;
   --border-radius-md: 6px;
   --border-radius-lg: 8px;
   --border-radius-xl: 12px;
-  
+
   /* Sombras */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 8px 12px -3px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
   --shadow-xl: 0 16px 20px -5px rgba(0, 0, 0, 0.1), 0 8px 8px -5px rgba(0, 0, 0, 0.04);
-  
+
   /* Transiciones */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
-  
+
   /* Layout */
   --container-max-width: 1200px;
   --container-padding: 1rem;
-  
+
   /* Patrón de puntos */
   --dots-pattern: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23e0e0e0" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-  
+
   /* Fondos intercalados */
   --bg-white: linear-gradient(135deg, var(--color-neutral-50) 0%, white 100%);
   --bg-gray: linear-gradient(135deg, var(--color-neutral-100) 0%, var(--color-neutral-50) 100%);
@@ -128,7 +134,12 @@ body::before {
 }
 
 /* Tipografía */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   font-weight: 600;
   line-height: 1.2;
@@ -136,12 +147,30 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-h1 { font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 700; }
-h2 { font-size: clamp(1.25rem, 3vw, 2rem); font-weight: 600; }
-h3 { font-size: clamp(1.125rem, 2.5vw, 1.5rem); font-weight: 600; }
-h4 { font-size: 1.125rem; font-weight: 500; }
-h5 { font-size: 1rem; font-weight: 500; }
-h6 { font-size: 0.875rem; font-weight: 500; }
+h1 {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 700;
+}
+h2 {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 600;
+}
+h3 {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+}
+h4 {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+h5 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+h6 {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
 
 p {
   font-size: 1.125rem;
@@ -281,7 +310,7 @@ img {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -425,14 +454,18 @@ img {
 }
 
 @keyframes fadeIn {
-  to { 
-    opacity: 1; 
+  to {
+    opacity: 1;
   }
 }
 
 @keyframes blink {
-  from { border-color: var(--color-primary); }
-  to { border-color: transparent; }
+  from {
+    border-color: var(--color-primary);
+  }
+  to {
+    border-color: transparent;
+  }
 }
 
 .fade-in-up {
@@ -447,45 +480,100 @@ img {
 }
 
 /* 9. Responsive utilities */
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
 
-.mb-0 { margin-bottom: 0; }
-.mb-1 { margin-bottom: var(--spacing-sm); }
-.mb-2 { margin-bottom: var(--spacing-md); }
-.mb-3 { margin-bottom: var(--spacing-lg); }
-.mb-4 { margin-bottom: var(--spacing-xl); }
+.mb-0 {
+  margin-bottom: 0;
+}
+.mb-1 {
+  margin-bottom: var(--spacing-sm);
+}
+.mb-2 {
+  margin-bottom: var(--spacing-md);
+}
+.mb-3 {
+  margin-bottom: var(--spacing-lg);
+}
+.mb-4 {
+  margin-bottom: var(--spacing-xl);
+}
 
-.mt-0 { margin-top: 0; }
-.mt-1 { margin-top: var(--spacing-sm); }
-.mt-2 { margin-top: var(--spacing-md); }
-.mt-3 { margin-top: var(--spacing-lg); }
-.mt-4 { margin-top: var(--spacing-xl); }
+.mt-0 {
+  margin-top: 0;
+}
+.mt-1 {
+  margin-top: var(--spacing-sm);
+}
+.mt-2 {
+  margin-top: var(--spacing-md);
+}
+.mt-3 {
+  margin-top: var(--spacing-lg);
+}
+.mt-4 {
+  margin-top: var(--spacing-xl);
+}
 
-.p-0 { padding: 0; }
-.p-1 { padding: var(--spacing-sm); }
-.p-2 { padding: var(--spacing-md); }
-.p-3 { padding: var(--spacing-lg); }
-.p-4 { padding: var(--spacing-xl); }
+.p-0 {
+  padding: 0;
+}
+.p-1 {
+  padding: var(--spacing-sm);
+}
+.p-2 {
+  padding: var(--spacing-md);
+}
+.p-3 {
+  padding: var(--spacing-lg);
+}
+.p-4 {
+  padding: var(--spacing-xl);
+}
 
 /* 10. Flex utilities */
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.flex-row { flex-direction: row; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.gap-sm { gap: var(--spacing-sm); }
-.gap-md { gap: var(--spacing-md); }
-.gap-lg { gap: var(--spacing-lg); }
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.gap-sm {
+  gap: var(--spacing-sm);
+}
+.gap-md {
+  gap: var(--spacing-md);
+}
+.gap-lg {
+  gap: var(--spacing-lg);
+}
 
 /* Animaciones de scroll */
 .scroll-fade {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .scroll-fade.visible {
@@ -498,81 +586,81 @@ img {
   html {
     font-size: 15px;
   }
-  
+
   .container {
     padding: 0 1rem;
   }
-  
+
   :root {
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
     --spacing-3xl: 4rem;
   }
-  
+
   /* Optimizaciones específicas para móviles */
   img {
     max-width: 100%;
     height: auto;
   }
-  
+
   .hero__image {
     object-fit: cover;
     object-position: center;
   }
-  
+
   /* Reducir animaciones en móviles para mejor rendimiento */
   * {
     animation-duration: 0.3s !important;
     transition-duration: 0.3s !important;
   }
-  
+
   /* Desactivar efectos complejos en móviles */
   .glassmorphism {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
-  
+
   /* Optimizar DOM para móviles */
   .servicios__grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
   }
-  
+
   .galeria__grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
   }
-  
+
   /* Reducir padding en móviles */
   .servicio-card {
     padding: var(--spacing-md);
   }
-  
+
   .proyecto-card {
     margin-bottom: var(--spacing-md);
   }
-  
+
   /* Responsive utilities */
   .grid-auto-fit {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
   }
-  
+
   .grid-2-columns {
     grid-template-columns: 1fr;
     gap: var(--spacing-lg);
   }
-  
+
   .feature-list {
     flex-direction: column;
     gap: var(--spacing-sm);
     align-items: center;
   }
-  
+
   .feature-item {
     font-size: 0.9rem;
     padding: var(--spacing-xs) var(--spacing-sm);
     width: 100%;
     max-width: 280px;
   }
-} 
+}

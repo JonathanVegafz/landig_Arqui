@@ -53,7 +53,9 @@ Este es un sitio web profesional para **IG Construcciones**, una empresa de arqu
 ### 🗃️ **Modelos (Models)**
 
 #### `src/models/Project.ts`
+
 **Función**: Define todas las interfaces y tipos de datos del proyecto
+
 - `Project`: Interfaz para proyectos de construcción
 - `Service`: Interfaz para servicios ofrecidos
 - `Testimonial`: Interfaz para testimonios de clientes
@@ -61,7 +63,9 @@ Este es un sitio web profesional para **IG Construcciones**, una empresa de arqu
 - `CompanyInfo`: Interfaz para datos de la empresa
 
 #### `src/models/data.ts`
+
 **Función**: Contiene todos los datos estáticos y funciones del modelo
+
 - Datos de la empresa (nombre, descripción, estadísticas)
 - Información de contacto (teléfono, email, WhatsApp)
 - Lista de proyectos con imágenes y descripciones
@@ -72,28 +76,36 @@ Este es un sitio web profesional para **IG Construcciones**, una empresa de arqu
 ### 🎮 **Controladores (Controllers)**
 
 #### `src/controllers/BaseController.ts`
+
 **Función**: Controlador base que implementa operaciones CRUD genéricas
+
 - Operaciones básicas: getAll, getById, create, update, delete
 - Funciones de filtrado y ordenamiento
 - Control de IDs automático
 - Interfaz MVCController implementada
 
 #### `src/controllers/ProjectController.ts`
+
 **Función**: Maneja la lógica de negocio para proyectos
+
 - Obtener todos los proyectos
 - Filtrar por categoría (Residencial/Comercial)
 - Obtener categorías disponibles
 - Filtrado por área y múltiples criterios
 
 #### `src/controllers/ServiceController.ts`
+
 **Función**: Maneja la lógica de negocio para servicios
+
 - Obtener todos los servicios
 - Filtrar por características específicas
 - Obtener características disponibles
 - Búsqueda por funcionalidades
 
 #### `src/controllers/ContactController.ts`
+
 **Función**: Maneja la lógica de contacto y validaciones
+
 - Validación de formularios de contacto
 - Formateo de números de teléfono
 - Validación de emails
@@ -102,7 +114,9 @@ Este es un sitio web profesional para **IG Construcciones**, una empresa de arqu
 ### ⚙️ **Configuración**
 
 #### `src/config/mvc.ts`
+
 **Función**: Configuración centralizada del patrón MVC
+
 - Constantes de la empresa (nombre, contacto, ubicación)
 - Configuración SEO (títulos, descripciones, URLs)
 - Categorías y servicios disponibles
@@ -112,10 +126,12 @@ Este es un sitio web profesional para **IG Construcciones**, una empresa de arqu
 ### 👁️ **Vistas (Views/Components)**
 
 #### **Layout Components**
+
 - `src/components/layout/Header.astro`: Navegación principal con menú hamburguesa
 - `src/components/layout/Footer.astro`: Pie de página con información de contacto
 
 #### **Section Components**
+
 - `src/components/sections/Hero.astro`: Sección principal con call-to-action
 - `src/components/sections/About.astro`: Información sobre la empresa
 - `src/components/sections/Servicios.astro`: Catálogo de servicios ofrecidos
@@ -125,6 +141,7 @@ Este es un sitio web profesional para **IG Construcciones**, una empresa de arqu
 - `src/components/sections/Cotiza.astro`: Formulario de contacto y cotización
 
 #### **UI Components**
+
 - `src/components/ui/SectionHeader.astro`: Encabezados estandarizados
 - `src/components/ui/ServiceCard.astro`: Tarjetas de servicios
 - `src/components/ui/ContactInfo.astro`: Información de contacto
@@ -134,20 +151,26 @@ Este es un sitio web profesional para **IG Construcciones**, una empresa de arqu
 ### 📄 **Páginas**
 
 #### `src/pages/index.astro`
+
 **Función**: Página principal que orquesta todas las secciones
+
 - Importa y renderiza todas las secciones
 - Configuración SEO completa
 - Layout principal aplicado
 
 #### `src/pages/404.astro`
+
 **Función**: Página de error 404 personalizada
+
 - Diseño consistente con el sitio
 - Enlace de regreso al inicio
 
 ### 🎨 **Estilos y Assets**
 
 #### `src/styles/global.css`
+
 **Función**: Estilos globales y variables CSS
+
 - Variables de color y tipografía
 - Estilos base y reset
 - Media queries responsivos
@@ -155,7 +178,9 @@ Este es un sitio web profesional para **IG Construcciones**, una empresa de arqu
 - Animaciones y transiciones
 
 #### `src/assets/`
+
 **Función**: Recursos estáticos optimizados
+
 - `logo.webp`: Logo de la empresa
 - `hero.webp`: Imagen principal del hero
 - `imagen1.webp` - `imagen5.webp`: Proyectos del portafolio
@@ -165,7 +190,9 @@ Este es un sitio web profesional para **IG Construcciones**, una empresa de arqu
 ### 🔧 **Layouts**
 
 #### `src/layouts/Layout.astro`
+
 **Función**: Layout principal con configuración SEO
+
 - Meta tags completos
 - Open Graph y Twitter Cards
 - Preload de fuentes críticas
@@ -175,7 +202,9 @@ Este es un sitio web profesional para **IG Construcciones**, una empresa de arqu
 ### 📝 **Tipos**
 
 #### `src/types/index.ts`
+
 **Función**: Definiciones de tipos TypeScript
+
 - Tipos para props de componentes
 - Interfaces para formularios
 - Tipos para configuración
@@ -192,27 +221,32 @@ Este es un sitio web profesional para **IG Construcciones**, una empresa de arqu
 ## 🎯 Funcionalidades Implementadas
 
 ### ✅ **Navegación**
+
 - Menú hamburguesa para móviles
 - Navegación suave entre secciones
 - Navegación por teclado accesible
 
 ### ✅ **Portafolio**
+
 - Galería de proyectos con filtros
 - Categorización (Residencial/Comercial)
 - Imágenes optimizadas y responsivas
 
 ### ✅ **Servicios**
+
 - Catálogo de servicios ofrecidos
 - Características detalladas
 - Iconos SVG personalizados
 
 ### ✅ **Contacto**
+
 - Formulario de cotización
 - Validación de campos
 - Integración con WhatsApp
 - Información de contacto
 
 ### ✅ **SEO y Rendimiento**
+
 - Meta tags completos
 - Open Graph para redes sociales
 - Core Web Vitals optimizados
@@ -222,11 +256,13 @@ Este es un sitio web profesional para **IG Construcciones**, una empresa de arqu
 ## 🏛️ Patrón MVC Implementado
 
 ### **Separación de Responsabilidades**
+
 - **Modelos**: Solo manejan datos y lógica de negocio
 - **Controladores**: Solo manejan lógica de aplicación
 - **Vistas**: Solo manejan presentación y UI
 
 ### **Beneficios Obtenidos**
+
 - ✅ **Mantenibilidad**: Código fácil de mantener
 - ✅ **Escalabilidad**: Fácil agregar nuevas funcionalidades
 - ✅ **Reutilización**: Componentes y controladores reutilizables
@@ -266,4 +302,4 @@ Este es un sitio web profesional para **IG Construcciones**, una empresa de arqu
 
 ---
 
-*Este proyecto demuestra una implementación profesional del patrón MVC en Astro, proporcionando una base sólida y escalable para el desarrollo de aplicaciones web modernas.*
+_Este proyecto demuestra una implementación profesional del patrón MVC en Astro, proporcionando una base sólida y escalable para el desarrollo de aplicaciones web modernas._

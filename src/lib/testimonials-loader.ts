@@ -13,4 +13,4 @@ export function getTestimonials(): Testimonial[] {
 export function getTestimonialById(id: number): Testimonial | undefined {
   const testimonials = getTestimonials();
   return testimonials.find(testimonial => testimonial.id === id);
-} 
+}

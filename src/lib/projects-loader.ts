@@ -45,7 +45,5 @@ export function getProjectsByCategory(category: string): ProjectProps[] {
   if (category === 'todos') {
     return projects;
   }
-  return projects.filter(project => 
-    project.category.toLowerCase() === category.toLowerCase()
-  );
-} 
+  return projects.filter(project => project.category.toLowerCase() === category.toLowerCase());
+}

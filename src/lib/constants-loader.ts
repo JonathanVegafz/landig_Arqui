@@ -10,5 +10,5 @@ export const PROJECT_CATEGORIES = constantsData.PROJECT_CATEGORIES;
 export const VALIDATION_RULES_WITH_REGEX = {
   ...constantsData.VALIDATION_RULES,
   email: new RegExp(constantsData.VALIDATION_RULES.email),
-  phone: new RegExp(constantsData.VALIDATION_RULES.phone)
-}; 
+  phone: new RegExp(constantsData.VALIDATION_RULES.phone),
+};

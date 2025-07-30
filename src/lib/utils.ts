@@ -26,7 +26,7 @@ export function isValidPhone(phone: string): boolean {
 export function formatPhone(phone: string): string {
   // Remover todos los caracteres no numéricos excepto +
   const cleaned = phone.replace(/[^\d+]/g, '');
-  
+
   // Si empieza con +56, formatear como chileno
   if (cleaned.startsWith('+56')) {
     const number = cleaned.substring(3);
@@ -34,7 +34,7 @@ export function formatPhone(phone: string): string {
       return `+56 ${number.substring(0, 2)} ${number.substring(2, 5)} ${number.substring(5)}`;
     }
   }
-  
+
   return cleaned;
 }
 
@@ -110,7 +110,7 @@ export function formatDate(date: Date): string {
   return date.toLocaleDateString('es-CL', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   });
 }
 
@@ -121,10 +121,10 @@ export function calculateAge(birthDate: Date): number {
   const today = new Date();
   let age = today.getFullYear() - birthDate.getFullYear();
   const monthDiff = today.getMonth() - birthDate.getMonth();
-  
+
   if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
     age--;
   }
-  
+
   return age;
 }

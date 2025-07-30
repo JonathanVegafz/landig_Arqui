@@ -7,23 +7,21 @@ import type { ServiceProps } from '../../types';
 
 <section class="servicios section-bg-white" id="servicios" aria-label="Nuestros Servicios">
   <div class="container">
-    <SectionHeader 
+    <SectionHeader
       subtitle="Nuestros Servicios"
       title="Soluciones Integrales para tu Hogar"
       description="Ofrecemos servicios especializados que combinan innovación, calidad y eficiencia para crear espacios que trascienden el tiempo."
     />
-    
+
     <div class="servicios__grid grid-auto-fit" aria-label="Servicios ofrecidos">
-      {SERVICES.map((servicio: ServiceProps) => (
-        <ServiceCard 
-          icon={servicio.icon}
-          title={servicio.title}
-          features={servicio.features}
-        />
-      ))}
+      {
+        SERVICES.map((servicio: ServiceProps) => (
+          <ServiceCard icon={servicio.icon} title={servicio.title} features={servicio.features} />
+        ))
+      }
     </div>
   </div>
-  
+
   <style>
     .servicios {
       padding: var(--spacing-2xl) 0;
@@ -31,7 +29,7 @@ import type { ServiceProps } from '../../types';
       display: flex;
       align-items: center;
     }
-    
+
     .servicios__grid {
       margin-top: var(--spacing-xl);
       position: relative;
@@ -40,7 +38,7 @@ import type { ServiceProps } from '../../types';
       padding: 0;
       margin: 0;
     }
-    
+
     .servicio-item {
       list-style: none;
     }

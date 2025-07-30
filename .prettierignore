@@ -1,0 +1,38 @@
+# Dependencias
+node_modules/
+dist/
+.astro/
+
+# Archivos de configuración
+*.config.js
+*.config.mjs
+*.config.ts
+
+# Archivos de build
+dist/
+.astro/
+
+# Archivos de datos
+*.json
+
+# Archivos de imágenes
+*.webp
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Package lock
+package-lock.json 

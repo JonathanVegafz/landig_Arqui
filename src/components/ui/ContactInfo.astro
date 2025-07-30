@@ -11,16 +11,24 @@ const { icon, title, content, link, ariaLabel } = Astro.props;
 ---
 
 <address class="info-item">
-  <div class="info-item__icon" set:html={icon} aria-hidden="true"></div>
+  <div class="info-item__icon" aria-hidden="true" innerHTML={icon}></div>
   <div class="info-item__content">
     <h3 class="info-item__title">{title}</h3>
-    {link ? (
-      <a href={link} target="_blank" rel="noopener" aria-label={ariaLabel} class="info-item__link">
-        {content}
-      </a>
-    ) : (
-      <p class="info-item__text">{content}</p>
-    )}
+    {
+      link ? (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener"
+          aria-label={ariaLabel}
+          class="info-item__link"
+        >
+          {content}
+        </a>
+      ) : (
+        <p class="info-item__text">{content}</p>
+      )
+    }
   </div>
 </address>
 
@@ -36,36 +44,36 @@ const { icon, title, content, link, ariaLabel } = Astro.props;
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all var(--transition-normal);
   }
-  
+
   .info-item:hover {
     background: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
   }
-  
+
   .info-item__icon {
     flex-shrink: 0;
     color: var(--color-primary);
   }
-  
+
   .info-item__content {
     flex: 1;
   }
-  
+
   .info-item__title {
     font-size: 1.125rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
     color: var(--color-neutral-900);
   }
-  
+
   .info-item__text,
   .info-item__link {
     color: var(--color-neutral-700);
     text-decoration: none;
     transition: color var(--transition-normal);
   }
-  
+
   .info-item__link:hover {
     color: var(--color-primary);
   }
-</style> 
+</style>

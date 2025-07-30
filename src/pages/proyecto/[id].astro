@@ -6,10 +6,10 @@ import { getProjects } from '../../lib/projects-loader';
 // Función getStaticPaths requerida para rutas dinámicas en Astro
 export async function getStaticPaths() {
   const PROJECTS = getProjects();
-  
-  return PROJECTS.map((proyecto) => ({
+
+  return PROJECTS.map(proyecto => ({
     params: { id: proyecto.id.toString() },
-    props: { proyecto }
+    props: { proyecto },
   }));
 }
 
@@ -58,8 +58,8 @@ const description = proyecto.description;
           </div>
         </div>
         <div class="proyecto-header__image">
-          <Image 
-            src={proyecto.image} 
+          <Image
+            src={proyecto.image}
             alt={proyecto.title}
             width={600}
             height={400}
@@ -82,14 +82,24 @@ const description = proyecto.description;
           <section class="proyecto-section">
             <h2 class="proyecto-section__title">Características Principales</h2>
             <ul class="caracteristicas-list">
-              {proyecto.details.caracteristicas.map(caracteristica => (
-                <li class="caracteristica-item">
-                  <svg class="caracteristica-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                  {caracteristica}
-                </li>
-              ))}
+              {
+                proyecto.details.caracteristicas.map(caracteristica => (
+                  <li class="caracteristica-item">
+                    <svg
+                      class="caracteristica-icon"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                    {caracteristica}
+                  </li>
+                ))
+              }
             </ul>
           </section>
         </div>
@@ -123,11 +133,20 @@ const description = proyecto.description;
 
           <div class="proyecto-sidebar__card">
             <h3 class="proyecto-sidebar__title">¿Te gusta este proyecto?</h3>
-            <p class="proyecto-sidebar__text">Conversemos sobre cómo podemos adaptar este diseño a tus necesidades.</p>
+            <p class="proyecto-sidebar__text">
+              Conversemos sobre cómo podemos adaptar este diseño a tus necesidades.
+            </p>
             <a href="/landig_Arqui/#cotiza" class="btn btn-primary">
               <span>Cotiza tu Proyecto</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
               </svg>
             </a>
           </div>
@@ -136,42 +155,71 @@ const description = proyecto.description;
 
       <!-- Navegación entre proyectos -->
       <nav class="proyecto-navigation">
-        {PROJECTS.map((proyectoItem, index) => {
-          const isCurrent = proyectoItem.id === proyecto.id;
-          const isFirst = index === 0;
-          const isLast = index === PROJECTS.length - 1;
-          
-          if (isCurrent) {
-            const prevProyecto = isFirst ? PROJECTS[PROJECTS.length - 1] : PROJECTS[index - 1];
-            const nextProyecto = isLast ? PROJECTS[0] : PROJECTS[index + 1];
-            
-            return (
-              <>
-                <a href={`/landig_Arqui/proyecto/${prevProyecto.id}`} class="nav-btn nav-btn--prev">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M15 18l-6-6 6-6"/>
-                  </svg>
-                  <span>Proyecto Anterior</span>
-                </a>
-                <a href="/landig_Arqui/#galeria" class="nav-btn nav-btn--center">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                    <circle cx="8.5" cy="8.5" r="1.5"/>
-                    <polyline points="21,15 16,10 5,21"/>
-                  </svg>
-                  <span>Ver Todos</span>
-                </a>
-                <a href={`/landig_Arqui/proyecto/${nextProyecto.id}`} class="nav-btn nav-btn--next">
-                  <span>Próximo Proyecto</span>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 18l6-6-6-6"/>
-                  </svg>
-                </a>
-              </>
-            );
-          }
-          return null;
-        })}
+        {
+          PROJECTS.map((proyectoItem, index) => {
+            const isCurrent = proyectoItem.id === proyecto.id;
+            const isFirst = index === 0;
+            const isLast = index === PROJECTS.length - 1;
+
+            if (isCurrent) {
+              const prevProyecto = isFirst ? PROJECTS[PROJECTS.length - 1] : PROJECTS[index - 1];
+              const nextProyecto = isLast ? PROJECTS[0] : PROJECTS[index + 1];
+
+              return (
+                <>
+                  <a
+                    href={`/landig_Arqui/proyecto/${prevProyecto.id}`}
+                    class="nav-btn nav-btn--prev"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                    <span>Proyecto Anterior</span>
+                  </a>
+                  <a href="/landig_Arqui/#galeria" class="nav-btn nav-btn--center">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                      <circle cx="8.5" cy="8.5" r="1.5" />
+                      <polyline points="21,15 16,10 5,21" />
+                    </svg>
+                    <span>Ver Todos</span>
+                  </a>
+                  <a
+                    href={`/landig_Arqui/proyecto/${nextProyecto.id}`}
+                    class="nav-btn nav-btn--next"
+                  >
+                    <span>Próximo Proyecto</span>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </a>
+                </>
+              );
+            }
+            return null;
+          })
+        }
       </nav>
     </div>
   </main>
@@ -493,4 +541,4 @@ const description = proyecto.description;
       }
     }
   </style>
-</Layout> 
+</Layout>

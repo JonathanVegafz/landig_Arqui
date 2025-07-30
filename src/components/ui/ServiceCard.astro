@@ -10,13 +10,11 @@ const { icon, title, features, class: className } = Astro.props;
 ---
 
 <article class={`servicio-card glassmorphism card-hover ${className || ''}`}>
-  <header class="servicio-card__icon" set:html={icon} aria-hidden="true"></header>
+  <header class="servicio-card__icon" aria-hidden="true" innerHTML={icon}></header>
   <div class="servicio-card__content">
     <h3 class="servicio-card__title">{title}</h3>
     <div class="servicio-card__features">
-      {features.map(feature => (
-        <div class="servicio-card__feature">{feature}</div>
-      ))}
+      {features.map(feature => <div class="servicio-card__feature">{feature}</div>)}
     </div>
   </div>
 </article>
@@ -31,7 +29,7 @@ const { icon, title, features, class: className } = Astro.props;
     position: relative;
     overflow: hidden;
   }
-  
+
   .servicio-card::before {
     content: '';
     position: absolute;
@@ -43,23 +41,23 @@ const { icon, title, features, class: className } = Astro.props;
     transform: scaleX(0);
     transition: transform var(--transition-normal);
   }
-  
+
   .servicio-card:hover::before {
     transform: scaleX(1);
   }
-  
+
   .servicio-card__icon {
     color: var(--color-primary);
     margin-bottom: 1.5rem;
     flex-shrink: 0;
   }
-  
+
   .servicio-card__content {
     flex: 1;
     display: flex;
     flex-direction: column;
   }
-  
+
   .servicio-card__title {
     font-size: 1.25rem;
     font-weight: 600;
@@ -67,25 +65,25 @@ const { icon, title, features, class: className } = Astro.props;
     margin-bottom: 1rem;
     line-height: 1.3;
   }
-  
+
   .servicio-card__features {
     padding: 0;
     margin: 0;
     flex: 1;
   }
-  
+
   .servicio-card__feature {
     color: var(--color-neutral-700);
     margin-bottom: 0.5rem;
     position: relative;
     padding-left: 1.5rem;
   }
-  
+
   .servicio-card__feature::before {
-    content: "✓";
+    content: '✓';
     position: absolute;
     left: 0;
     color: var(--color-primary);
     font-weight: bold;
   }
-</style> 
+</style>

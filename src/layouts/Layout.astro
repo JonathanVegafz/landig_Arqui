@@ -8,18 +8,22 @@ const {
   canonical = 'https://igconstrucciones.cl/',
   ogImage = undefined,
   ogType = 'website',
-  ogLocale = 'es_CL'
+  ogLocale = 'es_CL',
 } = Astro.props;
 ---
+
 <html lang="es">
-	<head>
-		<title>{title}</title>
-		<meta charset="UTF-8" />
+  <head>
+    <title>{title}</title>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="IG Construcciones" />
-    <meta name="keywords" content="arquitectura, construcción, V Región, Chile, diseño arquitectónico, obras nuevas, eficiencia energética, Maitencillo, construcción sustentable, paneles SIP, metalcom, EIFS" />
+    <meta
+      name="keywords"
+      content="arquitectura, construcción, V Región, Chile, diseño arquitectónico, obras nuevas, eficiencia energética, Maitencillo, construcción sustentable, paneles SIP, metalcom, EIFS"
+    />
     <meta name="geo.region" content="CL-V" />
     <meta name="geo.placename" content="Maitencillo, V Región, Chile" />
     <meta name="geo.position" content="-32.5;-71.5" />
@@ -32,7 +36,7 @@ const {
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="es" href={canonical} />
     <link rel="alternate" hreflang="x-default" href={canonical} />
-    
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -41,95 +45,111 @@ const {
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="IG Construcciones" />
     {ogImage && <meta property="og:image" content={ogImage} />}
-		
-		<!-- Preload critical fonts -->
-		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-		<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"></noscript>
-		
-		<!-- Preconnect to external domains -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		
-		<!-- Cargar AOS de forma diferida -->
-		<script>
-			// Cargar AOS solo cuando sea necesario
-			if ('IntersectionObserver' in window) {
-				const script = document.createElement('script');
-				script.src = 'https://unpkg.com/aos@2.3.4/dist/aos.js';
-				script.onload = function() {
-					// @ts-ignore
-					if (typeof window.AOS !== 'undefined') {
-						// @ts-ignore
-						window.AOS.init({
-							duration: 800,
-							easing: 'ease-in-out',
-							once: true,
-							offset: 100
-						});
-					}
-				};
-				document.head.appendChild(script);
-			}
-		</script>
-		
-		<!-- Structured Data -->
-		<script type="application/ld+json" set:html={JSON.stringify({
-			"@context": "https://schema.org",
-			"@type": "LocalBusiness",
-			"name": "IG Construcciones",
-			"description": "Arquitectura y construcción en la V Región de Chile. Diseño, obras nuevas y eficiencia energética.",
-			"url": "https://igconstrucciones.cl",
-			"telephone": "+56945150212",
-			"email": "contacto@igconstrucciones.cl",
-			"address": {
-				"@type": "PostalAddress",
-				"addressLocality": "Maitencillo",
-				"addressRegion": "V Región",
-				"addressCountry": "CL"
-			},
-			"geo": {
-				"@type": "GeoCoordinates",
-				"latitude": "-32.5",
-				"longitude": "-71.5"
-			},
-			"openingHours": "Mo-Fr 09:00-18:00",
-			"priceRange": "$$",
-			"serviceType": ["Arquitectura", "Construcción", "Diseño"],
-			"areaServed": "V Región, Chile",
-			"hasOfferCatalog": {
-				"@type": "OfferCatalog",
-				"name": "Servicios de Construcción",
-				"itemListElement": [
-					{
-						"@type": "Offer",
-						"itemOffered": {
-							"@type": "Service",
-							"name": "Diseño Arquitectónico Personalizado"
-						}
-					},
-					{
-						"@type": "Offer",
-						"itemOffered": {
-							"@type": "Service",
-							"name": "Construcción de Obras Nuevas"
-						}
-					},
-					{
-						"@type": "Offer",
-						"itemOffered": {
-							"@type": "Service",
-							"name": "Eficiencia Energética y Climatización"
-						}
-					}
-				]
-			}
-		})} />
-	</head>
-	<body>
+
+    <!-- Preload critical fonts -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      /></noscript
+    >
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Cargar AOS de forma diferida -->
+    <script>
+      // Cargar AOS solo cuando sea necesario
+      if ('IntersectionObserver' in window) {
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/aos@2.3.4/dist/aos.js';
+        script.onload = function () {
+          // @ts-ignore
+          if (typeof window.AOS !== 'undefined') {
+            // @ts-ignore
+            window.AOS.init({
+              duration: 800,
+              easing: 'ease-in-out',
+              once: true,
+              offset: 100,
+            });
+          }
+        };
+        document.head.appendChild(script);
+      }
+    </script>
+
+    <!-- Structured Data -->
+    <script
+      type="application/ld+json"
+      innerHTML={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        name: 'IG Construcciones',
+        description:
+          'Arquitectura y construcción en la V Región de Chile. Diseño, obras nuevas y eficiencia energética.',
+        url: 'https://igconstrucciones.cl',
+        telephone: '+56945150212',
+        email: 'contacto@igconstrucciones.cl',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Maitencillo',
+          addressRegion: 'V Región',
+          addressCountry: 'CL',
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: '-32.5',
+          longitude: '-71.5',
+        },
+        openingHours: 'Mo-Fr 09:00-18:00',
+        priceRange: '$$',
+        serviceType: ['Arquitectura', 'Construcción', 'Diseño'],
+        areaServed: 'V Región, Chile',
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Servicios de Construcción',
+          itemListElement: [
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Diseño Arquitectónico Personalizado',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Construcción de Obras Nuevas',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Eficiencia Energética y Climatización',
+              },
+            },
+          ],
+        },
+      })}></script>
+  </head>
+  <body>
     <div id="preloader" role="status" aria-label="Cargando página">
       <span class="preloader-logo">IG Construcciones</span>
     </div>
-    <div id="main-content" style="display:none; opacity:0; transition: opacity 0.7s cubic-bezier(.4,0,.2,1);">
+    <div
+      id="main-content"
+      style="display:none; opacity:0; transition: opacity 0.7s cubic-bezier(.4,0,.2,1);"
+    >
       <Header id="main-header" style="opacity:0; transition: opacity 0.5s;" />
       <slot />
       <Footer />
@@ -139,19 +159,19 @@ const {
         const preloader = document.getElementById('preloader');
         const main = document.getElementById('main-content');
         const header = document.getElementById('main-header');
-        
+
         // Verificar que los elementos existan antes de usarlos
         if (header) {
           header.style.opacity = '0';
         }
-        
+
         let headerShown = false;
-        
+
         setTimeout(() => {
           if (preloader) {
             preloader.classList.add('preloader-hide');
           }
-          
+
           setTimeout(() => {
             if (preloader) {
               preloader.style.display = 'none';
@@ -159,12 +179,12 @@ const {
             if (main) {
               main.style.display = '';
             }
-            
+
             setTimeout(() => {
               if (main) {
                 main.style.opacity = '1';
               }
-              
+
               // Animación scroll-fade
               const fadeEls = document.querySelectorAll('.scroll-fade');
               const fadeInOnScroll = () => {
@@ -176,20 +196,24 @@ const {
                   }
                 });
               };
-              
+
               // Ejecutar inmediatamente y en scroll
               setTimeout(() => {
                 fadeInOnScroll();
               }, 100);
               window.addEventListener('scroll', fadeInOnScroll, { passive: true });
-              
+
               // Mostrar header solo al hacer scroll
-              window.addEventListener('scroll', () => {
-                if (!headerShown && window.scrollY > 30 && header) {
-                  header.style.opacity = '1';
-                  headerShown = true;
-                }
-              }, { passive: true });
+              window.addEventListener(
+                'scroll',
+                () => {
+                  if (!headerShown && window.scrollY > 30 && header) {
+                    header.style.opacity = '1';
+                    headerShown = true;
+                  }
+                },
+                { passive: true }
+              );
             }, 50);
           }, 700);
         }, 500);
@@ -204,23 +228,27 @@ const {
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: opacity 0.7s cubic-bezier(.4,0,.2,1);
+        transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .preloader-logo {
         color: #fff;
         font-size: 2.2rem;
         font-weight: bold;
         letter-spacing: 2px;
-        animation: logo-scale 1.1s cubic-bezier(.4,0,.2,1) infinite alternate;
+        animation: logo-scale 1.1s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
       }
       @keyframes logo-scale {
-        0% { transform: scale(1); }
-        100% { transform: scale(1.08); }
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.08);
+        }
       }
       #preloader.preloader-hide {
         opacity: 0;
         pointer-events: none;
       }
     </style>
-	</body>
+  </body>
 </html>
