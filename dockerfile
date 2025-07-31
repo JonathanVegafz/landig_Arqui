@@ -1,16 +1,28 @@
-# Etapa de construcción
-FROM node:lts-alpine AS build
+# Etapa 1: Construcción de la app Node.js
+FROM node:20 AS build
 
 WORKDIR /app
 COPY . .
 RUN npm install
 RUN npm run build
 
-# Etapa de ejecución
-FROM node:lts-alpine AS runtime
+# Etapa 2: Apache con Node.js ya compilado
+FROM debian:bullseye-slim
 
-WORKDIR /app
-COPY --from=build /app/dist /app
+ENV DEBIAN_FRONTEND=noninteractive
 
-EXPOSE 4321
-CMD ["npx", "serve", "-s", ".", "-l", "4321"]
+# Instalar Apache y Certbot
+RUN apt-get update && \
+    apt-get install -y apache2 python3-certbot-apache && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Habilitar módulos de Apache
+RUN a2enmod proxy proxy_http ssl
+
+# Copiar archivos estáticos ya construidos desde la primera etapa
+COPY --from=build /app/dist /var/www/html
+
+EXPOSE 80 443
+
+CMD ["apachectl", "-D", "FOREGROUND"]
