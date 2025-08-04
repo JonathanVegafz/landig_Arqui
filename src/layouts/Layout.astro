@@ -24,15 +24,32 @@ const {
       name="keywords"
       content="arquitectura, construcción, V Región, Chile, diseño arquitectónico, obras nuevas, eficiencia energética, Maitencillo, construcción sustentable, paneles SIP, metalcom, EIFS"
     />
+    
+    <!-- SEO adicional -->
+    <meta name="format-detection" content="telephone=yes" />
+    <meta name="theme-color" content="#77bcdb" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="IG Construcciones" />
+    
+    <!-- Geolocalización -->
     <meta name="geo.region" content="CL-V" />
     <meta name="geo.placename" content="Maitencillo, V Región, Chile" />
     <meta name="geo.position" content="-32.5;-71.5" />
     <meta name="ICBM" content="-32.5, -71.5" />
+    
+    <!-- Dublin Core -->
     <meta name="DC.title" content={title} />
     <meta name="DC.description" content={description} />
     <meta name="DC.language" content="es" />
     <meta name="DC.coverage" content="V Región, Chile" />
     <meta name="DC.subject" content="Arquitectura, Construcción, Diseño" />
+    <meta name="DC.creator" content="IG Construcciones" />
+    <meta name="DC.publisher" content="IG Construcciones" />
+    <meta name="DC.type" content="Website" />
+    
+    <!-- Enlaces canónicos y alternativos -->
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="es" href={canonical} />
     <link rel="alternate" hreflang="x-default" href={canonical} />
@@ -45,6 +62,17 @@ const {
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="IG Construcciones" />
     {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:width" content="1200" />}
+    {ogImage && <meta property="og:image:height" content="630" />}
+    {ogImage && <meta property="og:image:type" content="image/webp" />}
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    <meta name="twitter:site" content="@igconstrucciones" />
+    <meta name="twitter:creator" content="@igconstrucciones" />
 
     <!-- Preload critical fonts -->
     <link
@@ -87,9 +115,8 @@ const {
     </script>
 
     <!-- Structured Data -->
-    <script
-      type="application/ld+json"
-      innerHTML={JSON.stringify({
+    <script type="application/ld+json">
+      {JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'LocalBusiness',
         name: 'IG Construcciones',
@@ -140,9 +167,14 @@ const {
             },
           ],
         },
-      })}></script>
+      })}
+    </script>
   </head>
   <body>
+    <!-- Skip links para accesibilidad -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    <a href="#main-navigation" class="skip-link">Saltar a la navegación</a>
+    
     <div id="preloader" role="status" aria-label="Cargando página">
       <span class="preloader-logo">IG Construcciones</span>
     </div>
@@ -151,7 +183,9 @@ const {
       style="display:none; opacity:0; transition: opacity 0.7s cubic-bezier(.4,0,.2,1);"
     >
       <Header id="main-header" style="opacity:0; transition: opacity 0.5s;" />
-      <slot />
+      <main id="main" role="main" aria-label="Contenido principal">
+        <slot />
+      </main>
       <Footer />
     </div>
     <script is:inline>
@@ -220,6 +254,25 @@ const {
       });
     </script>
     <style>
+      /* Skip links para accesibilidad */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: var(--color-primary);
+        color: white;
+        padding: 8px;
+        text-decoration: none;
+        z-index: 10000;
+        border-radius: 4px;
+        font-weight: 600;
+      }
+      
+      .skip-link:focus {
+        top: 6px;
+      }
+      
+      /* Preloader styles */
       #preloader {
         position: fixed;
         z-index: 9999;

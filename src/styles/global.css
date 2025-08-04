@@ -248,6 +248,11 @@ img {
   transform: translateY(-2px);
 }
 
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
 /* Cards base */
 .card {
   background: white;
@@ -262,7 +267,7 @@ img {
   box-shadow: var(--shadow-xl);
 }
 
-/* ===== UTILIDADES REUTILIZABLES IDENTIFICADAS ===== */
+/* ===== UTILIDADES REUTILIZABLES OPTIMIZADAS ===== */
 
 /* 1. Section Headers (reutilizado en múltiples componentes) */
 .section-header {
@@ -304,7 +309,24 @@ img {
   margin: 0;
 }
 
-/* 2. Glassmorphism (reutilizado en múltiples componentes) */
+/* 1.1. Section Headers - Variantes (identificadas en componentes) */
+.section-header--narrow {
+  max-width: 700px;
+}
+
+.section-header--wide {
+  max-width: 900px;
+}
+
+.section-title--large {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+}
+
+.section-title--medium {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+/* 2. Glassmorphism y efectos de cristal (reutilizado en múltiples componentes) */
 .glassmorphism {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
@@ -313,6 +335,30 @@ img {
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* 2.1. Variantes de glassmorphism */
+.glassmorphism--light {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.glassmorphism--dark {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* 2.2. Efectos hover para glassmorphism */
+.glassmorphism-hover {
+  transition: all var(--transition-normal);
+}
+
+.glassmorphism-hover:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 /* 3. Grid Layouts (reutilizado en galería y servicios) */
@@ -393,7 +439,46 @@ img {
   box-shadow: var(--shadow-xl);
 }
 
-/* 6. Image Overlays (reutilizado en galería y hero) */
+/* 5.1. Variantes de card hover */
+.card-hover--subtle:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-hover--strong:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* 5.2. Card base mejorada */
+.card-base {
+  background: white;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var( --spacing-sm);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 5.3. Card con borde superior animado */
+.card-top-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+}
+
+.card-top-border:hover::before {
+  transform: scaleX(1);
+}
+
+/* 6. Image Overlays y efectos de imagen (reutilizado en galería y hero) */
 .image-overlay {
   position: absolute;
   top: 0;
@@ -412,7 +497,57 @@ img {
   opacity: 1;
 }
 
-/* 7. Feature Lists (reutilizado en servicios y hero) */
+/* 6.1. Variantes de overlay */
+.image-overlay--light {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(119, 188, 219, 0.8) 100%);
+}
+
+.image-overlay--dark {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(41, 71, 88, 0.95) 100%);
+}
+
+/* 6.2. Efectos de imagen comunes */
+.image-zoom {
+  overflow: hidden;
+}
+
+.image-zoom img {
+  transition: transform var(--transition-slow);
+}
+
+.image-zoom:hover img {
+  transform: scale(1.1);
+}
+
+.image-zoom--subtle:hover img {
+  transform: scale(1.05);
+}
+
+/* 6.3. Contenedores de imagen estándar */
+.image-container {
+  position: relative;
+  border-radius: var(--border-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.image-container--rounded {
+  border-radius: var(--border-radius-xl);
+}
+
+.image-container--square {
+  aspect-ratio: 1/1;
+}
+
+.image-container--landscape {
+  aspect-ratio: 16/9;
+}
+
+.image-container--portrait {
+  aspect-ratio: 3/4;
+}
+
+/* 7. Feature Lists y elementos de características (reutilizado en servicios y hero) */
 .feature-list {
   display: flex;
   justify-content: center;
@@ -445,6 +580,28 @@ img {
   color: var(--color-primary);
 }
 
+/* 7.1. Lista de características con checkmarks */
+.feature-list-check {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.feature-list-check li {
+  color: var(--color-neutral-700);
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.feature-list-check li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
 /* 8. Animaciones reutilizables */
 @keyframes fadeInUp {
   to {
@@ -468,6 +625,28 @@ img {
   }
 }
 
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .fade-in-up {
   opacity: 0;
   transform: translateY(30px);
@@ -478,6 +657,28 @@ img {
   opacity: 0;
   animation: fadeIn 1s ease-out forwards;
 }
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(30px);
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+/* 8.1. Delays para animaciones escalonadas */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
 
 /* 9. Responsive utilities */
 .text-center {
@@ -581,6 +782,375 @@ img {
   transform: translateY(0);
 }
 
+/* ===== NUEVAS UTILIDADES IDENTIFICADAS ===== */
+
+/* 11. Timeline Components (para procesos y pasos) */
+.timeline-container {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-2xl);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.timeline-number {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  background: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  border: 3px solid var(--color-primary);
+}
+
+.timeline-icon {
+  color: var(--color-secondary);
+  background: var(--color-neutral-50);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid white;
+}
+
+.timeline-content {
+  flex: 1;
+  max-width: 45%;
+}
+
+.timeline-card {
+  background: white;
+  border-radius: var(--border-radius-xl);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+.timeline-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.timeline-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-neutral-900);
+  margin-bottom: var(--spacing-sm);
+}
+
+.timeline-description {
+  color: var(--color-neutral-700);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
+}
+
+.timeline-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.timeline-feature {
+  background: var(--color-neutral-100);
+  color: var(--color-neutral-700);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* 12. Hero Components */
+.hero-container {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(41, 71, 88, 0.7) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hero-content {
+  text-align: center;
+  color: white;
+  padding: var(--spacing-xl) var(--spacing-md);
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: var(--spacing-lg);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease-out 0.5s forwards;
+  color: white !important;
+}
+
+.hero-title-line {
+  display: block;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  margin-bottom: 0.15em;
+  color: white;
+}
+
+.hero-highlight {
+  color: var(--color-primary) !important;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+  border-radius: var(--border-radius-lg);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* 13. Navigation Components */
+.nav-link {
+  color: var(--color-neutral-700);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  position: relative;
+  padding: var(--spacing-xs) 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width var(--transition-normal);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-primary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* 14. Filter Buttons (para galerías y filtros) */
+.filter-button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-neutral-200);
+  background: transparent;
+  color: var(--color-neutral-600);
+  border-radius: var(--border-radius-lg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  font-family: var(--font-primary);
+}
+
+.filter-button:hover,
+.filter-button.active {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: white;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-2xl);
+  flex-wrap: wrap;
+}
+
+/* 15. Stats Components (para estadísticas y números) */
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  margin: var(--spacing-xl) 0;
+}
+
+.stat-item {
+  text-align: center;
+  padding: var(--spacing-md);
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--color-primary);
+  display: block;
+  line-height: 1;
+  margin-bottom: var(--spacing-xs);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--color-neutral-600);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 16. Contact Info Items */
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-lg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-normal);
+}
+
+.contact-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.contact-item__icon {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.contact-item__content {
+  flex: 1;
+}
+
+.contact-item__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-neutral-900);
+}
+
+.contact-item__text,
+.contact-item__link {
+  color: var(--color-neutral-700);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+}
+
+.contact-item__link:hover {
+  color: var(--color-primary);
+}
+
+/* 17. Typewriter Effect */
+.typewriter {
+  min-height: 2.5em;
+  font-weight: 400;
+  font-size: 1.25rem;
+  max-width: 90%;
+  margin: 0 auto;
+  display: inline-block;
+  width: var(--steps);
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid var(--color-primary);
+  animation: blink 0.7s infinite;
+  opacity: 0;
+  animation:
+    fadeIn 1s ease-out 1.2s forwards,
+    blink 0.7s infinite 1.2s;
+  color: white;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   html {
@@ -603,7 +1173,7 @@ img {
     height: auto;
   }
 
-  .hero__image {
+  .hero-image {
     object-fit: cover;
     object-position: center;
   }
@@ -621,26 +1191,6 @@ img {
   }
 
   /* Optimizar DOM para móviles */
-  .servicios__grid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-  }
-
-  .galeria__grid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-  }
-
-  /* Reducir padding en móviles */
-  .servicio-card {
-    padding: var(--spacing-md);
-  }
-
-  .proyecto-card {
-    margin-bottom: var(--spacing-md);
-  }
-
-  /* Responsive utilities */
   .grid-auto-fit {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
@@ -662,5 +1212,228 @@ img {
     padding: var(--spacing-xs) var(--spacing-sm);
     width: 100%;
     max-width: 280px;
+  }
+
+  /* Timeline responsive */
+  .timeline-line {
+    left: 2rem;
+  }
+
+  .timeline-marker {
+    left: 2rem;
+  }
+
+  .timeline-content {
+    max-width: none;
+    margin-left: 5rem;
+  }
+
+  .timeline-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Hero responsive */
+  .hero-container {
+    min-height: 70vh;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .hero-btn {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.875rem 2rem;
+  }
+
+  /* Stats responsive */
+  .stats-container {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  /* Filter buttons responsive */
+  .filter-buttons {
+    gap: var(--spacing-xs);
+  }
+
+  .filter-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  /* Contact items responsive */
+  .contact-item {
+    padding: var(--spacing-md);
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Section headers responsive */
+  .section-header {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .section-title {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  /* Cards responsive */
+  .card-base {
+    padding: var(--spacing-md);
+  }
+
+  /* Navigation responsive */
+  .nav-link {
+    font-size: 1.125rem;
+    padding: var(--spacing-sm) 0;
+  }
+}
+
+/* 16. Gallery Components */
+.proyecto-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius-xl);
+  background: white;
+  transition: all var(--transition-normal);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.proyecto-card__image {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.proyecto-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.proyecto-card:hover .proyecto-card__image img {
+  transform: scale(1.05);
+}
+
+.proyecto-card__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(41, 71, 88, 0.8) 0%,
+    rgba(119, 188, 219, 0.8) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  padding: var(--spacing-lg);
+}
+
+.proyecto-card:hover .proyecto-card__overlay {
+  opacity: 1;
+}
+
+.proyecto-card__info {
+  text-align: center;
+  color: white;
+  transform: translateY(20px);
+  transition: transform var(--transition-normal);
+}
+
+.proyecto-card:hover .proyecto-card__info {
+  transform: translateY(0);
+}
+
+.proyecto-card__categoria {
+  display: inline-block;
+  background: var(--color-primary);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.proyecto-card__titulo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  color: white;
+}
+
+.proyecto-card__descripcion {
+  margin-bottom: var(--spacing-md);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* Gallery responsive adjustments */
+@media (max-width: 1024px) {
+  .grid-auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  
+  .proyecto-card__image {
+    height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-auto-fit {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .proyecto-card__image {
+    height: 200px;
+  }
+  
+  .proyecto-card__titulo {
+    font-size: 1.25rem;
+  }
+  
+  .proyecto-card__descripcion {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .proyecto-card__image {
+    height: 180px;
+  }
+  
+  .proyecto-card__overlay {
+    padding: var(--spacing-md);
+  }
+  
+  .proyecto-card__titulo {
+    font-size: 1.125rem;
+  }
+  
+  .proyecto-card__descripcion {
+    font-size: 0.875rem;
   }
 }
