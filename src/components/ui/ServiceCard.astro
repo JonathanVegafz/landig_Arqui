@@ -1,6 +1,6 @@
 ---
 interface Props {
-  icon: string;
+  icon?: string;
   title: string;
   features: string[];
   class?: string;
@@ -9,12 +9,19 @@ interface Props {
 const { icon, title, features, class: className } = Astro.props;
 ---
 
-<article class={`card-base card-hover card-top-border ${className || ''}`}>
-  <div class="servicio-card__icon" aria-hidden="true" set:html={icon}></div>
+<article class={`card-base card-hover card-top-border ${className || ''}`} role="article">
+  {icon && (
+    <div class="servicio-card__icon" aria-hidden="true" set:html={icon}></div>
+  )}
   <div class="servicio-card__content">
     <h3 class="servicio-card__title">{title}</h3>
-    <ul class="feature-list-check servicio-card__features">
-      {features.map(feature => <li>{feature}</li>)}
+    <ul class="feature-list-check servicio-card__features" role="list">
+      {features.map(feature => (
+        <li role="listitem">
+          <span class="feature-check" aria-hidden="true">✓</span>
+          <span>{feature}</span>
+        </li>
+      ))}
     </ul>
   </div>
 </article>

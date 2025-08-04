@@ -192,6 +192,36 @@ a:hover {
   transform: translateY(-1px);
 }
 
+/* Clases de accesibilidad */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--color-primary);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 10000;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
 /* Imágenes */
 img {
   max-width: 100%;
@@ -234,6 +264,7 @@ img {
   background: var(--color-secondary);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
+  color: white;
 }
 
 .btn-secondary {
@@ -528,7 +559,6 @@ img {
   position: relative;
   border-radius: var(--border-radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
 }
 
 .image-container--rounded {

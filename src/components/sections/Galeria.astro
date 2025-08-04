@@ -6,23 +6,28 @@ import { getProjects } from '../../lib/projects-loader';
 const PROJECTS = getProjects();
 ---
 
-<section class="galeria section-bg-gray" id="galeria" aria-label="Galería de Proyectos">
+<section class="galeria section-bg-white" id="galeria" aria-labelledby="galeria-title">
   <div class="container">
-    <div class="section-header">
-      <span class="section-subtitle">Nuestros Proyectos</span>
-      <h2 class="section-title">Portafolio de Obras</h2>
+    <header class="section-header">
+      <span class="section-subtitle" aria-hidden="true">Nuestros Proyectos</span>
+      <h2 class="section-title" id="galeria-title">Portafolio de Obras</h2>
       <p class="section-description">
         Descubre algunos de nuestros proyectos más destacados, donde la innovación se encuentra con
         la funcionalidad.
       </p>
-    </div>
+    </header>
 
-    <div class="filter-buttons">
+    <nav class="filter-buttons" role="tablist" aria-label="Filtros de categorías de proyectos">
       {
-        PROJECT_CATEGORIES.map(categoria => (
+        PROJECT_CATEGORIES.map((categoria) => (
           <button
             class={`filter-button ${categoria === 'todos' ? 'active' : ''}`}
             data-categoria={categoria}
+            role="tab"
+            aria-selected={categoria === 'todos' ? 'true' : 'false'}
+            aria-controls="projects-grid"
+            id={`filter-${categoria}`}
+            tabindex={categoria === 'todos' ? '0' : '-1'}
           >
             {categoria === 'todos'
               ? 'Todos'
@@ -30,16 +35,21 @@ const PROJECTS = getProjects();
           </button>
         ))
       }
-    </div>
+    </nav>
 
-    <div class="grid-auto-fit galeria__grid">
+    <div 
+      class="grid-auto-fit galeria__grid" 
+      role="tabpanel" 
+      id="projects-grid"
+      aria-labelledby="filter-todos"
+    >
       {
         PROJECTS.map(proyecto => (
-          <div class="proyecto-card card-base card-hover image-zoom" data-categoria={proyecto.category.toLowerCase()}>
-            <div class="proyecto-card__image image-container--landscape">
+          <article class="proyecto-card card-base card-hover image-zoom" data-categoria={proyecto.category.toLowerCase()}>
+            <figure class="proyecto-card__image image-container--landscape">
               <Image
                 src={proyecto.image}
-                alt={proyecto.title}
+                alt={`Proyecto ${proyecto.title} - ${proyecto.description}`}
                 width={600}
                 height={400}
                 format="webp"
@@ -49,12 +59,16 @@ const PROJECTS = getProjects();
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 style="aspect-ratio: 3/2;"
               />
-              <div class="image-overlay proyecto-card__overlay">
+              <figcaption class="image-overlay proyecto-card__overlay">
                 <div class="proyecto-card__info">
-                  <span class="proyecto-card__categoria">{proyecto.category}</span>
+                  <span class="proyecto-card__categoria" aria-label={`Categoría: ${proyecto.category}`}>{proyecto.category}</span>
                   <h3 class="proyecto-card__titulo">{proyecto.title}</h3>
                   <p class="proyecto-card__descripcion">{proyecto.description}</p>
-                  <a href={`/proyecto/${proyecto.id}`} class="btn btn-primary btn-sm">
+                  <a 
+                    href={`/proyecto/${proyecto.id}`} 
+                    class="btn btn-primary btn-sm"
+                    aria-label={`Ver detalles del proyecto ${proyecto.title}`}
+                  >
                     <svg
                       width="20"
                       height="20"
@@ -62,15 +76,16 @@ const PROJECTS = getProjects();
                       fill="none"
                       stroke="currentColor"
                       stroke-width="2"
+                      aria-hidden="true"
                     >
                       <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
                     </svg>
-                    Ver Detalles
+                    <span>Ver Detalles</span>
                   </a>
                 </div>
-              </div>
-            </div>
-          </div>
+              </figcaption>
+            </figure>
+          </article>
         ))
       }
     </div>
@@ -110,12 +125,13 @@ const PROJECTS = getProjects();
         // Filtrar proyectos
         projectCards.forEach(card => {
           const cardCategoria = card.getAttribute('data-categoria');
+          const htmlCard = card as HTMLElement;
           
           if (categoria === 'todos' || cardCategoria === categoria) {
-            card.style.display = 'block';
+            htmlCard.style.display = 'block';
             card.classList.add('fade-in');
           } else {
-            card.style.display = 'none';
+            htmlCard.style.display = 'none';
             card.classList.remove('fade-in');
           }
         });

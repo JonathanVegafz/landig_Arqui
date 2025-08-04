@@ -39,7 +39,7 @@ import ContactInfo from '../ui/ContactInfo.astro';
       <form
         class="contact-form glassmorphism"
         method="POST"
-        action="#"
+        action="https://formspree.io/f/mnnzbyjo"
         aria-label="Formulario de contacto"
         id="contactForm"
       >
@@ -158,6 +158,11 @@ import ContactInfo from '../ui/ContactInfo.astro';
             </div>
             <span class="error-message" id="mensaje-error"></span>
           </div>
+
+          <!-- Campo oculto para especificar el email de destino -->
+          <input type="hidden" name="_to" value="javier.retamal.f@mail.pucv.cl" />
+          <input type="hidden" name="_subject" value="Nueva consulta desde IG Construcciones" />
+          <input type="hidden" name="_next" value="https://igconstrucciones.cl/#cotiza" />
 
           <button type="submit" class="btn btn-primary">
             <span>Enviar Solicitud</span>
@@ -359,6 +364,9 @@ import ContactInfo from '../ui/ContactInfo.astro';
     max-width: 350px;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+  }
+  .success-message p {
+    color: white;
   }
 
   .success-message.show {
@@ -563,20 +571,52 @@ import ContactInfo from '../ui/ContactInfo.astro';
       const isMensajeValid = validateMensaje();
 
       if (isNombreValid && isEmailValid && isTelefonoValid && isMensajeValid) {
-        const successMessage = document.getElementById('success-message');
-        successMessage.classList.add('show');
+        // Mostrar indicador de carga
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton.querySelector('span').textContent;
+        submitButton.querySelector('span').textContent = 'Enviando...';
+        submitButton.disabled = true;
 
-        setTimeout(() => {
-          successMessage.classList.remove('show');
-        }, 4000);
+        // Enviar formulario a Formspree
+        const formData = new FormData(form);
+        
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .then(response => {
+          if (response.ok) {
+            // Mostrar mensaje de éxito
+            const successMessage = document.getElementById('success-message');
+            successMessage.classList.add('show');
 
-        form.reset();
+            setTimeout(() => {
+              successMessage.classList.remove('show');
+            }, 4000);
 
-        [nombreInput, emailInput, telefonoInput, mensajeInput].forEach(input => {
-          input.classList.remove('error');
-        });
-        [nombreError, emailError, telefonoError, mensajeError].forEach(error => {
-          error.textContent = '';
+            // Resetear formulario
+            form.reset();
+            [nombreInput, emailInput, telefonoInput, mensajeInput].forEach(input => {
+              input.classList.remove('error');
+            });
+            [nombreError, emailError, telefonoError, mensajeError].forEach(error => {
+              error.textContent = '';
+            });
+          } else {
+            throw new Error('Error en el envío');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Hubo un error al enviar el formulario. Por favor, intenta nuevamente o contáctanos directamente por WhatsApp.');
+        })
+        .finally(() => {
+          // Restaurar botón
+          submitButton.querySelector('span').textContent = originalText;
+          submitButton.disabled = false;
         });
       }
     });

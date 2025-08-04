@@ -5,7 +5,7 @@ import { SERVICES } from '../../lib/constants-loader';
 import type { ServiceProps } from '../../types';
 ---
 
-<section class="servicios section-bg-white" id="servicios" aria-label="Nuestros Servicios">
+<section class="servicios section-bg-gray" id="servicios" aria-labelledby="servicios-title">
   <div class="container">
     <SectionHeader
       subtitle="Nuestros Servicios"
@@ -13,10 +13,12 @@ import type { ServiceProps } from '../../types';
       description="Ofrecemos servicios especializados que combinan innovación, calidad y eficiencia para crear espacios que trascienden el tiempo."
     />
 
-    <div class="servicios__grid grid-auto-fit" aria-label="Servicios ofrecidos">
+    <div class="servicios__grid grid-auto-fit" role="list" aria-label="Lista de servicios especializados">
       {
-        SERVICES.map((servicio: ServiceProps) => (
-          <ServiceCard icon={servicio.icon} title={servicio.title} features={servicio.features} />
+        SERVICES.map((servicio) => (
+          <div role="listitem">
+            <ServiceCard title={servicio.title} features={servicio.features} />
+          </div>
         ))
       }
     </div>

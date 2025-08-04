@@ -25,42 +25,48 @@ const description = proyecto.description;
 ---
 
 <Layout title={title} description={description}>
-  <main class="proyecto-detalle">
+  <main class="proyecto-detalle" role="main">
     <div class="container">
       <!-- Breadcrumb -->
-      <nav class="breadcrumb" aria-label="Navegación">
-        <a href="/" class="breadcrumb__link">Inicio</a>
-        <span class="breadcrumb__separator">/</span>
-        <a href="/#galeria" class="breadcrumb__link">Galería</a>
-        <span class="breadcrumb__separator">/</span>
-        <span class="breadcrumb__current">{proyecto.title}</span>
+      <nav class="breadcrumb" aria-label="Ruta de navegación" role="navigation">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item">
+            <a href="/" class="breadcrumb__link">Inicio</a>
+          </li>
+          <li class="breadcrumb__item">
+            <a href="/#galeria" class="breadcrumb__link">Galería</a>
+          </li>
+          <li class="breadcrumb__item" aria-current="page">
+            <span class="breadcrumb__current">{proyecto.title}</span>
+          </li>
+        </ol>
       </nav>
 
       <!-- Header del proyecto -->
       <header class="proyecto-header">
         <div class="proyecto-header__content">
-          <span class="proyecto-header__categoria">{proyecto.category}</span>
+          <span class="proyecto-header__categoria" aria-label={`Categoría: ${proyecto.category}`}>{proyecto.category}</span>
           <h1 class="proyecto-header__titulo">{proyecto.title}</h1>
           <p class="proyecto-header__descripcion">{proyecto.description}</p>
-          <div class="proyecto-header__meta">
+          <dl class="proyecto-header__meta">
             <div class="meta-item">
-              <span class="meta-label">Superficie</span>
-              <span class="meta-value">{proyecto.area}</span>
+              <dt class="meta-label">Superficie</dt>
+              <dd class="meta-value">{proyecto.area}</dd>
             </div>
             <div class="meta-item">
-              <span class="meta-label">Duración</span>
-              <span class="meta-value">{proyecto.details.duracion}</span>
+              <dt class="meta-label">Duración</dt>
+              <dd class="meta-value">{proyecto.details.duracion}</dd>
             </div>
             <div class="meta-item">
-              <span class="meta-label">Ubicación</span>
-              <span class="meta-value">{proyecto.details.ubicacion}</span>
+              <dt class="meta-label">Ubicación</dt>
+              <dd class="meta-value">{proyecto.details.ubicacion}</dd>
             </div>
-          </div>
+          </dl>
         </div>
-        <div class="proyecto-header__image">
+        <figure class="proyecto-header__image">
           <Image
             src={proyecto.image}
-            alt={proyecto.title}
+            alt={`Imagen principal del proyecto ${proyecto.title} en ${proyecto.details.ubicacion}`}
             width={600}
             height={400}
             format="webp"
@@ -68,20 +74,20 @@ const description = proyecto.description;
             loading="eager"
             decoding="async"
           />
-        </div>
+        </figure>
       </header>
 
       <!-- Contenido principal -->
       <div class="proyecto-content">
-        <div class="proyecto-content__main">
-          <section class="proyecto-section">
-            <h2 class="proyecto-section__title">Descripción del Proyecto</h2>
+        <article class="proyecto-content__main">
+          <section class="proyecto-section" aria-labelledby="descripcion-titulo">
+            <h2 class="proyecto-section__title" id="descripcion-titulo">Descripción del Proyecto</h2>
             <p class="proyecto-section__text">{proyecto.details.descripcionCompleta}</p>
           </section>
 
-          <section class="proyecto-section">
-            <h2 class="proyecto-section__title">Características Principales</h2>
-            <ul class="caracteristicas-list">
+          <section class="proyecto-section" aria-labelledby="caracteristicas-titulo">
+            <h2 class="proyecto-section__title" id="caracteristicas-titulo">Características Principales</h2>
+            <ul class="caracteristicas-list" role="list">
               {
                 proyecto.details.caracteristicas.map(caracteristica => (
                   <li class="caracteristica-item">
@@ -93,50 +99,51 @@ const description = proyecto.description;
                       fill="none"
                       stroke="currentColor"
                       stroke-width="2"
+                      aria-hidden="true"
                     >
                       <path d="M20 6L9 17l-5-5" />
                     </svg>
-                    {caracteristica}
+                    <span>{caracteristica}</span>
                   </li>
                 ))
               }
             </ul>
           </section>
-        </div>
+        </article>
 
-        <aside class="proyecto-sidebar">
-          <div class="proyecto-sidebar__card">
-            <h3 class="proyecto-sidebar__title">Detalles del Proyecto</h3>
-            <div class="detalles-list">
+        <aside class="proyecto-sidebar" aria-labelledby="detalles-titulo">
+          <section class="proyecto-sidebar__card">
+            <h3 class="proyecto-sidebar__title" id="detalles-titulo">Detalles del Proyecto</h3>
+            <dl class="detalles-list">
               <div class="detalle-item">
-                <span class="detalle-label">Superficie</span>
-                <span class="detalle-value">{proyecto.details.superficie}</span>
+                <dt class="detalle-label">Superficie</dt>
+                <dd class="detalle-value">{proyecto.details.superficie}</dd>
               </div>
               <div class="detalle-item">
-                <span class="detalle-label">Habitaciones</span>
-                <span class="detalle-value">{proyecto.details.habitaciones}</span>
+                <dt class="detalle-label">Habitaciones</dt>
+                <dd class="detalle-value">{proyecto.details.habitaciones}</dd>
               </div>
               <div class="detalle-item">
-                <span class="detalle-label">Baños</span>
-                <span class="detalle-value">{proyecto.details.baños}</span>
+                <dt class="detalle-label">Baños</dt>
+                <dd class="detalle-value">{proyecto.details.baños}</dd>
               </div>
               <div class="detalle-item">
-                <span class="detalle-label">Duración</span>
-                <span class="detalle-value">{proyecto.details.duracion}</span>
+                <dt class="detalle-label">Duración</dt>
+                <dd class="detalle-value">{proyecto.details.duracion}</dd>
               </div>
               <div class="detalle-item">
-                <span class="detalle-label">Ubicación</span>
-                <span class="detalle-value">{proyecto.details.ubicacion}</span>
+                <dt class="detalle-label">Ubicación</dt>
+                <dd class="detalle-value">{proyecto.details.ubicacion}</dd>
               </div>
-            </div>
-          </div>
+            </dl>
+          </section>
 
-          <div class="proyecto-sidebar__card">
-            <h3 class="proyecto-sidebar__title">¿Te gusta este proyecto?</h3>
+          <section class="proyecto-sidebar__card" aria-labelledby="cotiza-titulo">
+            <h3 class="proyecto-sidebar__title" id="cotiza-titulo">¿Te gusta este proyecto?</h3>
             <p class="proyecto-sidebar__text">
               Conversemos sobre cómo podemos adaptar este diseño a tus necesidades.
             </p>
-            <a href="/landig_Arqui/#cotiza" class="btn btn-primary">
+            <a href="/#cotiza" class="btn btn-primary" aria-label="Ir a la sección de cotizaciones">
               <span>Cotiza tu Proyecto</span>
               <svg
                 width="20"
@@ -145,11 +152,12 @@ const description = proyecto.description;
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2"
+                aria-hidden="true"
               >
                 <path d="M5 12h14M12 5l7 7-7 7"></path>
               </svg>
             </a>
-          </div>
+          </section>
         </aside>
       </div>
 
@@ -168,8 +176,9 @@ const description = proyecto.description;
               return (
                 <>
                   <a
-                    href={`/landig_Arqui/proyecto/${prevProyecto.id}`}
+                    href={`/proyecto/${prevProyecto.id}`}
                     class="nav-btn nav-btn--prev"
+                    aria-label={`Ver proyecto anterior: ${prevProyecto.title}`}
                   >
                     <svg
                       width="20"
@@ -183,7 +192,7 @@ const description = proyecto.description;
                     </svg>
                     <span>Proyecto Anterior</span>
                   </a>
-                  <a href="/landig_Arqui/#galeria" class="nav-btn nav-btn--center">
+                  <a href="/#galeria" class="nav-btn nav-btn--center" aria-label="Ver todos los proyectos">
                     <svg
                       width="20"
                       height="20"
@@ -199,8 +208,9 @@ const description = proyecto.description;
                     <span>Ver Todos</span>
                   </a>
                   <a
-                    href={`/landig_Arqui/proyecto/${nextProyecto.id}`}
+                    href={`/proyecto/${nextProyecto.id}`}
                     class="nav-btn nav-btn--next"
+                    aria-label={`Ver próximo proyecto: ${nextProyecto.title}`}
                   >
                     <span>Próximo Proyecto</span>
                     <svg
@@ -231,11 +241,23 @@ const description = proyecto.description;
     }
 
     .breadcrumb {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .breadcrumb__list {
       display: flex;
       align-items: center;
       gap: var(--spacing-xs);
-      margin-bottom: var(--spacing-xl);
       font-size: 0.875rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .breadcrumb__item:not(:last-child)::after {
+      content: '/';
+      color: var(--color-neutral-400);
+      margin-left: var(--spacing-xs);
     }
 
     .breadcrumb__link {

@@ -16,11 +16,11 @@ if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
 }
 
-// Configuración de optimización
+// Configuración de optimización - solo generamos los tamaños que realmente se usan
 const sizes = {
-  thumbnail: { width: 300, height: 200 },
   card: { width: 600, height: 400 },
   hero: { width: 1200, height: 800 },
+  original: { width: 1920, height: 1280 }, // Tamaño original optimizado
 };
 
 async function optimizeImage(inputPath, filename) {

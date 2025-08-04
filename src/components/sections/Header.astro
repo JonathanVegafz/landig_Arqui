@@ -3,44 +3,60 @@ import { Image } from 'astro:assets';
 import logo from '../../assets/optimized/logo-hero.webp';
 ---
 
-<header class="header">
+<header class="header" role="banner">
   <div class="container header__content">
-    <a href="/" class="header__logo" aria-label="Ir al inicio">
+    <a href="/" class="header__logo" aria-label="IG Construcciones - Ir al inicio">
       <Image
         src={logo}
-        alt="Logo IG Construcciones"
+        alt="Logotipo de IG Construcciones"
         class="logo-img"
         width={42}
         height={42}
         format="webp"
         quality={90}
       />
-      <span class="logo-text">IG Construcciones</span>
+      <span class="logo-text" aria-hidden="true">IG Construcciones</span>
     </a>
 
     <!-- Botón hamburguesa para móviles -->
-    <button class="header__menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
+    <button 
+      class="header__menu-toggle" 
+      aria-label="Abrir menú de navegación" 
+      aria-expanded="false"
+      aria-controls="mobile-navigation"
+      type="button"
+    >
+      <span class="hamburger-line" aria-hidden="true"></span>
+      <span class="hamburger-line" aria-hidden="true"></span>
+      <span class="hamburger-line" aria-hidden="true"></span>
     </button>
 
     <!-- Navegación desktop -->
-    <nav class="header__nav" aria-label="Navegación principal">
-      <a href="/" class="nav-link">Inicio</a>
-      <a href="#about" class="nav-link">Sobre Nosotros</a>
-      <a href="#galeria" class="nav-link">Galería</a>
-      <a href="#proceso" class="nav-link">Proceso</a>
-      <a href="#cotiza" class="nav-link">Contacto</a>
+    <nav class="header__nav" role="navigation" aria-label="Navegación principal del sitio">
+      <ul role="list" class="nav-list">
+        <li><a href="/" class="nav-link" aria-current="page">Inicio</a></li>
+        <li><a href="#about" class="nav-link">Sobre Nosotros</a></li>
+        <li><a href="#galeria" class="nav-link">Galería</a></li>
+        <li><a href="#proceso" class="nav-link">Proceso</a></li>
+        <li><a href="#cotiza" class="nav-link">Contacto</a></li>
+      </ul>
     </nav>
 
     <!-- Navegación móvil -->
-    <nav class="header__nav-mobile" aria-label="Navegación móvil">
-      <a href="/" class="mobile-nav-link">Inicio</a>
-      <a href="#about" class="mobile-nav-link">Sobre Nosotros</a>
-      <a href="#galeria" class="mobile-nav-link">Galería</a>
-      <a href="#proceso" class="mobile-nav-link">Proceso</a>
-      <a href="#cotiza" class="mobile-nav-link">Contacto</a>
+    <nav 
+      class="header__nav-mobile" 
+      role="navigation" 
+      aria-label="Navegación móvil"
+      id="mobile-navigation"
+      aria-hidden="true"
+    >
+      <ul role="list" class="mobile-nav-list">
+        <li><a href="/" class="mobile-nav-link" aria-current="page">Inicio</a></li>
+        <li><a href="#about" class="mobile-nav-link">Sobre Nosotros</a></li>
+        <li><a href="#galeria" class="mobile-nav-link">Galería</a></li>
+        <li><a href="#proceso" class="mobile-nav-link">Proceso</a></li>
+        <li><a href="#cotiza" class="mobile-nav-link">Contacto</a></li>
+      </ul>
     </nav>
   </div>
 
@@ -173,8 +189,25 @@ import logo from '../../assets/optimized/logo-hero.webp';
 
     .header__nav {
       display: flex;
+      align-items: center;
+    }
+
+    .nav-list {
+      display: flex;
       gap: var(--spacing-xl);
       align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .mobile-nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
     }
 
     .nav-link {
