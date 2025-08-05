@@ -7,7 +7,6 @@ import heroImage from '../../assets/optimized/hero-hero.webp';
   class="hero parallax section-bg-white hero-container"
   id="inicio"
   aria-label="Sección principal: Arquitectura que Inspira"
-  role="banner"
 >
   <div class="hero-background">
     <Image
@@ -138,6 +137,7 @@ import heroImage from '../../assets/optimized/hero-hero.webp';
 
     function typeWriter() {
       const currentText = texts[textIndex];
+      if (!currentText || !typewriterElement) return;
 
       if (!isDeleting) {
         typewriterElement.textContent = currentText.slice(0, charIndex + 1);

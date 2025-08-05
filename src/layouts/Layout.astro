@@ -183,9 +183,7 @@ const {
       style="display:none; opacity:0; transition: opacity 0.7s cubic-bezier(.4,0,.2,1);"
     >
       <Header id="main-header" style="opacity:0; transition: opacity 0.5s;" />
-      <main id="main" role="main" aria-label="Contenido principal">
-        <slot />
-      </main>
+      <slot />
       <Footer />
     </div>
     <script is:inline>

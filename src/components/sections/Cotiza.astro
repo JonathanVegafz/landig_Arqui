@@ -25,6 +25,8 @@ import ContactInfo from '../ui/ContactInfo.astro';
           icon='<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'
           title="Ubicación"
           content="Maitencillo, V Región, Chile"
+          link="https://maps.google.com/?q=Maitencillo,+V+Región,+Chile"
+          ariaLabel="Ver ubicación en Google Maps"
         />
 
         <ContactInfo
@@ -220,7 +222,7 @@ import ContactInfo from '../ui/ContactInfo.astro';
     gap: var(--spacing-lg);
     padding: var(--spacing-xl);
     border-radius: var(--border-radius-xl);
-    max-height: 28rem;
+    max-height: 40rem;
   }
 
   .contact-form {

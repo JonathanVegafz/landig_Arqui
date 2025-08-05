@@ -89,6 +89,7 @@ const reseñas = getTestimonials();
     transition: all 1.1s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
     pointer-events: none;
+    box-sizing: border-box;
   }
 
   .carousel-slide.center {
@@ -121,11 +122,14 @@ const reseñas = getTestimonials();
     flex-direction: column;
     height: auto;
     min-height: 200px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   .testimonial-quote {
     font-size: 1.13rem;
-    color: var(--color-text);
+    color: var(--color-neutral-700);
     line-height: 1.5;
     font-style: italic;
     margin-bottom: 0.7rem;
@@ -133,6 +137,9 @@ const reseñas = getTestimonials();
     border: none;
     padding: 0;
     margin: 0 0 1rem 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   .testimonial-author {
@@ -141,6 +148,9 @@ const reseñas = getTestimonials();
     align-self: flex-end;
     font-style: normal;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   .carousel-dots {
@@ -170,18 +180,20 @@ const reseñas = getTestimonials();
   @media (max-width: 768px) {
     .carousel-wrapper {
       padding: 1.7rem 0.5rem;
-      max-width: 100vw;
-      width: 100vw;
+      max-width: 100%;
+      width: 100%;
     }
 
     .carousel-track {
-      width: 100vw;
-      max-width: 80%;
+      width: 100%;
+      max-width: 95%;
+      margin: 0 auto;
     }
 
     .carousel-slide {
-      width: 96vw;
-      max-width: 80%;
+      width: 100%;
+      max-width: 90%;
+      min-width: auto;
     }
 
     .carousel-slide.left {
@@ -193,14 +205,60 @@ const reseñas = getTestimonials();
     }
 
     .testimonial-card {
-      padding: 1rem 0.7rem 1.5rem;
+      padding: 1.25rem 1rem 1.75rem;
       border-radius: 12px;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+    .testimonial-quote {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .testimonial-author {
+      font-size: 0.9rem;
+      white-space: normal;
+      text-align: right;
     }
   }
 
   @media (max-width: 480px) {
+    .carousel-wrapper {
+      padding: 1.5rem 0.25rem;
+    }
+
+    .carousel-track {
+      max-width: 100%;
+      min-height: 250px;
+    }
+
+    .carousel-slide {
+      width: 95%;
+      max-width: 95%;
+    }
+
+    .testimonial-card {
+      padding: 1rem 0.875rem 1.5rem;
+      min-height: 180px;
+    }
+
+    .testimonial-quote {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .testimonial-author {
+      font-size: 0.85rem;
+    }
+
     .carousel-dots {
-      margin-top: 3rem;
+      margin-top: 2.5rem;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
     }
   }
 </style>

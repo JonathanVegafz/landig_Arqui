@@ -29,7 +29,7 @@ import { COMPANY_INFO } from '../../lib/constants-loader';
           <div class="about__image-overlay image-overlay--light" aria-hidden="true"></div>
         </div>
 
-        <header class="about__text">
+        <hgroup class="about__text">
           <div class="section-header section-header--narrow text-left">
             <span class="section-subtitle" aria-hidden="true">Sobre Nosotros</span>
             <h2 class="section-title section-title--medium" id="about-title">Encabezado por un equipo sólido de profesionales</h2>
@@ -49,27 +49,36 @@ import { COMPANY_INFO } from '../../lib/constants-loader';
               un estándar de calidad insuperable.
             </p>
           </div>
-        </header>
+        </hgroup>
       </div>
 
       <!-- Estadísticas en una fila horizontal abajo -->
       <div class="about__stats-section">
         <dl class="stats-container stats-container--horizontal" aria-label="Estadísticas de la empresa">
           <div class="stat-item">
-            <dt class="stat-number" aria-label={`Más de ${COMPANY_INFO.experience}`}>
-              {COMPANY_INFO.experience}
+            <dt class="stat-number animated-counter" 
+                data-target={COMPANY_INFO.experience.replace('+', '')}
+                data-suffix="+"
+                aria-label={`Más de ${COMPANY_INFO.experience}`}>
+              0+
             </dt>
             <dd class="stat-label">Años de experiencia</dd>
           </div>
           <div class="stat-item">
-            <dt class="stat-number" aria-label={`Más de ${COMPANY_INFO.projects}`}>
-              {COMPANY_INFO.projects}
+            <dt class="stat-number animated-counter" 
+                data-target={COMPANY_INFO.projects.replace('+', '')}
+                data-suffix="+"
+                aria-label={`Más de ${COMPANY_INFO.projects}`}>
+              0+
             </dt>
             <dd class="stat-label">Proyectos completados</dd>
           </div>
           <div class="stat-item">
-            <dt class="stat-number" aria-label={`${COMPANY_INFO.satisfaction} de satisfacción`}>
-              {COMPANY_INFO.satisfaction}
+            <dt class="stat-number animated-counter" 
+                data-target={COMPANY_INFO.satisfaction.replace('%', '')}
+                data-suffix="%"
+                aria-label={`${COMPANY_INFO.satisfaction} de satisfacción`}>
+              0%
             </dt>
             <dd class="stat-label">Satisfacción del cliente</dd>
           </div>
@@ -78,6 +87,86 @@ import { COMPANY_INFO } from '../../lib/constants-loader';
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const statsSection = document.querySelector('.about__stats-section');
+    const statItems = document.querySelectorAll('.stat-item');
+    const animatedCounters = document.querySelectorAll('.animated-counter');
+    let hasAnimated = false;
+
+    // Función para animar un contador
+    function animateCounter(element: HTMLElement) {
+      const target = parseInt(element.getAttribute('data-target') || '0');
+      const suffix = element.getAttribute('data-suffix') || '';
+      const duration = 2000; // 2 segundos
+      const steps = 60; // 60 pasos para una animación suave
+      const increment = target / steps;
+      const stepDuration = duration / steps;
+      
+      let current = 0;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        
+        // Actualizar el contenido del elemento
+        element.textContent = Math.round(current) + suffix;
+      }, stepDuration);
+    }
+
+    // Función para iniciar todas las animaciones
+    function startAnimations() {
+      if (hasAnimated) return;
+      hasAnimated = true;
+
+      // Animar la aparición de los elementos
+      statItems.forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add('animate');
+        }, index * 200);
+      });
+
+      // Iniciar los contadores después de un pequeño retraso
+      setTimeout(() => {
+        animatedCounters.forEach((counter, index) => {
+          setTimeout(() => {
+            animateCounter(counter as HTMLElement);
+          }, index * 300);
+        });
+      }, 500);
+    }
+
+    // Crear el observer para detectar cuando la sección entra en viewport
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+          startAnimations();
+          observer.unobserve(entry.target); // Solo animar una vez
+        }
+      });
+    }, {
+      threshold: 0.3,
+      rootMargin: '0px 0px -100px 0px'
+    });
+
+    // Observar la sección de estadísticas
+    if (statsSection) {
+      observer.observe(statsSection);
+    }
+
+    // Fallback: animar automáticamente después de 3 segundos si no se detecta scroll
+    setTimeout(() => {
+      if (!hasAnimated) {
+        startAnimations();
+      }
+    }, 3000);
+  });
+</script>
 
 <style>
   /* Estilos específicos únicos del About */
@@ -130,6 +219,7 @@ import { COMPANY_INFO } from '../../lib/constants-loader';
     line-height: 1.7;
     color: var(--color-neutral-700);
     margin: 0;
+    text-align: justify;
   }
 
   /* Sección de estadísticas horizontal */
@@ -147,6 +237,48 @@ import { COMPANY_INFO } from '../../lib/constants-loader';
     padding: var(--spacing-xl);
     box-shadow: var(--shadow-lg);
     margin: 0;
+  }
+
+  /* Estilos para la animación de estadísticas */
+  .stat-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .stat-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stat-item:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+
+  .stat-item:nth-child(2) {
+    transition-delay: 0.3s;
+  }
+
+  .stat-item:nth-child(3) {
+    transition-delay: 0.5s;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: var(--spacing-xs);
+    transition: transform 0.3s ease;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--color-neutral-600);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
   }
 
   /* Responsive específico */

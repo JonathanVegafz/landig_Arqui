@@ -304,7 +304,7 @@ img {
 .section-header {
   text-align: center;
   max-width: 800px;
-  margin: 0 auto var(--spacing-2xl) auto;
+  margin: 0 auto 0 auto;
   position: relative;
   z-index: 2;
 }
@@ -486,10 +486,13 @@ img {
   background: white;
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-md);
-  padding: var( --spacing-sm);
+  padding: var(--spacing-xl);
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* 5.3. Card con borde superior animado */
@@ -1119,7 +1122,9 @@ img {
 /* 16. Contact Info Items */
 .contact-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   gap: 1rem;
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.1);
@@ -1127,6 +1132,7 @@ img {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all var(--transition-normal);
+  text-align: center;
 }
 
 .contact-item:hover {
@@ -1141,6 +1147,7 @@ img {
 
 .contact-item__content {
   flex: 1;
+  text-align: center;
 }
 
 .contact-item__title {
@@ -1155,10 +1162,12 @@ img {
   color: var(--color-neutral-700);
   text-decoration: none;
   transition: color var(--transition-normal);
+  font-weight: 500;
 }
 
 .contact-item__link:hover {
   color: var(--color-primary);
+  text-decoration: underline;
 }
 
 /* 17. Typewriter Effect */
@@ -1304,6 +1313,16 @@ img {
   .contact-item {
     padding: var(--spacing-md);
     flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: var(--spacing-sm);
+  }
+
+  .contact-item__icon {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .contact-item__content {
     text-align: center;
   }
 
