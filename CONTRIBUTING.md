@@ -134,7 +134,7 @@ Utiliza las variables CSS definidas en `global.css`:
     "name": "IG Construcciones",
     "location": "Maitencillo, V Región, Chile",
     "phone": "+56945150212",
-    "email": "contacto@igconstrucciones.cl",
+    "email": "Y.ordenes.t@gmail.com",
     "experience": "20+",
     "projects": "100+"
   }
@@ -190,7 +190,7 @@ src/pages/
 <Layout
   title="IG Construcciones - Arquitectura y Construcción en la V Región"
   description="Descripción específica con keywords"
-  canonical="https://igconstruccionesspa.cl/"
+  canonical="https://www.igconstruccionesspa.cl/"
   ogImage={imagenOG}
   ogType="website"
   ogLocale="es_CL"

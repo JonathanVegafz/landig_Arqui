@@ -5,7 +5,7 @@ import Footer from '../components/sections/Footer.astro';
 const {
   title = 'IG Construcciones - Arquitectura y Construcción en la V Región',
   description = 'IG Construcciones: Arquitectura y construcción en la V Región. Diseño, obras nuevas y eficiencia energética. Calidad, confianza y experiencia.',
-  canonical = 'https://igconstruccionesspa.cl/',
+  canonical = 'https://www.igconstruccionesspa.cl/',
   ogImage = undefined,
   ogType = 'website',
   ogLocale = 'es_CL',
@@ -65,14 +65,7 @@ const {
     {ogImage && <meta property="og:image:width" content="1200" />}
     {ogImage && <meta property="og:image:height" content="630" />}
     {ogImage && <meta property="og:image:type" content="image/webp" />}
-    
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    {ogImage && <meta name="twitter:image" content={ogImage} />}
-    <meta name="twitter:site" content="@igconstrucciones" />
-    <meta name="twitter:creator" content="@igconstrucciones" />
+  
 
     <!-- Preload critical fonts -->
     <link
@@ -122,9 +115,9 @@ const {
         name: 'IG Construcciones',
         description:
           'Arquitectura y construcción en la V Región de Chile. Diseño, obras nuevas y eficiencia energética.',
-        url: 'https://igconstruccionesspa.cl',
+        url: 'https://www.igconstruccionesspa.cl/',
         telephone: '+56945150212',
-        email: 'contacto@igconstrucciones.cl',
+        email: 'Y.ordenes.t@gmail.com',
         address: {
           '@type': 'PostalAddress',
           addressLocality: 'Maitencillo',

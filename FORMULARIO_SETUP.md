@@ -56,7 +56,7 @@ En Formspree, puedes agregar el dominio de tu sitio web para mayor seguridad.
 - ✅ **Manejo de errores** si algo falla
 
 ## 📱 **Contactos Actualizados**
-- **Email**: contacto@igconstrucciones.cl
+- **Email**: Y.ordenes.t@gmail.com
 - **WhatsApp**: +56 9 4515 0212
 - **Formulario**: Envía a javier.retamal.f@mail.pucv.cl
 

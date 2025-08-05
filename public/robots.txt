@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://igconstrucciones.cl/sitemap.xml
+Sitemap: https://www.igconstruccionesspa.cl/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1
