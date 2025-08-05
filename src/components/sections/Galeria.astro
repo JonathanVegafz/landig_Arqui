@@ -22,11 +22,11 @@ const PROJECTS = getProjects();
         PROJECT_CATEGORIES.map((categoria) => (
           <button
             class={`filter-button ${categoria === 'todos' ? 'active' : ''}`}
-            data-categoria={categoria}
+            data-categoria={categoria.toLowerCase()}
             role="tab"
             aria-selected={categoria === 'todos' ? 'true' : 'false'}
             aria-controls="projects-grid"
-            id={`filter-${categoria}`}
+            id={`filter-${categoria.toLowerCase()}`}
             tabindex={categoria === 'todos' ? '0' : '-1'}
           >
             {categoria === 'todos'
@@ -46,7 +46,7 @@ const PROJECTS = getProjects();
       {
         PROJECTS.map(proyecto => (
           <article class="proyecto-card card-base card-hover image-zoom" data-categoria={proyecto.category.toLowerCase()}>
-            <figure class="proyecto-card__image image-container--landscape">
+            <figure class="proyecto-card__image">
               <Image
                 src={proyecto.image}
                 alt={`Proyecto ${proyecto.title} - ${proyecto.description}`}
@@ -57,7 +57,7 @@ const PROJECTS = getProjects();
                 loading="lazy"
                 decoding="async"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                style="aspect-ratio: 3/2;"
+                class="proyecto-card__img"
               />
               <figcaption class="image-overlay proyecto-card__overlay">
                 <div class="proyecto-card__info">
@@ -114,28 +114,61 @@ const PROJECTS = getProjects();
     const filterButtons = document.querySelectorAll('.filter-button');
     const projectCards = document.querySelectorAll('.proyecto-card');
 
+    console.log('Filter buttons found:', filterButtons.length);
+    console.log('Project cards found:', projectCards.length);
+
     filterButtons.forEach(button => {
       button.addEventListener('click', () => {
         const categoria = button.getAttribute('data-categoria');
+        console.log('Filter clicked:', categoria);
 
-        // Actualizar botón activo
-        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Actualizar botón activo y atributos ARIA
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
+          btn.setAttribute('tabindex', '-1');
+        });
+        
         button.classList.add('active');
+        button.setAttribute('aria-selected', 'true');
+        button.setAttribute('tabindex', '0');
 
-        // Filtrar proyectos
+        // Filtrar proyectos con animación
         projectCards.forEach(card => {
           const cardCategoria = card.getAttribute('data-categoria');
           const htmlCard = card as HTMLElement;
           
+          console.log('Card category:', cardCategoria, 'Filter:', categoria);
+          
           if (categoria === 'todos' || cardCategoria === categoria) {
             htmlCard.style.display = 'block';
-            card.classList.add('fade-in');
+            // Pequeño delay para la animación
+            setTimeout(() => {
+              htmlCard.style.opacity = '1';
+              htmlCard.style.transform = 'translateY(0)';
+            }, 50);
           } else {
-            htmlCard.style.display = 'none';
-            card.classList.remove('fade-in');
+            htmlCard.style.opacity = '0';
+            htmlCard.style.transform = 'translateY(20px)';
+            // Ocultar después de la animación
+            setTimeout(() => {
+              htmlCard.style.display = 'none';
+            }, 300);
           }
         });
+
+        // Actualizar aria-labelledby del grid
+        const projectsGrid = document.getElementById('projects-grid');
+        if (projectsGrid) {
+          projectsGrid.setAttribute('aria-labelledby', `filter-${categoria}`);
+        }
       });
+    });
+
+    // Inicializar estilos de animación para las cartas
+    projectCards.forEach(card => {
+      const htmlCard = card as HTMLElement;
+      htmlCard.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     });
   });
 </script>
@@ -144,6 +177,27 @@ const PROJECTS = getProjects();
   /* Estilos específicos únicos de la galería */
   .galeria {
     padding: var(--spacing-2xl) 0;
+  }
+
+  /* Estilos específicos para las cartas de proyecto */
+  .proyecto-card__image {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+  }
+
+  .proyecto-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform var(--transition-slow);
+  }
+
+  .proyecto-card:hover .proyecto-card__img {
+    transform: scale(1.05);
   }
 
   .galeria__cta {
