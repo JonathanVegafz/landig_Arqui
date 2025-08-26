@@ -11,6 +11,7 @@ const { icon, title, features, class: className } = Astro.props;
 
 <article class={`card-base card-hover card-top-border ${className || ''}`}>
   {icon && (
+    <!-- set:html seguro: el string SVG proviene de props controladas internamente y no de input del usuario -->
     <div class="servicio-card__icon" aria-hidden="true" set:html={icon}></div>
   )}
   <div class="servicio-card__content">

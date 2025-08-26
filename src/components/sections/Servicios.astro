@@ -14,7 +14,7 @@ import { SERVICES } from '../../lib/constants-loader';
 
     <div class="servicios__grid grid-auto-fit" role="list" aria-label="Lista de servicios especializados">
       {
-        SERVICES.map((servicio) => (
+        SERVICES.map((servicio: { id: number; title: string; features: string[] }) => (
           <div role="listitem">
             <ServiceCard title={servicio.title} features={servicio.features} />
           </div>

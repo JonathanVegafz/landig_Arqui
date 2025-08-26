@@ -3,7 +3,7 @@ import SectionHeader from '../ui/SectionHeader.astro';
 import ContactInfo from '../ui/ContactInfo.astro';
 ---
 
-<section class="cotiza section-bg-white" id="cotiza" aria-label="Cotiza tu Proyecto">
+<section class="cotiza section section-bg-white" id="cotiza" aria-label="Cotiza tu Proyecto">
   <div class="container">
     <SectionHeader
       subtitle="Contacto"
@@ -38,7 +38,8 @@ import ContactInfo from '../ui/ContactInfo.astro';
         />
       </div>
 
-      <form
+  <div class="form-messages" aria-live="polite" aria-atomic="true"></div>
+  <form
         class="contact-form glassmorphism"
         method="POST"
         action="https://formspree.io/f/xvgqwkvy"
@@ -50,7 +51,7 @@ import ContactInfo from '../ui/ContactInfo.astro';
           <p class="form-subtitle">Completa el formulario y nos pondremos en contacto contigo</p>
         </div>
 
-        <div class="form-fields">
+  <div class="form-fields grid gap-6 md:grid-cols-2" style="align-items:start;">
           <div class="form-group">
             <label for="nombre" class="form-label">Nombre *</label>
             <div class="input-wrapper">
@@ -61,6 +62,7 @@ import ContactInfo from '../ui/ContactInfo.astro';
                 required
                 class="form-input"
                 placeholder="Tu nombre completo"
+                aria-required="true"
               />
               <svg
                 class="input-icon"
@@ -88,6 +90,7 @@ import ContactInfo from '../ui/ContactInfo.astro';
                 required
                 class="form-input"
                 placeholder="tu@email.com"
+                aria-required="true"
               />
               <svg
                 class="input-icon"
@@ -117,6 +120,7 @@ import ContactInfo from '../ui/ContactInfo.astro';
                 required
                 class="form-input"
                 placeholder="+56 9 1234 5678"
+                aria-required="true"
               />
               <svg
                 class="input-icon"
@@ -135,7 +139,7 @@ import ContactInfo from '../ui/ContactInfo.astro';
             <span class="error-message" id="telefono-error"></span>
           </div>
 
-          <div class="form-group">
+          <div class="form-group form-group--full">
             <label for="mensaje" class="form-label">Mensaje * (mínimo 5 palabras)</label>
             <div class="input-wrapper">
               <textarea
@@ -145,6 +149,7 @@ import ContactInfo from '../ui/ContactInfo.astro';
                 required
                 class="form-input"
                 placeholder="¿En qué tipo de proyecto estás pensando? Cuéntanos más detalles..."
+                aria-required="true"
               ></textarea>
               <svg
                 class="input-icon"
@@ -166,9 +171,17 @@ import ContactInfo from '../ui/ContactInfo.astro';
           <input type="hidden" name="_subject" value="Nueva consulta desde IG Construcciones" />
           <input type="hidden" name="_next" value="https://www.igconstruccionesspa.cl/#cotiza" />
 
-          <button type="submit" class="btn btn-primary">
-            <span>Enviar Solicitud</span>
+          <button type="submit" class="btn btn--lg btn-submit form-group--full">
+            <span class="btn-text">Enviar Solicitud</span>
+            <span class="btn-loading" style="display: none;">
+              <svg class="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" stroke-opacity="0.3"/>
+                <path d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"/>
+              </svg>
+              Enviando...
+            </span>
             <svg
+              class="btn-icon"
               width="20"
               height="20"
               viewBox="0 0 24 24"
@@ -181,6 +194,7 @@ import ContactInfo from '../ui/ContactInfo.astro';
           </button>
         </div>
       </form>
+  <!-- Eliminado script inline básico: ahora se usa módulo reutilizable -->
     </div>
   </div>
 
@@ -209,11 +223,22 @@ import ContactInfo from '../ui/ContactInfo.astro';
   }
 
   .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
     gap: var(--spacing-xl);
     max-width: 1000px;
     margin: var(--spacing-xl) auto 0;
+  }
+
+  .contact-info {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .contact-form {
+    flex: 1.5;
+    min-width: 400px;
   }
 
   .contact-info {
@@ -268,11 +293,10 @@ import ContactInfo from '../ui/ContactInfo.astro';
     margin: 0;
   }
 
-  .form-fields {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
+  .form-fields { 
+    /* Tailwind grid classes take precedence, this is fallback for older browsers */
   }
+  .form-group--full { grid-column: 1 / -1; }
 
   .form-group {
     position: relative;
@@ -350,6 +374,54 @@ import ContactInfo from '../ui/ContactInfo.astro';
     display: block;
   }
 
+  /* Estilos mejorados del botón */
+  .btn-submit {
+    position: relative;
+    overflow: hidden;
+    min-height: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all var(--transition-normal);
+  }
+
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(119, 188, 219, 0.4);
+  }
+
+  .btn-submit:active {
+    transform: translateY(0);
+  }
+
+  .btn-submit.loading {
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  .btn-loading {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-submit.loading .btn-text,
+  .btn-submit.loading .btn-icon {
+    display: none;
+  }
+
+  .btn-submit.loading .btn-loading {
+    display: flex;
+  }
+
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
   .success-message {
     position: fixed;
     top: 20px;
@@ -396,11 +468,19 @@ import ContactInfo from '../ui/ContactInfo.astro';
   /* Responsive */
   @media (max-width: 1024px) {
     .contact-grid {
-      grid-template-columns: 1fr;
+      flex-direction: column;
       gap: var(--spacing-xl);
     }
 
+    .contact-info,
+    .contact-form {
+      flex: 1;
+      min-width: auto;
+      width: 100%;
+    }
+
     .contact-info {
+      display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
@@ -417,9 +497,10 @@ import ContactInfo from '../ui/ContactInfo.astro';
       padding: var(--spacing-lg);
     }
 
-    .form-input {
+  .form-input {
       padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) 2.5rem;
     }
+  /* Tailwind handles responsive grid, remove conflicting CSS */
 
     .input-icon {
       left: var(--spacing-sm);
@@ -467,160 +548,22 @@ import ContactInfo from '../ui/ContactInfo.astro';
   }
 </style>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('contactForm');
-    const nombreInput = document.getElementById('nombre');
-    const emailInput = document.getElementById('email');
-    const telefonoInput = document.getElementById('telefono');
-    const mensajeInput = document.getElementById('mensaje');
-
-    const nombreError = document.getElementById('nombre-error');
-    const emailError = document.getElementById('email-error');
-    const telefonoError = document.getElementById('telefono-error');
-    const mensajeError = document.getElementById('mensaje-error');
-
-    function clearError(input, errorElement) {
-      input.classList.remove('error');
-      errorElement.textContent = '';
-    }
-
-    function showError(input, errorElement, message) {
-      input.classList.add('error');
-      errorElement.textContent = message;
-    }
-
-    function validateNombre() {
-      const value = nombreInput.value.trim();
-      if (!value) {
-        showError(nombreInput, nombreError, 'El nombre es obligatorio');
-        return false;
-      } else if (value.length < 2) {
-        showError(nombreInput, nombreError, 'El nombre debe tener al menos 2 caracteres');
-        return false;
-      } else {
-        clearError(nombreInput, nombreError);
-        return true;
-      }
-    }
-
-    function validateEmail() {
-      const value = emailInput.value.trim();
-      if (!value) {
-        showError(emailInput, emailError, 'El email es obligatorio');
-        return false;
-      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-        showError(emailInput, emailError, 'Ingresa un email válido');
-        return false;
-      } else {
-        clearError(emailInput, emailError);
-        return true;
-      }
-    }
-
-    function validateTelefono() {
-      const value = telefonoInput.value.trim();
-      if (!value) {
-        showError(telefonoInput, telefonoError, 'El teléfono es obligatorio');
-        return false;
-      } else if (value.length < 8) {
-        showError(telefonoInput, telefonoError, 'El teléfono debe tener al menos 8 dígitos');
-        return false;
-      } else {
-        clearError(telefonoInput, telefonoError);
-        return true;
-      }
-    }
-
-    function validateMensaje() {
-      const value = mensajeInput.value.trim();
-      if (!value) {
-        showError(mensajeInput, mensajeError, 'El mensaje es obligatorio');
-        return false;
-      } else {
-        const palabras = value.split(/\s+/).filter(palabra => palabra.length > 0);
-        if (palabras.length < 5) {
-          showError(
-            mensajeInput,
-            mensajeError,
-            `El mensaje debe tener al menos 5 palabras (actual: ${palabras.length})`
-          );
-          return false;
-        } else {
-          clearError(mensajeInput, mensajeError);
-          return true;
+<script>
+  import initContactForm from '../../lib/interactions/formValidation';
+  // Hydratar al estar visible para no bloquear carga inicial
+  if ('IntersectionObserver' in window) {
+    const section = document.getElementById('cotiza');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          initContactForm();
+          obs.disconnect();
         }
-      }
-    }
-
-    // Event listeners para validación en tiempo real
-    nombreInput.addEventListener('input', validateNombre);
-    nombreInput.addEventListener('blur', validateNombre);
-    emailInput.addEventListener('input', validateEmail);
-    emailInput.addEventListener('blur', validateEmail);
-    telefonoInput.addEventListener('input', validateTelefono);
-    telefonoInput.addEventListener('blur', validateTelefono);
-    mensajeInput.addEventListener('input', validateMensaje);
-    mensajeInput.addEventListener('blur', validateMensaje);
-
-    // Validación del formulario al enviar
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const isNombreValid = validateNombre();
-      const isEmailValid = validateEmail();
-      const isTelefonoValid = validateTelefono();
-      const isMensajeValid = validateMensaje();
-
-      if (isNombreValid && isEmailValid && isTelefonoValid && isMensajeValid) {
-        // Mostrar indicador de carga
-        const submitButton = form.querySelector('button[type="submit"]');
-        const originalText = submitButton.querySelector('span').textContent;
-        submitButton.querySelector('span').textContent = 'Enviando...';
-        submitButton.disabled = true;
-
-        // Enviar formulario a Formspree
-        const formData = new FormData(form);
-        
-        fetch(form.action, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        })
-        .then(response => {
-          if (response.ok) {
-            // Mostrar mensaje de éxito
-            const successMessage = document.getElementById('success-message');
-            successMessage.classList.add('show');
-
-            setTimeout(() => {
-              successMessage.classList.remove('show');
-            }, 4000);
-
-            // Resetear formulario
-            form.reset();
-            [nombreInput, emailInput, telefonoInput, mensajeInput].forEach(input => {
-              input.classList.remove('error');
-            });
-            [nombreError, emailError, telefonoError, mensajeError].forEach(error => {
-              error.textContent = '';
-            });
-          } else {
-            throw new Error('Error en el envío');
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('Hubo un error al enviar el formulario. Por favor, intenta nuevamente o contáctanos directamente por WhatsApp.');
-        })
-        .finally(() => {
-          // Restaurar botón
-          submitButton.querySelector('span').textContent = originalText;
-          submitButton.disabled = false;
-        });
-      }
-    });
-  });
+      });
+    }, { rootMargin: '0px 0px -20% 0px' });
+    if (section) obs.observe(section);
+  } else {
+    // Fallback
+    initContactForm();
+  }
 </script>

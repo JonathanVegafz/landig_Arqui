@@ -137,7 +137,6 @@ Este es un sitio web profesional para **IG Construcciones**, una empresa de arqu
 - `src/components/sections/Servicios.astro`: Catálogo de servicios ofrecidos
 - `src/components/sections/Galeria.astro`: Portafolio de proyectos con filtros
 - `src/components/sections/NuestroProceso.astro`: Proceso de trabajo paso a paso
-- `src/components/sections/Resenas.astro`: Testimonios de clientes
 - `src/components/sections/Cotiza.astro`: Formulario de contacto y cotización
 
 #### **UI Components**

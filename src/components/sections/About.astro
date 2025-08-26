@@ -20,6 +20,7 @@ import { COMPANY_INFO } from '../../lib/constants-loader';
               height={250}
               format="webp"
               quality={85}
+              sizes="(max-width: 768px) 80vw, 312px"
               style="aspect-ratio: 312/250;"
             />
             <figcaption class="visually-hidden">
@@ -56,29 +57,23 @@ import { COMPANY_INFO } from '../../lib/constants-loader';
       <div class="about__stats-section">
         <dl class="stats-container stats-container--horizontal" aria-label="Estadísticas de la empresa">
           <div class="stat-item">
-            <dt class="stat-number animated-counter" 
-                data-target={COMPANY_INFO.experience.replace('+', '')}
-                data-suffix="+"
-                aria-label={`Más de ${COMPANY_INFO.experience}`}>
-              0+
+            <dt class="stat-number" data-counter data-target={COMPANY_INFO.experience.replace('+','')} aria-label={`Más de ${COMPANY_INFO.experience}`}>
+              0
+              <span aria-hidden="true">+</span>
             </dt>
             <dd class="stat-label">Años de experiencia</dd>
           </div>
           <div class="stat-item">
-            <dt class="stat-number animated-counter" 
-                data-target={COMPANY_INFO.projects.replace('+', '')}
-                data-suffix="+"
-                aria-label={`Más de ${COMPANY_INFO.projects}`}>
-              0+
+            <dt class="stat-number" data-counter data-target={COMPANY_INFO.projects.replace('+','')} aria-label={`Más de ${COMPANY_INFO.projects}`}>
+              0
+              <span aria-hidden="true">+</span>
             </dt>
             <dd class="stat-label">Proyectos completados</dd>
           </div>
           <div class="stat-item">
-            <dt class="stat-number animated-counter" 
-                data-target={COMPANY_INFO.satisfaction.replace('%', '')}
-                data-suffix="%"
-                aria-label={`${COMPANY_INFO.satisfaction} de satisfacción`}>
-              0%
+            <dt class="stat-number" data-counter data-target={COMPANY_INFO.satisfaction.replace('%','')} aria-label={`${COMPANY_INFO.satisfaction} de satisfacción`}>
+              0
+              <span aria-hidden="true">%</span>
             </dt>
             <dd class="stat-label">Satisfacción del cliente</dd>
           </div>
@@ -89,82 +84,10 @@ import { COMPANY_INFO } from '../../lib/constants-loader';
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const statsSection = document.querySelector('.about__stats-section');
-    const statItems = document.querySelectorAll('.stat-item');
-    const animatedCounters = document.querySelectorAll('.animated-counter');
-    let hasAnimated = false;
-
-    // Función para animar un contador
-    function animateCounter(element: HTMLElement) {
-      const target = parseInt(element.getAttribute('data-target') || '0');
-      const suffix = element.getAttribute('data-suffix') || '';
-      const duration = 2000; // 2 segundos
-      const steps = 60; // 60 pasos para una animación suave
-      const increment = target / steps;
-      const stepDuration = duration / steps;
-      
-      let current = 0;
-      
-      const timer = setInterval(() => {
-        current += increment;
-        
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
-        }
-        
-        // Actualizar el contenido del elemento
-        element.textContent = Math.round(current) + suffix;
-      }, stepDuration);
-    }
-
-    // Función para iniciar todas las animaciones
-    function startAnimations() {
-      if (hasAnimated) return;
-      hasAnimated = true;
-
-      // Animar la aparición de los elementos
-      statItems.forEach((item, index) => {
-        setTimeout(() => {
-          item.classList.add('animate');
-        }, index * 200);
-      });
-
-      // Iniciar los contadores después de un pequeño retraso
-      setTimeout(() => {
-        animatedCounters.forEach((counter, index) => {
-          setTimeout(() => {
-            animateCounter(counter as HTMLElement);
-          }, index * 300);
-        });
-      }, 500);
-    }
-
-    // Crear el observer para detectar cuando la sección entra en viewport
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
-          startAnimations();
-          observer.unobserve(entry.target); // Solo animar una vez
-        }
-      });
-    }, {
-      threshold: 0.3,
-      rootMargin: '0px 0px -100px 0px'
-    });
-
-    // Observar la sección de estadísticas
-    if (statsSection) {
-      observer.observe(statsSection);
-    }
-
-    // Fallback: animar automáticamente después de 3 segundos si no se detecta scroll
-    setTimeout(() => {
-      if (!hasAnimated) {
-        startAnimations();
-      }
-    }, 3000);
+  // Hydration Strategy: lazy via central observer cuando el bloque de stats entra en viewport
+  import('../../lib/interactions/observer').then(o => {
+    const stats = document.querySelector('.about__stats-section');
+    if (stats) o.onceVisible(stats, () => import('../../lib/interactions/counters').then(m => m.initCounters()));
   });
 </script>
 

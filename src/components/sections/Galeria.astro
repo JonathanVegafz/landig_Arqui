@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import { PROJECT_CATEGORIES } from '../../lib/constants-loader';
 import { getProjects } from '../../lib/projects-loader';
 
-const PROJECTS = getProjects();
+const PROJECTS = await getProjects();
 ---
 
 <section class="galeria section-bg-white" id="galeria" aria-labelledby="galeria-title">
@@ -17,17 +17,15 @@ const PROJECTS = getProjects();
       </p>
     </hgroup>
 
-    <nav class="filter-buttons" role="tablist" aria-label="Filtros de categorías de proyectos">
+  <div class="filter-buttons" aria-label="Filtros de categorías de proyectos">
       {
-        PROJECT_CATEGORIES.map((categoria) => (
+        PROJECT_CATEGORIES.map((categoria: string) => (
           <button
-            class={`filter-button ${categoria === 'todos' ? 'active' : ''}`}
+            class={`filter-button ${categoria === 'todos' ? 'is-active' : ''}`}
             data-categoria={categoria.toLowerCase()}
-            role="tab"
-            aria-selected={categoria === 'todos' ? 'true' : 'false'}
-            aria-controls="projects-grid"
+            aria-pressed={categoria === 'todos' ? 'true' : 'false'}
             id={`filter-${categoria.toLowerCase()}`}
-            tabindex={categoria === 'todos' ? '0' : '-1'}
+            type="button"
           >
             {categoria === 'todos'
               ? 'Todos'
@@ -35,13 +33,12 @@ const PROJECTS = getProjects();
           </button>
         ))
       }
-    </nav>
+  </div>
 
     <div 
       class="grid-auto-fit galeria__grid" 
-      role="tabpanel" 
       id="projects-grid"
-      aria-labelledby="filter-todos"
+      data-filter-group
     >
       {
         PROJECTS.map(proyecto => (
@@ -66,7 +63,7 @@ const PROJECTS = getProjects();
                   <p class="proyecto-card__descripcion">{proyecto.description}</p>
                   <a 
                     href={`/proyecto/${proyecto.id}`} 
-                    class="btn btn-primary btn-sm"
+                    class="btn btn--sm"
                     aria-label={`Ver detalles del proyecto ${proyecto.title}`}
                   >
                     <svg
@@ -92,7 +89,7 @@ const PROJECTS = getProjects();
 
     <div class="galeria__cta text-center">
       <p class="mb-3">¿Te gustó nuestro trabajo? ¡Conversemos sobre tu proyecto!</p>
-      <a href="#cotiza" class="btn btn-primary">
+      <a href="#cotiza" class="btn btn--lg">
         <span>Cotiza tu Proyecto</span>
         <svg
           width="20"
@@ -110,65 +107,29 @@ const PROJECTS = getProjects();
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const filterButtons = document.querySelectorAll('.filter-button');
-    const projectCards = document.querySelectorAll('.proyecto-card');
+  // Lazy init filtros cuando la sección es visible + prefetch de rutas de proyecto on-hover
+  import('../../lib/interactions/observer').then(o => {
+    const section = document.getElementById('galeria');
+    if (section) {
+      o.onceVisible(section, () => import('../../lib/interactions/galleryFilter').then(m => m.initProjectFilters()));
+    }
 
-    console.log('Filter buttons found:', filterButtons.length);
-    console.log('Project cards found:', projectCards.length);
+    // Prefetch dinámico de páginas de proyecto al hacer hover/focus en los links "Ver Detalles"
+  const prefetch = (url: string | null) => {
+      if (!url) return;
+      if (document.querySelector(`link[data-prefetch='${url}']`)) return; // evitar duplicados
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.as = 'document';
+      link.href = url;
+      link.setAttribute('data-prefetch', url);
+      document.head.appendChild(link);
+    };
 
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const categoria = button.getAttribute('data-categoria');
-        console.log('Filter clicked:', categoria);
-
-        // Actualizar botón activo y atributos ARIA
-        filterButtons.forEach(btn => {
-          btn.classList.remove('active');
-          btn.setAttribute('aria-selected', 'false');
-          btn.setAttribute('tabindex', '-1');
-        });
-        
-        button.classList.add('active');
-        button.setAttribute('aria-selected', 'true');
-        button.setAttribute('tabindex', '0');
-
-        // Filtrar proyectos con animación
-        projectCards.forEach(card => {
-          const cardCategoria = card.getAttribute('data-categoria');
-          const htmlCard = card as HTMLElement;
-          
-          console.log('Card category:', cardCategoria, 'Filter:', categoria);
-          
-          if (categoria === 'todos' || cardCategoria === categoria) {
-            htmlCard.style.display = 'block';
-            // Pequeño delay para la animación
-            setTimeout(() => {
-              htmlCard.style.opacity = '1';
-              htmlCard.style.transform = 'translateY(0)';
-            }, 50);
-          } else {
-            htmlCard.style.opacity = '0';
-            htmlCard.style.transform = 'translateY(20px)';
-            // Ocultar después de la animación
-            setTimeout(() => {
-              htmlCard.style.display = 'none';
-            }, 300);
-          }
-        });
-
-        // Actualizar aria-labelledby del grid
-        const projectsGrid = document.getElementById('projects-grid');
-        if (projectsGrid) {
-          projectsGrid.setAttribute('aria-labelledby', `filter-${categoria}`);
-        }
-      });
-    });
-
-    // Inicializar estilos de animación para las cartas
-    projectCards.forEach(card => {
-      const htmlCard = card as HTMLElement;
-      htmlCard.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    const detailLinks = document.querySelectorAll('.proyecto-card a[href^="/proyecto/"]');
+    detailLinks.forEach(a => {
+      const url = a.getAttribute('href');
+      ['mouseenter','focus'].forEach(evt => a.addEventListener(evt, () => prefetch(url), { once: true }));
     });
   });
 </script>

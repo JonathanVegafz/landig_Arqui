@@ -1,0 +1,25 @@
+{
+  "id": 3,
+  "title": "Casa Sustentable",
+  "description": "Vivienda con paneles solares y sistema de recolección de aguas lluvias",
+  "category": "Residencial",
+  "area": "150m²",
+  "imageCard": "../../assets/optimized/imagen3-card.webp",
+  "imageOriginal": "../../assets/optimized/imagen3-original.webp",
+  "details": {
+    "ubicacion": "Quilpué, V Región",
+    "duracion": "10 meses",
+    "superficie": "150m²",
+    "habitaciones": "2 dormitorios",
+    "baños": "2 baños",
+    "caracteristicas": [
+      "Paneles solares fotovoltaicos",
+      "Sistema de recolección de aguas lluvias",
+      "Aislamiento térmico avanzado",
+      "Ventanas de triple vidrio",
+      "Jardín con especies nativas",
+      "Sistema de compostaje integrado"
+    ],
+    "descripcionCompleta": "Casa sustentable que demuestra que es posible vivir con confort sin comprometer el medio ambiente. Incorpora tecnologías verdes y materiales ecológicos, logrando una reducción significativa en el consumo energético y de agua."
+  }
+}

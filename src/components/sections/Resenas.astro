@@ -1,7 +1,6 @@
 ---
 import { getTestimonials } from '../../lib/testimonials-loader';
-
-const reseñas = getTestimonials();
+const reseñas = await getTestimonials();
 ---
 
 <section class="resenas section-bg-white" id="resenas" aria-label="Reseñas de Clientes">
@@ -14,12 +13,14 @@ const reseñas = getTestimonials();
       </p>
     </div>
 
-    <div class="carousel-container" role="region" aria-label="Carrusel de reseñas">
+    <div class="carousel-container" role="region" aria-label="Carrusel de reseñas" aria-roledescription="carousel">
       <div class="carousel-wrapper">
-        <div class="carousel-track">
+        <div class="visually-hidden" aria-live="polite" id="carousel-status"></div>
+        <button class="carousel-control prev" type="button" aria-label="Reseña anterior" data-carousel-prev>&larr;</button>
+        <div class="carousel-track" role="group" aria-label="Lista de reseñas" aria-atomic="false">
           {
             reseñas.map((reseña, i) => (
-              <div class="carousel-slide" id={`slide-${i}`}>
+              <div class="carousel-slide" id={`slide-${i}`} role="group" aria-roledescription="slide" aria-label={`Reseña ${i+1} de ${reseñas.length}`}>        
                 <div class="testimonial-card">
                   <blockquote class="testimonial-quote">{reseña.descripcion}</blockquote>
                   <cite class="testimonial-author">- {reseña.nombre}</cite>
@@ -28,6 +29,7 @@ const reseñas = getTestimonials();
             ))
           }
         </div>
+        <button class="carousel-control next" type="button" aria-label="Siguiente reseña" data-carousel-next>&rarr;</button>
       </div>
     </div>
 
@@ -66,6 +68,26 @@ const reseñas = getTestimonials();
     margin: 0 auto;
     padding: 2.5rem 1rem;
   }
+
+  .carousel-control {
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background .3s;
+  }
+  .carousel-control:hover { background: rgba(0,0,0,0.55); }
+  .carousel-control.prev { left: -4px; }
+  .carousel-control.next { right: -4px; }
 
   .carousel-track {
     position: relative;
@@ -263,88 +285,9 @@ const reseñas = getTestimonials();
   }
 </style>
 
-<script is:inline>
-  const reseñas = [
-    {
-      nombre: 'María López',
-      descripcion:
-        'Excelente servicio y atención personalizada. Desde el primer contacto, el equipo mostró una gran disposición para entender mis necesidades y plasmar mis ideas en el proyecto. El resultado final superó mis expectativas y sin duda volvería a contratarlos para futuros trabajos. Muy recomendados.',
-    },
-    {
-      nombre: 'Carlos Pérez',
-      descripcion:
-        'El proyecto se entregó a tiempo y con una calidad excepcional. Me mantuvieron informado durante todo el proceso y resolvieron cada una de mis dudas con paciencia y profesionalismo. La atención al detalle fue evidente en cada etapa. ¡Gracias por su dedicación!',
-    },
-    {
-      nombre: 'Ana Torres',
-      descripcion:
-        'Profesionales y atentos a cada detalle. Me sorprendió gratamente la creatividad de las soluciones propuestas y la eficiencia con la que ejecutaron la obra. El acompañamiento fue constante y siempre estuvieron abiertos a sugerencias y cambios.',
-    },
-    {
-      nombre: 'Javier Ramírez',
-      descripcion:
-        'Contratar a este equipo fue la mejor decisión para mi remodelación. Cumplieron con los plazos, el presupuesto y la calidad prometida. Además, el trato humano y la comunicación fueron excelentes, lo que hizo todo el proceso mucho más sencillo y agradable.',
-    },
-    {
-      nombre: 'Lucía Fernández',
-      descripcion:
-        'Estoy muy satisfecha con el trabajo realizado. Desde la planificación hasta la entrega final, demostraron compromiso, responsabilidad y pasión por lo que hacen. El resultado fue un espacio funcional, moderno y acogedor que superó mis expectativas.',
-    },
-  ];
-
-  let indice = 0;
-  let timeoutId;
-
-  function actualizarSlides() {
-    const slides = document.querySelectorAll('.carousel-slide');
-    const dots = document.querySelectorAll('.carousel-dot');
-    
-    slides.forEach((slide, i) => {
-      slide.classList.remove('left', 'center', 'right');
-      if (i === indice) {
-        slide.classList.add('center');
-      } else if (i === (indice - 1 + reseñas.length) % reseñas.length) {
-        slide.classList.add('left');
-      } else if (i === (indice + 1) % reseñas.length) {
-        slide.classList.add('right');
-      }
-    });
-
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === indice);
-      dot.setAttribute('aria-selected', i === indice ? 'true' : 'false');
-    });
-  }
-
-  function cambiarResena(dir) {
-    indice = (indice + dir + reseñas.length) % reseñas.length;
-    actualizarSlides();
-    reiniciarAuto();
-  }
-
-  function autoAvance() {
-    timeoutId = setTimeout(() => {
-      cambiarResena(1);
-      autoAvance();
-    }, 12000);
-  }
-
-  function reiniciarAuto() {
-    clearTimeout(timeoutId);
-    autoAvance();
-  }
-
-  window.addEventListener('DOMContentLoaded', () => {
-    actualizarSlides();
-    autoAvance();
-    
-    // Click en viñetas
-    document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        indice = i;
-        actualizarSlides();
-        reiniciarAuto();
-      });
-    });
+<script>
+  import('../../lib/interactions/observer').then(o => {
+    const section = document.getElementById('resenas');
+    if (section) o.onceVisible(section, () => import('../../lib/interactions/testimonialsCarousel').then(m => m.initTestimonialsCarousel()));
   });
 </script>

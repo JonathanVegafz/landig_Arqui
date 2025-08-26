@@ -1,0 +1,10 @@
+/* Form components */
+.form-group { position:relative; display:flex; flex-direction:column; gap:.5rem; }
+label { font-weight:500; font-size:.875rem; color:var(--color-neutral-800); }
+.form-input, .form-textarea { width:100%; padding:.875rem 1rem; border:2px solid var(--color-neutral-300); border-radius:.75rem; background:#fff; font-size:.9375rem; transition:border-color var(--transition-fast), box-shadow var(--transition-fast); resize:vertical; }
+.form-input:focus, .form-textarea:focus { outline:none; border-color:var(--color-primary); box-shadow:0 0 0 3px rgba(var(--color-primary-rgb),.25); }
+.form-input.error, .form-textarea.error { border-color:#dc2626; box-shadow:0 0 0 3px rgba(220,38,38,.25); }
+.error-message { color:#dc2626; font-size:.75rem; font-weight:500; margin-top:.25rem; }
+.success-message { color:#047857; font-size:.75rem; font-weight:500; margin-top:.25rem; }
+.input-helper { font-size:.75rem; color:var(--color-neutral-600); }
+button[disabled], .btn[disabled] { opacity:.6; cursor:not-allowed; }

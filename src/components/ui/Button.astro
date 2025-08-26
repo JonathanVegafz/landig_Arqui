@@ -1,0 +1,223 @@
+---
+export interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  loading?: boolean;
+  class?: string;
+  ariaLabel?: string;
+  target?: '_blank' | '_self';
+  rel?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  disabled = false,
+  loading = false,
+  class: className = '',
+  ariaLabel,
+  target,
+  rel,
+  ...rest
+} = Astro.props as Props;
+
+const Element = href ? 'a' : 'button';
+const buttonClasses = [
+  'btn',
+  `btn--${variant}`,
+  `btn--${size}`,
+  loading && 'btn--loading',
+  disabled && 'btn--disabled',
+  className
+].filter(Boolean).join(' ');
+---
+
+<Element
+  class={buttonClasses}
+  href={href}
+  type={!href ? type : undefined}
+  disabled={!href ? (disabled || loading) : undefined}
+  aria-label={ariaLabel}
+  target={target}
+  rel={target === '_blank' ? (rel || 'noopener noreferrer') : rel}
+  {...rest}
+>
+  {loading && (
+    <span class="btn__spinner" aria-hidden="true">
+      <svg class="btn__spinner-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="32" stroke-dashoffset="32">
+          <animate attributeName="stroke-dasharray" dur="2s" values="0 32;16 16;0 32;0 32" repeatCount="indefinite"/>
+          <animate attributeName="stroke-dashoffset" dur="2s" values="0;-16;-32;-32" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </span>
+  )}
+  <span class="btn__content">
+    <slot />
+  </span>
+</Element>
+
+<style>
+  /* Base button styles */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-primary);
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--border-radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    white-space: nowrap;
+    user-select: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+
+  .btn:focus-visible {
+    outline-color: var(--color-primary);
+  }
+
+  /* Size variants */
+  .btn--sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    min-height: 2rem;
+  }
+
+  .btn--md {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    min-height: 2.75rem;
+  }
+
+  .btn--lg {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    min-height: 3.5rem;
+  }
+
+  /* Primary variant */
+  .btn--primary {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn--primary:hover:not(.btn--disabled) {
+    background: var(--color-secondary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn--primary:active:not(.btn--disabled) {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Secondary variant */
+  .btn--secondary {
+    background: var(--color-secondary);
+    color: white;
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn--secondary:hover:not(.btn--disabled) {
+    background: var(--color-neutral-700);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Outline variant */
+  .btn--outline {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+
+  .btn--outline:hover:not(.btn--disabled) {
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  /* Ghost variant */
+  .btn--ghost {
+    background: transparent;
+    color: var(--color-primary);
+  }
+
+  .btn--ghost:hover:not(.btn--disabled) {
+    background: var(--color-neutral-100);
+    transform: translateY(-1px);
+  }
+
+  /* Disabled state */
+  .btn--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Loading state */
+  .btn--loading {
+    cursor: wait;
+  }
+
+  .btn--loading .btn__content {
+    opacity: 0.7;
+  }
+
+  .btn__spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .btn__spinner-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    animation: spin 1s linear infinite;
+  }
+
+  .btn--sm .btn__spinner-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .btn--lg .btn__spinner-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      transition: none;
+    }
+    
+    .btn:hover {
+      transform: none;
+    }
+    
+    .btn__spinner-icon {
+      animation: none;
+    }
+  }
+</style>

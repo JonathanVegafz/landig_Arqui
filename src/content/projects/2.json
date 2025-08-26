@@ -1,0 +1,25 @@
+{
+  "id": 2,
+  "title": "Oficinas Corporativas",
+  "description": "Espacios de trabajo modernos con eficiencia energética",
+  "category": "Comercial",
+  "area": "250m²",
+  "imageCard": "../../assets/optimized/imagen2-card.webp",
+  "imageOriginal": "../../assets/optimized/imagen2-original.webp",
+  "details": {
+    "ubicacion": "Viña del Mar, V Región",
+    "duracion": "6 meses",
+    "superficie": "250m²",
+    "habitaciones": "8 oficinas privadas",
+    "baños": "3 baños",
+    "caracteristicas": [
+      "Sistema de iluminación LED inteligente",
+      "Sala de reuniones con tecnología audiovisual",
+      "Área de coworking flexible",
+      "Sistema de climatización centralizado",
+      "Estacionamiento subterráneo",
+      "Terraza con vista panorámica"
+    ],
+    "descripcionCompleta": "Oficinas corporativas modernas diseñadas para maximizar la productividad y el bienestar de los empleados. El espacio incluye áreas de trabajo colaborativo, oficinas privadas y zonas de descanso, todo integrado con tecnología de última generación."
+  }
+}

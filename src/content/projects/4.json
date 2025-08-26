@@ -1,0 +1,25 @@
+{
+  "id": 4,
+  "title": "Restaurante Costero",
+  "description": "Local gastronómico con terraza panorámica al océano",
+  "category": "Comercial",
+  "area": "120m²",
+  "imageCard": "../../assets/optimized/imagen4-card.webp",
+  "imageOriginal": "../../assets/optimized/imagen4-original.webp",
+  "details": {
+    "ubicacion": "Reñaca, V Región",
+    "duracion": "4 meses",
+    "superficie": "120m²",
+    "habitaciones": "Sala principal y terraza",
+    "baños": "2 baños públicos",
+    "caracteristicas": [
+      "Terraza panorámica al océano",
+      "Cocina industrial equipada",
+      "Sistema de ventilación especializado",
+      "Iluminación atmosférica",
+      "Bar con vista al mar",
+      "Área de estacionamiento"
+    ],
+    "descripcionCompleta": "Restaurante costero que aprovecha su ubicación privilegiada para ofrecer una experiencia gastronómica única. El diseño prioriza las vistas al océano y la comodidad de los comensales, con espacios interiores y exteriores perfectamente integrados."
+  }
+}

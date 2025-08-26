@@ -1,0 +1,48 @@
+---
+export interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	canonical?: string;
+	type?: string; // og:type
+}
+
+const {
+	title = 'IG Construcciones SPA',
+	description = 'Arquitectura y construcción sostenible: calidad, eficiencia energética y diseño que perdura.',
+	image = '/og-default.jpg',
+	canonical,
+	type = 'website'
+} = Astro.props as Props;
+
+const site = Astro.site?.toString().replace(/\/$/, '') || '';
+const fullTitle = title.includes('IG Construcciones') ? title : `${title} | IG Construcciones`;
+const url = canonical ?? (site + Astro.url.pathname);
+const imageUrl = image.startsWith('http') ? image : site + image;
+---
+
+<Fragment>
+	<title>{fullTitle}</title>
+	<meta name="description" content={description} />
+	<link rel="canonical" href={url} />
+	<!-- Open Graph -->
+	<meta property="og:title" content={fullTitle} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content={type} />
+	<meta property="og:url" content={url} />
+	<meta property="og:image" content={imageUrl} />
+	<meta property="og:locale" content="es_CL" />
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={fullTitle} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={imageUrl} />
+	<!-- Básicos -->
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<meta name="theme-color" content="#77bcdb" />
+	<!-- Eliminadas meta redundantes (Dublin Core, geo) según plan -->
+</Fragment>
+
+<!-- Uso:
+<SEO title="Página" description="Desc" image="/img.jpg" canonical="https://example.com/pagina" />
+-->

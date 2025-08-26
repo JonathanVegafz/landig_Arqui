@@ -1,0 +1,223 @@
+---
+export interface Props {
+  variant?: 'default' | 'elevated' | 'outlined' | 'glass';
+  padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+  radius?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+  hover?: boolean;
+  clickable?: boolean;
+  class?: string;
+  as?: 'div' | 'article' | 'section';
+  href?: string;
+  target?: '_blank' | '_self';
+  ariaLabel?: string;
+}
+
+const {
+  variant = 'default',
+  padding = 'md',
+  radius = 'lg',
+  hover = false,
+  clickable = false,
+  class: className = '',
+  as: Element = 'div',
+  href,
+  target,
+  ariaLabel,
+  ...rest
+} = Astro.props as Props;
+
+// Si hay href, forzar a usar 'a' como elemento
+const TagElement = href ? 'a' : Element;
+
+const cardClasses = [
+  'card',
+  `card--${variant}`,
+  padding !== 'none' && `card--padding-${padding}`,
+  radius !== 'none' && `card--radius-${radius}`,
+  hover && 'card--hover',
+  clickable && 'card--clickable',
+  className
+].filter(Boolean).join(' ');
+---
+
+<TagElement
+  class={cardClasses}
+  href={href}
+  target={target}
+  aria-label={ariaLabel}
+  role={clickable && !href ? 'button' : undefined}
+  tabindex={clickable && !href ? '0' : undefined}
+  {...rest}
+>
+  <slot />
+</TagElement>
+
+<style>
+  /* Base card styles */
+  .card {
+    display: block;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition-normal);
+  }
+
+  /* Padding variants */
+  .card--padding-sm {
+    padding: var(--spacing-sm);
+  }
+
+  .card--padding-md {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  .card--padding-lg {
+    padding: var(--spacing-lg) var(--spacing-xl);
+  }
+
+  .card--padding-xl {
+    padding: var(--spacing-xl) var(--spacing-2xl);
+  }
+
+  /* Radius variants */
+  .card--radius-sm {
+    border-radius: var(--border-radius-sm);
+  }
+
+  .card--radius-md {
+    border-radius: var(--border-radius-md);
+  }
+
+  .card--radius-lg {
+    border-radius: var(--border-radius-lg);
+  }
+
+  .card--radius-xl {
+    border-radius: var(--border-radius-xl);
+  }
+
+  /* Variant styles */
+  .card--default {
+    background: white;
+    border: 1px solid var(--color-neutral-200);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card--elevated {
+    background: white;
+    border: none;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .card--outlined {
+    background: white;
+    border: 2px solid var(--color-neutral-300);
+    box-shadow: none;
+  }
+
+  .card--glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Hover effects */
+  .card--hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .card--default.card--hover:hover {
+    border-color: var(--color-primary);
+  }
+
+  .card--outlined.card--hover:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .card--glass.card--hover:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(119, 188, 219, 0.3);
+  }
+
+  /* Clickable states */
+  .card--clickable {
+    cursor: pointer;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+
+  .card--clickable:focus-visible {
+    outline-color: var(--color-primary);
+  }
+
+  .card--clickable:active {
+    transform: scale(0.98);
+  }
+
+  /* Link specific styles */
+  a.card:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: none;
+    }
+    
+    .card--hover:hover {
+      transform: none;
+    }
+    
+    .card--clickable:active {
+      transform: none;
+    }
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .card--default {
+      background: var(--color-neutral-800);
+      border-color: var(--color-neutral-700);
+      color: var(--color-neutral-100);
+    }
+
+    .card--elevated {
+      background: var(--color-neutral-800);
+      color: var(--color-neutral-100);
+    }
+
+    .card--outlined {
+      background: var(--color-neutral-800);
+      border-color: var(--color-neutral-600);
+      color: var(--color-neutral-100);
+    }
+
+    .card--glass {
+      background: rgba(66, 66, 66, 0.85);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: var(--color-neutral-100);
+    }
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .card--padding-lg {
+      padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    .card--padding-xl {
+      padding: var(--spacing-lg) var(--spacing-xl);
+    }
+
+    .card--hover:hover {
+      transform: translateY(-2px);
+    }
+  }
+</style>

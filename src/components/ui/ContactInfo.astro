@@ -12,6 +12,7 @@ const { icon, title, content, link, ariaLabel, class: className } = Astro.props;
 ---
 
 <div class={`contact-item ${className || ''}`}>
+  <!-- set:html seguro: icon SVG definido en código fuente, no proviene de entrada del usuario -->
   <div class="contact-item__icon" set:html={icon}></div>
   <div class="contact-item__content">
     <h3 class="contact-item__title">{title}</h3>

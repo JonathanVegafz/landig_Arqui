@@ -1,0 +1,95 @@
+/* Button component styles */
+.btn { 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: .5rem; 
+  font-weight: 600; 
+  padding: .875rem 1.5rem; 
+  border-radius: .75rem; 
+  text-decoration: none; 
+  position: relative; 
+  isolation: isolate; 
+  cursor: pointer; 
+  transition: all var(--transition-fast); 
+  background: linear-gradient(135deg, var(--color-primary), #5aa0c2); 
+  color: #fff; 
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,.15);
+  border: none;
+  font-size: 1rem;
+}
+
+.btn::before { 
+  content: ""; 
+  position: absolute; 
+  inset: 0; 
+  border-radius: inherit; 
+  background: linear-gradient(135deg, #5aa0c2, var(--color-secondary)); 
+  opacity: 0; 
+  transition: opacity var(--transition-fast); 
+  z-index: -1; 
+}
+
+.btn:hover::before, 
+.btn:focus-visible::before { 
+  opacity: 1; 
+}
+
+.btn:hover, 
+.btn:focus-visible { 
+  transform: translateY(-2px); 
+  box-shadow: 0 8px 16px -4px rgba(0,0,0,.25); 
+  color: #fff; 
+}
+
+.btn:active { 
+  transform: translateY(0); 
+  box-shadow: 0 4px 6px -2px rgba(0,0,0,.2); 
+}
+
+.btn--secondary { 
+  background: linear-gradient(135deg, var(--color-secondary), #1e3240); 
+}
+
+.btn--ghost { 
+  background: transparent; 
+  color: var(--color-primary); 
+  box-shadow: none; 
+  border: 2px solid var(--color-primary); 
+}
+
+.btn--ghost:hover, 
+.btn--ghost:focus-visible { 
+  background: var(--color-primary); 
+  color: #fff; 
+}
+
+.btn--outline { 
+  background: transparent; 
+  color: var(--color-primary); 
+  border: 2px solid var(--color-primary); 
+}
+
+.btn--outline:hover, 
+.btn--outline:focus-visible { 
+  background: var(--color-primary); 
+  color: #fff; 
+}
+
+.btn--lg { 
+  padding: 1rem 2rem; 
+  font-size: 1.125rem; 
+}
+
+.btn--sm { 
+  padding: .625rem 1rem; 
+  font-size: .875rem; 
+}
+
+.btn--full { 
+  width: 100%; 
+}
+
+.btn--icon { 
+  padding: .75rem; 
+}

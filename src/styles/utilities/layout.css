@@ -1,0 +1,31 @@
+/* Layout & spacing utilities */
+.section { padding:var(--spacing-2xl) 0; position:relative; }
+.grid { display:grid; gap:1.5rem; }
+.flex { display:flex; }
+.flex-col { flex-direction:column; }
+.flex-wrap { flex-wrap:wrap; }
+.items-center { align-items:center; }
+.items-start { align-items:flex-start; }
+.items-end { align-items:flex-end; }
+.justify-center { justify-content:center; }
+.justify-between { justify-content:space-between; }
+.justify-start { justify-content:flex-start; }
+.justify-end { justify-content:flex-end; }
+.gap-4 { gap:1rem; }
+.gap-6 { gap:1.5rem; }
+.gap-8 { gap:2rem; }
+.gap-12 { gap:3rem; }
+.space-y-6 > * + * { margin-top:1.5rem; }
+.space-y-8 > * + * { margin-top:2rem; }
+.space-y-12 > * + * { margin-top:3rem; }
+.mx-auto { margin-left:auto; margin-right:auto; }
+.text-center { text-align:center; }
+.hidden { display:none!important; }
+@media (min-width:768px){
+  .md\:flex { display:flex; }
+  .md\:grid { display:grid; }
+  .md\:flex-row { flex-direction:row; }
+  .md\:items-center { align-items:center; }
+  .md\:justify-between { justify-content:space-between; }
+  .md\:gap-12 { gap:3rem; }
+}

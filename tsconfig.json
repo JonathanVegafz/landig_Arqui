@@ -1,4 +1,6 @@
 {
+  // Uso de la configuración estricta oficial de Astro. Si el editor no la resuelve (error ts2307),
+  // se mantienen igualmente todas las banderas críticas abajo y se añaden los types explícitos.
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "strict": true,
@@ -10,7 +12,11 @@
     "exactOptionalPropertyTypes": true,
     "noImplicitOverride": true,
     "allowUnusedLabels": false,
-    "allowUnreachableCode": false
+    "allowUnreachableCode": false,
+    // Asegura que los módulos virtuales (astro:assets, astro:content, etc.) y .astro tengan tipado.
+    "types": ["astro/client"],
+    // Declaraciones de módulos de imágenes personalizadas.
+    "moduleResolution": "bundler"
   },
   "include": [
     "src/**/*",

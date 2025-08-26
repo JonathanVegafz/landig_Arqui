@@ -3,14 +3,20 @@ declare module '*.astro' {
   export default Component;
 }
 
+// Declaraciones simples para importar imágenes optimizadas en frontmatter (.astro) y .ts.
+declare module '*.webp' { const src: string; export default src; }
+declare module '*.png' { const src: string; export default src; }
+declare module '*.jpg' { const src: string; export default src; }
+
+// Declaración para el módulo virtual astro:assets
 declare module 'astro:assets' {
-  export const Image: unknown;
-  export const Picture: unknown;
-  export const getImage: unknown;
+  export interface ImageFunction {
+    (props: any): any;
+  }
+  
+  export const Image: ImageFunction;
+  export const Picture: ImageFunction;
+  export function getImage(options: any): Promise<any>;
 }
 
-declare module 'astro:content' {
-  export const getCollection: unknown;
-  export const getEntry: unknown;
-  export const getEntries: unknown;
-}
+// Archivo de extensión de tipos custom. No se redefinen módulos virtuales de Astro para evitar conflictos.

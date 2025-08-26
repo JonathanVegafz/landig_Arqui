@@ -156,23 +156,10 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const procesoSteps = document.querySelectorAll('.proceso-step');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    });
-
-    procesoSteps.forEach(step => {
-      observer.observe(step);
-    });
+  // Lazy init proceso (reveal steps) solo cuando la sección entra al viewport
+  import('../../lib/interactions/observer').then(o => {
+    const proceso = document.getElementById('proceso');
+    if (proceso) o.onceVisible(proceso, () => import('../../lib/interactions/processReveal').then(m => m.initProcessReveal()));
   });
 </script>
 
@@ -186,7 +173,7 @@
     position: relative;
     max-width: 900px;
     margin: 0 auto;
-    padding: var(--spacing-2xl) 0;
+    padding: var(--spacing-2xl) 60px;
   }
 
   .proceso-step {
@@ -237,15 +224,17 @@
     font-size: 1.5rem;
     font-weight: 700;
     box-shadow: var(--shadow-lg);
-    z-index: 2;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .proceso-step--left .proceso-number {
-    left: -60px;
+    left: -30px;
   }
 
   .proceso-step--right .proceso-number {
-    right: -60px;
+    right: -30px;
   }
 
   /* Card styling similar to services */

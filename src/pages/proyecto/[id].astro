@@ -5,8 +5,7 @@ import { getProjects } from '../../lib/projects-loader';
 
 // Función getStaticPaths requerida para rutas dinámicas en Astro
 export async function getStaticPaths() {
-  const PROJECTS = getProjects();
-
+  const PROJECTS = await getProjects();
   return PROJECTS.map(proyecto => ({
     params: { id: proyecto.id.toString() },
     props: { proyecto },
@@ -17,7 +16,7 @@ export async function getStaticPaths() {
 const { proyecto } = Astro.props;
 
 // Datos de los proyectos para la navegación
-const PROJECTS = getProjects();
+const PROJECTS = await getProjects();
 
 // Generar metadatos dinámicos
 const title = `${proyecto.title} - IG Construcciones`;
@@ -76,6 +75,24 @@ const description = proyecto.description;
           />
         </figure>
       </header>
+
+      <!-- Structured Data JSON-LD para este proyecto (CreativeWork/Project) -->
+      <script type="application/ld+json" set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'CreativeWork',
+        name: proyecto.title,
+        description: proyecto.description,
+        image: typeof proyecto.image === 'string' ? proyecto.image : undefined,
+        url: Astro.site ? new URL(`/proyecto/${proyecto.id}`, Astro.site).href : `/proyecto/${proyecto.id}`,
+        identifier: proyecto.id,
+        genre: proyecto.category,
+        areaServed: proyecto.details?.ubicacion,
+        keywords: proyecto.details?.caracteristicas?.join(', '),
+        author: {
+          '@type': 'Organization',
+          name: 'IG Construcciones'
+        }
+      })} />
 
       <!-- Contenido principal -->
       <div class="proyecto-content">
@@ -143,7 +160,7 @@ const description = proyecto.description;
             <p class="proyecto-sidebar__text">
               Conversemos sobre cómo podemos adaptar este diseño a tus necesidades.
             </p>
-            <a href="/#cotiza" class="btn btn-primary" aria-label="Ir a la sección de cotizaciones">
+            <a href="/#cotiza" class="btn btn--lg" aria-label="Ir a la sección de cotizaciones">
               <span>Cotiza tu Proyecto</span>
               <svg
                 width="20"
@@ -164,71 +181,46 @@ const description = proyecto.description;
       <!-- Navegación entre proyectos -->
       <nav class="proyecto-navigation">
         {
-          PROJECTS.map((proyectoItem, index) => {
-            const isCurrent = proyectoItem.id === proyecto.id;
+          (() => {
+            const index = PROJECTS.findIndex(p => p.id === proyecto.id);
+            if (index === -1) return null;
             const isFirst = index === 0;
             const isLast = index === PROJECTS.length - 1;
-
-            if (isCurrent) {
-              const prevProyecto = isFirst ? PROJECTS[PROJECTS.length - 1] : PROJECTS[index - 1];
-              const nextProyecto = isLast ? PROJECTS[0] : PROJECTS[index + 1];
-
-              return (
-                <>
-                  <a
-                    href={`/proyecto/${prevProyecto.id}`}
-                    class="nav-btn nav-btn--prev"
-                    aria-label={`Ver proyecto anterior: ${prevProyecto.title}`}
-                  >
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path d="M15 18l-6-6 6-6" />
-                    </svg>
-                    <span>Proyecto Anterior</span>
-                  </a>
-                  <a href="/#galeria" class="nav-btn nav-btn--center" aria-label="Ver todos los proyectos">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                      <circle cx="8.5" cy="8.5" r="1.5" />
-                      <polyline points="21,15 16,10 5,21" />
-                    </svg>
-                    <span>Ver Todos</span>
-                  </a>
-                  <a
-                    href={`/proyecto/${nextProyecto.id}`}
-                    class="nav-btn nav-btn--next"
-                    aria-label={`Ver próximo proyecto: ${nextProyecto.title}`}
-                  >
-                    <span>Próximo Proyecto</span>
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path d="M9 18l6-6-6-6" />
-                    </svg>
-                  </a>
-                </>
-              );
-            }
-            return null;
-          })
+            const prevProyecto = isFirst ? PROJECTS[PROJECTS.length - 1]! : PROJECTS[index - 1]!;
+            const nextProyecto = isLast ? PROJECTS[0]! : PROJECTS[index + 1]!;
+            return (
+              <>
+                <a
+                  href={`/proyecto/${prevProyecto.id}`}
+                  class="nav-btn nav-btn--prev"
+                  aria-label={`Ver proyecto anterior: ${prevProyecto.title}`}
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                  <span>Proyecto Anterior</span>
+                </a>
+                <a href="/#galeria" class="nav-btn nav-btn--center" aria-label="Ver todos los proyectos">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21,15 16,10 5,21" />
+                  </svg>
+                  <span>Ver Todos</span>
+                </a>
+                <a
+                  href={`/proyecto/${nextProyecto.id}`}
+                  class="nav-btn nav-btn--next"
+                  aria-label={`Ver próximo proyecto: ${nextProyecto.title}`}
+                >
+                  <span>Próximo Proyecto</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </a>
+              </>
+            );
+          })()
         }
       </nav>
     </div>
