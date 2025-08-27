@@ -1,52 +1,86 @@
-# IG Construcciones - Sitio Web Profesional SE LO PEDI A GPTTTT
+# IG Construcciones - Sitio Web Profesional
 
-Sitio web profesional para IG Construcciones, empresa de arquitectura y construcción en la V Región de Chile. Desarrollado con Astro y siguiendo el patrón MVC para máxima mantenibilidad y escalabilidad.
+Sitio web profesional para IG Construcciones, empresa de arquitectura y construcción especializada en 5 regiones de Chile: Coquimbo, Valparaíso, Biobío, La Araucanía y Los Lagos. Desarrollado con Astro para máximo rendimiento y SEO optimizado.
 
-## 🏗️ Estructura del Proyecto (Patrón MVC)
+## 🏗️ Estructura del Proyecto
 
 ```
 src/
-├── models/             # 🗃️ Modelos de datos (MVC)
-│   ├── Project.ts      # Interfaces y tipos de datos
-│   └── data.ts         # Datos estáticos y funciones del modelo
-├── controllers/        # 🎮 Controladores (MVC)
-│   ├── BaseController.ts    # Controlador base con CRUD
-│   ├── ProjectController.ts # Controlador de proyectos
-│   ├── ServiceController.ts # Controlador de servicios
-│   └── ContactController.ts # Controlador de contacto
-├── config/             # ⚙️ Configuración MVC
-│   └── mvc.ts         # Configuración y tipos MVC
-├── components/         # 👁️ Vistas/Componentes (MVC)
-│   ├── ui/            # Componentes de interfaz reutilizables
-│   ├── sections/      # Secciones principales (Vistas)
-│   └── layout/        # Componentes de estructura
-├── layouts/           # Layouts de página
-│   └── Layout.astro   # Layout principal
-├── pages/             # Páginas del sitio (Controladores de página)
+├── components/         # 🧩 Componentes reutilizables
+│   ├── ui/            # Componentes de interfaz base
+│   │   ├── Button.astro
+│   │   ├── Card.astro
+│   │   ├── ContactInfo.astro
+│   │   ├── FormField.astro
+│   │   ├── SectionHeader.astro
+│   │   ├── ServiceCard.astro
+│   │   └── Typewriter.astro
+│   └── sections/      # Secciones principales del sitio
+│       ├── About.astro
+│       ├── Cotiza.astro
+│       ├── Footer.astro
+│       ├── Galeria.astro
+│       ├── Header.astro
+│       ├── Hero.astro
+│       ├── NuestroProceso.astro
+│       ├── Resenas.astro
+│       └── Servicios.astro
+├── layouts/           # 📄 Layouts de página
+│   └── Layout.astro   # Layout principal con SEO
+├── pages/             # 🌐 Páginas del sitio
 │   ├── index.astro    # Página principal
-│   └── 404.astro      # Página de error
-├── styles/            # Estilos globales
-│   └── global.css     # CSS global
-├── assets/            # Recursos estáticos
-│   ├── *.webp         # Imágenes optimizadas
-│   ├── *.png          # Imágenes PNG
-│   └── *.svg          # Iconos y gráficos
-└── types/             # Tipos TypeScript
-    └── index.ts       # Definiciones de tipos
+│   ├── 404.astro      # Página de error
+│   └── proyecto/      # Páginas dinámicas de proyectos
+│       └── [id].astro
+├── lib/               # 📚 Bibliotecas y utilidades
+│   ├── constants-loader.ts  # Carga de constantes con tipos
+│   ├── constants.json      # Datos de la empresa
+│   ├── projects-loader.ts  # Carga de proyectos
+│   ├── projects.json      # Datos de proyectos
+│   ├── static-image-map.ts # Mapeo de imágenes
+│   ├── utils.ts           # Utilidades generales
+│   ├── validations.ts     # Validaciones de formularios
+│   └── interactions/      # Scripts de interactividad
+│       ├── counters.ts
+│       ├── formValidation.ts
+│       ├── galleryFilter.ts
+│       ├── headerMenu.ts
+│       ├── observer.ts
+│       └── scrollFade.ts
+├── styles/            # 🎨 Estilos modularizados
+│   ├── global.css     # Estilos principales
+│   ├── tailwind.css   # Configuración Tailwind
+│   ├── base/          # Estilos base
+│   ├── components/    # Estilos de componentes
+│   └── utilities/     # Utilidades CSS
+├── assets/            # 🖼️ Recursos optimizados
+│   └── optimized/     # Imágenes optimizadas WebP
+└── types/             # 📝 Definiciones TypeScript
+    ├── astro.d.ts
+    └── index.ts
 ```
 
-## 📋 Descripción del Proyecto
+## 🌟 Características Principales
 
-Este es un sitio web profesional para **IG Construcciones**, una empresa de arquitectura y construcción ubicada en la V Región de Chile. El proyecto está desarrollado con **Astro** y sigue el patrón **MVC (Modelo-Vista-Controlador)** para garantizar código mantenible, escalable y bien organizado.
+### 🏢 **Empresa**: IG Construcciones
+- **Especialidad**: Arquitectura y construcción profesional
+- **Cobertura**: 5 regiones de Chile (Coquimbo, Valparaíso, Biobío, La Araucanía, Los Lagos)
+- **Servicios**: Diseño arquitectónico, construcción de obras nuevas, remodelaciones, eficiencia energética
 
-### 🎯 Características Principales
+### 🚀 **Tecnologías**
+- **Framework**: Astro v5+ (Static Site Generation)
+- **Styling**: Tailwind CSS + CSS personalizado modularizado
+- **Lenguaje**: TypeScript para tipado fuerte
+- **Optimización**: Imágenes WebP, compresión automática
+- **SEO**: Schema.org structured data, meta tags optimizados
 
-- **Arquitectura MVC**: Separación clara de responsabilidades
-- **Diseño Responsivo**: Optimizado para todos los dispositivos
-- **SEO Optimizado**: Meta tags, Open Graph, Twitter Cards
-- **Accesibilidad**: Cumple estándares WCAG
-- **Rendimiento Optimizado**: Core Web Vitals optimizados
-- **TypeScript**: Tipado fuerte para mayor robustez
+### ✨ **Funcionalidades**
+- **Diseño Responsivo**: Optimizado para móviles, tablets y desktop
+- **SEO Avanzado**: Optimizado para búsquedas de "arquitecto"
+- **Formulario de Contacto**: Validación avanzada y integración WhatsApp
+- **Galería de Proyectos**: Filtros dinámicos y navegación
+- **Timeline de Proceso**: Línea de tiempo interactiva
+- **Rendimiento**: Core Web Vitals optimizados
 
 ## 📁 Análisis Detallado de Archivos
 

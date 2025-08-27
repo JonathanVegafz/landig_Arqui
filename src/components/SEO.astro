@@ -5,14 +5,16 @@ export interface Props {
 	image?: string;
 	canonical?: string;
 	type?: string; // og:type
+	keywords?: string;
 }
 
 const {
-	title = 'IG Construcciones SPA',
-	description = 'Arquitectura y construcción sostenible: calidad, eficiencia energética y diseño que perdura.',
+	title = 'IG Construcciones - Arquitecto Profesional en Chile',
+	description = 'Arquitecto profesional con +20 años de experiencia. Diseño arquitectónico y construcción sustentable en Coquimbo, Valparaíso, Biobío, La Araucanía y Los Lagos.',
 	image = '/og-default.jpg',
 	canonical,
-	type = 'website'
+	type = 'website',
+	keywords = 'arquitecto Chile, arquitecto Valparaíso, diseño arquitectónico, construcción sustentable, arquitectura bioclimática, eficiencia energética'
 } = Astro.props as Props;
 
 const site = Astro.site?.toString().replace(/\/$/, '') || '';
@@ -24,7 +26,15 @@ const imageUrl = image.startsWith('http') ? image : site + image;
 <Fragment>
 	<title>{fullTitle}</title>
 	<meta name="description" content={description} />
+	<meta name="keywords" content={keywords} />
 	<link rel="canonical" href={url} />
+	
+	<!-- Favicons -->
+	<link rel="icon" href="../../public/favicon.ico" />
+	<link rel="shortcut icon" href="../../public/favicon.ico" />
+	<meta name="msapplication-TileColor" content="#77bcdb" />
+	<meta name="theme-color" content="#77bcdb" />
+	
 	<!-- Open Graph -->
 	<meta property="og:title" content={fullTitle} />
 	<meta property="og:description" content={description} />
@@ -32,17 +42,50 @@ const imageUrl = image.startsWith('http') ? image : site + image;
 	<meta property="og:url" content={url} />
 	<meta property="og:image" content={imageUrl} />
 	<meta property="og:locale" content="es_CL" />
-	<!-- Twitter -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content={fullTitle} />
-	<meta name="twitter:description" content={description} />
-	<meta name="twitter:image" content={imageUrl} />
+	<meta property="og:site_name" content="IG Construcciones" />
+	
 	<!-- Básicos -->
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<meta name="theme-color" content="#77bcdb" />
-	<!-- Eliminadas meta redundantes (Dublin Core, geo) según plan -->
+	<meta name="author" content="IG Construcciones" />
+	<meta name="robots" content="index, follow" />
+	
+	<!-- Schema.org para arquitectos -->
+	<script type="application/ld+json">
+		{JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Architect",
+			"name": "IG Construcciones",
+			"description": description,
+			"url": url,
+			"telephone": "+56945150212",
+			"email": "Y.ordenes.t@gmail.com",
+			"sameAs": [
+				"https://instagram.com/ig_construcciones",
+				"https://tiktok.com/@ig_construcciones_spa"
+			],
+			"address": {
+				"@type": "PostalAddress",
+				"addressLocality": "Maitencillo",
+				"addressRegion": "Región de Valparaíso",
+				"addressCountry": "CL"
+			},
+			"areaServed": [
+				"Región de Coquimbo",
+				"Región de Valparaíso", 
+				"Región del Biobío",
+				"Región de La Araucanía",
+				"Región de Los Lagos"
+			],
+			"serviceType": [
+				"Diseño Arquitectónico",
+				"Arquitectura Residencial",
+				"Arquitectura Comercial",
+				"Construcción Sustentable",
+				"Eficiencia Energética"
+			],
+			"hasCredential": "Arquitecto Profesional",
+			"yearsInOperation": 20
+		})}
+	</script>
 </Fragment>
-
-<!-- Uso:
-<SEO title="Página" description="Desc" image="/img.jpg" canonical="https://example.com/pagina" />
--->

@@ -1,10 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import heroImage from '../../assets/optimized/hero-hero.webp';
-import Typewriter from '../ui/Typewriter.astro';
 ---
 
-<section class="hero parallax section-bg-white hero-container" id="inicio" aria-label="Sección principal: Arquitectura que Inspira">
+<section class="hero parallax section-bg-white hero-container" id="hero" aria-label="Sección principal: Arquitectura que Inspira">
   <div class="hero-background">
   <Image src={heroImage} alt="Edificio moderno con diseño arquitectónico innovador de IG Construcciones" class="hero-image" loading="eager" fetchpriority="high" decoding="async" format="webp" quality={90} width={1920} height={1080} sizes="100vw" />
   </div>
@@ -16,25 +15,18 @@ import Typewriter from '../ui/Typewriter.astro';
           <span class="hero-title-line" aria-hidden="true">Arquitectura que <span class="hero-highlight">Inspira</span></span>
           <span class="hero-title-line" aria-hidden="true">Construcción que <span class="hero-highlight">Perdura</span></span>
         </h1>
-        <Typewriter
-          texts={[
-            'Creamos espacios únicos que reflejan tu personalidad',
-            'Diseños sostenibles que respetan el medio ambiente',
-            'Calidad garantizada en cada detalle de construcción',
-            'Experiencia y confianza en cada proyecto'
-          ]}
-        />
+        <p id="typewriter-p" class="typewriter" aria-live="polite"></p>
       </header>
       <ul class="feature-list" role="list" aria-label="Características destacadas">
-        <li class="feature-item">Experiencia certificada</li>
-        <li class="feature-item">Eficiencia energética</li>
+        <li class="feature-item">Arquitectos certificados</li>
+        <li class="feature-item">Cobertura 5 regiones</li>
         <li class="feature-item">Construcción sustentable</li>
       </ul>
       <div class="hero-buttons">
         <a href="#cotiza" class="btn btn--lg hero-btn">
           <span>Cotiza tu Proyecto</span>
         </a>
-        <a href="https://wa.me/56945150212" class="btn btn--secondary btn--lg whatsapp-btn" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp">
+        <a href="https://wa.me/56945150212" class="btn--secondary btn--lg whatsapp-btn" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp">
           <span>WhatsApp</span>
         </a>
       </div>
@@ -48,12 +40,48 @@ import Typewriter from '../ui/Typewriter.astro';
   .hero-container {
     position: relative;
     overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(41, 71, 88, 0.7) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
   }
 
   .hero-content {
     padding: var(--spacing-2xl) var(--spacing-md);
     max-width: 800px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
   }
 
   .hero__text { 
@@ -69,6 +97,12 @@ import Typewriter from '../ui/Typewriter.astro';
     display: block;
     margin-bottom: 0.2em;
     line-height: 1.1;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    color: white;
+  }
+
+  .hero-highlight {
+    color: var(--color-primary) !important;
   }
 
   /* Typewriter styles */
@@ -80,6 +114,11 @@ import Typewriter from '../ui/Typewriter.astro';
     margin: var(--spacing-lg) 0;
     min-height: 2.4rem; /* Evita que el contenedor cambie de tamaño */
     color: white;
+    width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   /* Botones */
@@ -128,18 +167,6 @@ import Typewriter from '../ui/Typewriter.astro';
     padding: 0;
   }
   
-  .feature-item { 
-    background: rgba(255,255,255,.7); 
-    padding: 0.75rem 1.25rem; 
-    border-radius: 2rem; 
-    font-size: 0.9rem; 
-    font-weight: 500; 
-    backdrop-filter: blur(10px); 
-    white-space: nowrap;
-    color: var(--color-neutral-800);
-    border: 1px solid rgba(255,255,255,0.3);
-  }
-
   /* Responsive Design */
   @media (max-width: 1024px) {
     .hero-content {
@@ -157,17 +184,38 @@ import Typewriter from '../ui/Typewriter.astro';
   }
 
   @media (max-width: 768px) {
+    .hero-container {
+      min-height: 100vh;
+      align-items: flex-end;
+      padding-bottom: 10vh;
+    }
+
     .hero-content {
       padding: var(--spacing-lg) var(--spacing-sm);
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin-bottom: 5vh;
     }
 
     .hero-title-line {
-      font-size: clamp(1.75rem, 8vw, 2.2rem);
+      font-size: clamp(1.6rem, 7vw, 2.2rem);
     }
 
     .typewriter {
       font-size: 1rem;
       margin: var(--spacing-md) 0;
+      min-height: 4rem;
+      line-height: 1.4;
+      width: 100%;
+      text-align: center;
+      word-wrap: break-word;
+      white-space: normal;
+      overflow-wrap: break-word;
+      padding: 0 var(--spacing-sm);
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .hero-buttons {
@@ -187,23 +235,28 @@ import Typewriter from '../ui/Typewriter.astro';
       margin: var(--spacing-md) 0;
     }
     
-    .feature-item {
-      font-size: 0.85rem;
-      padding: 0.5rem 1rem;
-      flex: 1;
-      text-align: center;
-      min-width: 140px;
-    }
   }
 
   @media (max-width: 480px) {
+    .hero-container {
+      min-height: 100vh;
+      align-items: flex-end;
+      padding-bottom: 8vh;
+    }
+
     .hero-content {
       padding: var(--spacing-md) var(--spacing-sm);
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin-bottom: 5vh;
     }
 
     .hero-title-line {
-      font-size: clamp(1.5rem, 10vw, 1.8rem);
+      font-size: clamp(1.4rem, 8vw, 1.8rem);
       line-height: 1.2;
+      margin-bottom: 0.1em;
     }
 
     .hero__text {
@@ -211,28 +264,29 @@ import Typewriter from '../ui/Typewriter.astro';
     }
 
     .typewriter {
-      font-size: 0.95rem;
-      margin: var(--spacing-sm) 0;
-      min-height: 2rem;
+      font-size: 0.9rem;
+      margin: var(--spacing-md) 0;
+      min-height: 3.5rem;
+      line-height: 1.4;
+      width: 100%;
+      text-align: center;
+      word-wrap: break-word;
+      white-space: normal;
+      overflow-wrap: break-word;
+      padding: 0 var(--spacing-xs);
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .feature-list {
-      flex-direction: column;
       gap: 0.5rem;
-      margin: var(--spacing-sm) 0 var(--spacing-md);
+      margin: var(--spacing-md) 0;
       align-items: center;
     }
     
-    .feature-item {
-      flex: none;
-      width: auto;
-      max-width: 250px;
-      font-size: 0.8rem;
-      padding: 0.4rem 0.8rem;
-    }
 
     .hero-buttons {
-      margin-top: var(--spacing-md);
+      margin-top: var(--spacing-lg);
     }
 
     .hero-btn, .whatsapp-btn {
@@ -244,21 +298,105 @@ import Typewriter from '../ui/Typewriter.astro';
 
   /* Extra pequeño */
   @media (max-width: 360px) {
+    .hero-container {
+      min-height: 100vh;
+      align-items: flex-end;
+      padding-bottom: 5vh;
+    }
+
     .hero-content {
       padding: var(--spacing-sm);
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin-bottom: 3vh;
     }
 
     .hero-title-line {
-      font-size: clamp(1.25rem, 12vw, 1.5rem);
+      font-size: clamp(1.2rem, 9vw, 1.5rem);
+      line-height: 1.1;
     }
 
     .typewriter {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      min-height: 3.2rem;
+      margin: var(--spacing-sm) 0 var(--spacing-md);
+      width: 100%;
+      text-align: center;
+      word-wrap: break-word;
+      white-space: normal;
+      overflow-wrap: break-word;
+      padding: 0 var(--spacing-xs);
+      max-width: 100%;
+      box-sizing: border-box;
+      line-height: 1.3;
     }
 
-    .feature-item {
-      font-size: 0.75rem;
-      padding: 0.3rem 0.6rem;
+    .feature-list {
+      flex-direction: column;
+      gap: 0.4rem;
+      margin: var(--spacing-sm) 0 var(--spacing-md);
+    }
+
+    .hero-buttons {
+      margin-top: var(--spacing-md);
+    }
+
+    .hero-btn, .whatsapp-btn {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.95rem;
+      max-width: 250px;
     }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const texts = [
+      'Arquitectos profesionales con +20 años de experiencia',
+      'Diseños arquitectónicos que reflejan tu personalidad',
+      'Construcción sustentable y eficiencia energética',
+      'Servicios en Coquimbo, Valparaíso, Biobío, La Araucanía y Los Lagos',
+      'Calidad garantizada en cada proyecto arquitectónico'
+    ];
+
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typewriterElement = document.getElementById('typewriter-p');
+
+    if (!typewriterElement) return;
+
+    function typeWriter() {
+      const currentText = texts[textIndex];
+      if (!currentText || !typewriterElement) return;
+
+      if (!isDeleting) {
+        typewriterElement.textContent = currentText.slice(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === currentText.length) {
+          setTimeout(() => {
+            isDeleting = true;
+          }, 2000);
+        }
+      } else {
+        typewriterElement.textContent = currentText.slice(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+          isDeleting = false;
+          textIndex = (textIndex + 1) % texts.length;
+        }
+      }
+
+      const typingSpeed = isDeleting ? 50 : 100;
+      setTimeout(typeWriter, typingSpeed);
+    }
+
+    setTimeout(() => {
+      typeWriter();
+    }, 1200);
+  });
+</script>

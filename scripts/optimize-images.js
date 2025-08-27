@@ -16,28 +16,32 @@ if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
 }
 
-// Configuración de optimización - solo generamos los tamaños que realmente se usan
+// Configuración de optimización
+// Nota: "original" se genera aparte sin redimensionar para evitar duplicados.
 const sizes = {
   card: { width: 600, height: 400 },
   hero: { width: 1200, height: 800 },
-  original: { width: 1920, height: 1280 }, // Tamaño original optimizado
 };
 
-async function optimizeImage(inputPath, filename) {
+async function optimizeImage(inputPath, filename, relativeDir = '') {
   try {
     const image = sharp(inputPath);
     const metadata = await image.metadata();
 
     console.log(
-      `Optimizando ${filename} (${metadata.width}x${metadata.height}, ${Math.round(metadata.size / 1024)}KB)`
+      `Optimizando ${path.join(relativeDir, filename)} (${metadata.width}x${metadata.height}, ${metadata.size ? Math.round(metadata.size / 1024) : '?'}KB)`
     );
 
     // Generar diferentes tamaños
     for (const [sizeName, dimensions] of Object.entries(sizes)) {
+      const outputSubdir = path.join(outputDir, relativeDir);
+      if (!fs.existsSync(outputSubdir)) {
+        fs.mkdirSync(outputSubdir, { recursive: true });
+      }
       const outputFilename = `${path.parse(filename).name}-${sizeName}.webp`;
-      const outputPath = path.join(outputDir, outputFilename);
+      const outputPath = path.join(outputSubdir, outputFilename);
 
-      await image
+      await sharp(inputPath)
         .resize(dimensions.width, dimensions.height, {
           fit: 'cover',
           position: 'center',
@@ -49,12 +53,16 @@ async function optimizeImage(inputPath, filename) {
         .toFile(outputPath);
 
       const stats = fs.statSync(outputPath);
-      console.log(`  ✓ ${outputFilename}: ${Math.round(stats.size / 1024)}KB`);
+      console.log(`  ✓ ${path.join(relativeDir, outputFilename)}: ${Math.round(stats.size / 1024)}KB`);
     }
 
-    // Generar versión original optimizada
+    // Generar versión original optimizada (sin redimensionar)
+    const outputSubdir = path.join(outputDir, relativeDir);
+    if (!fs.existsSync(outputSubdir)) {
+      fs.mkdirSync(outputSubdir, { recursive: true });
+    }
     const optimizedOriginal = `${path.parse(filename).name}-original.webp`;
-    const optimizedPath = path.join(outputDir, optimizedOriginal);
+    const optimizedPath = path.join(outputSubdir, optimizedOriginal);
 
     await image
       .webp({
@@ -64,27 +72,46 @@ async function optimizeImage(inputPath, filename) {
       .toFile(optimizedPath);
 
     const stats = fs.statSync(optimizedPath);
-    console.log(`  ✓ ${optimizedOriginal}: ${Math.round(stats.size / 1024)}KB`);
+    console.log(`  ✓ ${path.join(relativeDir, optimizedOriginal)}: ${Math.round(stats.size / 1024)}KB`);
   } catch (error) {
     console.error(`Error optimizando ${filename}:`, error);
   }
 }
 
+function walkFiles(dir, baseDir = dir) {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const results = [];
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    // Saltar la carpeta de salida
+    if (path.resolve(fullPath) === path.resolve(outputDir)) continue;
+    if (entry.isDirectory()) {
+      results.push(...walkFiles(fullPath, baseDir));
+    } else if (/\.(jpg|jpeg|png|webp)$/i.test(entry.name)) {
+      const relative = path.relative(baseDir, path.dirname(fullPath));
+      results.push({ fullPath, filename: entry.name, relativeDir: relative });
+    }
+  }
+  return results;
+}
+
 async function optimizeAllImages() {
-  const files = fs
-    .readdirSync(inputDir)
-    .filter(file => file.match(/\.(jpg|jpeg|png|webp)$/i) && !file.includes('optimized'));
+  const files = walkFiles(inputDir);
+  const filtered = files.filter(f => !f.fullPath.includes(path.sep + 'optimized' + path.sep));
 
-  console.log(`Encontradas ${files.length} imágenes para optimizar:\n`);
+  console.log(`Encontradas ${filtered.length} imágenes para optimizar:\n`);
 
-  for (const file of files) {
-    const inputPath = path.join(inputDir, file);
-    await optimizeImage(inputPath, file);
+  for (const file of filtered) {
+    await optimizeImage(file.fullPath, file.filename, file.relativeDir);
     console.log('');
   }
 
-  console.log('✅ Optimización completada!');
+  console.log('✔ Optimización completada!');
   console.log(`📁 Imágenes optimizadas guardadas en: ${outputDir}`);
 }
 
-optimizeAllImages().catch(console.error);
+optimizeAllImages().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
+

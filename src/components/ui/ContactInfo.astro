@@ -11,26 +11,31 @@ interface Props {
 const { icon, title, content, link, ariaLabel, class: className } = Astro.props;
 ---
 
-<div class={`contact-item ${className || ''}`}>
-  <!-- set:html seguro: icon SVG definido en código fuente, no proviene de entrada del usuario -->
-  <div class="contact-item__icon" set:html={icon}></div>
-  <div class="contact-item__content">
-    <h3 class="contact-item__title">{title}</h3>
-    {link ? (
-      <a 
-        href={link} 
-        class="contact-item__link" 
-        aria-label={ariaLabel || `${title}: ${content}`}
-        target={link.startsWith('http') ? '_blank' : undefined}
-        rel={link.startsWith('http') ? 'noopener noreferrer' : undefined}
-      >
-        {content}
-      </a>
-    ) : (
+{link ? (
+  <a 
+    href={link} 
+    class={`contact-item ${className || ''}`}
+    aria-label={ariaLabel || `${title}: ${content}`}
+    target={link.startsWith('http') ? '_blank' : undefined}
+    rel={link.startsWith('http') ? 'noopener noreferrer' : undefined}
+  >
+    <!-- set:html seguro: icon SVG definido en código fuente, no proviene de entrada del usuario -->
+    <div class="contact-item__icon" set:html={icon}></div>
+    <div class="contact-item__content">
+      <h3 class="contact-item__title">{title}</h3>
       <span class="contact-item__text">{content}</span>
-    )}
+    </div>
+  </a>
+) : (
+  <div class={`contact-item ${className || ''}`}>
+    <!-- set:html seguro: icon SVG definido en código fuente, no proviene de entrada del usuario -->
+    <div class="contact-item__icon" set:html={icon}></div>
+    <div class="contact-item__content">
+      <h3 class="contact-item__title">{title}</h3>
+      <span class="contact-item__text">{content}</span>
+    </div>
   </div>
-</div>
+)}
 
 <style>
   /* Sin estilos personalizados - todo viene de global.css */

@@ -10,6 +10,7 @@ const projects = defineCollection({
     area: z.string(),
     imageCard: z.string(),
     imageOriginal: z.string().optional(),
+    images: z.array(z.string()).optional(),
     details: z.object({
       ubicacion: z.string(),
       duracion: z.string(),

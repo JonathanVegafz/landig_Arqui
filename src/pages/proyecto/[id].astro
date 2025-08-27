@@ -126,6 +126,24 @@ const description = proyecto.description;
               }
             </ul>
           </section>
+
+          <!-- Galería del proyecto -->
+          <section class="proyecto-section" aria-labelledby="galeria-proyecto-titulo">
+            <h2 class="proyecto-section__title" id="galeria-proyecto-titulo">Galería del Proyecto</h2>
+            {
+              Array.isArray(proyecto.images) && proyecto.images.length > 0 ? (
+                <div class="proyecto-galeria-grid">
+                  {
+                    proyecto.images.map((src: string) => (
+                      <figure class="proyecto-galeria-item">
+                        <img src={src} alt={`Proyecto ${proyecto.title} - imagen`} loading="lazy" decoding="async" />
+                      </figure>
+                    ))
+                  }
+                </div>
+              ) : null
+            }
+          </section>
         </article>
 
         <aside class="proyecto-sidebar" aria-labelledby="detalles-titulo">
@@ -269,6 +287,28 @@ const description = proyecto.description;
     .breadcrumb__current {
       color: var(--color-neutral-600);
       font-weight: 500;
+    }
+
+    /* Galería de imágenes del proyecto */
+    .proyecto-galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+
+    .proyecto-galeria-item {
+      overflow: hidden;
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-sm);
+      background: #fff;
+    }
+
+    .proyecto-galeria-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .proyecto-header {

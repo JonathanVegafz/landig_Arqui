@@ -4,8 +4,8 @@
   "description": "Vivienda con paneles solares y sistema de recolección de aguas lluvias",
   "category": "Residencial",
   "area": "150m²",
-  "imageCard": "../../assets/optimized/imagen3-card.webp",
-  "imageOriginal": "../../assets/optimized/imagen3-original.webp",
+  "imageCard": "../../assets/optimized/3/entrada-card.webp",
+  "imageOriginal": "../../assets/optimized/3/entrada-original.webp",
   "details": {
     "ubicacion": "Quilpué, V Región",
     "duracion": "10 meses",

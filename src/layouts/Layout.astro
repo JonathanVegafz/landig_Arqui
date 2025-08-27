@@ -4,8 +4,8 @@ import Header from '../components/sections/Header.astro';
 import Footer from '../components/sections/Footer.astro';
 import SEO from '../components/SEO.astro';
 const {
-  title = 'IG Construcciones - Arquitectura y Construcción en la V Región',
-  description = 'IG Construcciones: Arquitectura y construcción en la V Región. Diseño, obras nuevas y eficiencia energética. Calidad, confianza y experiencia.',
+  title = 'IG Construcciones - Arquitecto Profesional en Chile | Coquimbo, Valparaíso, Biobío, La Araucanía, Los Lagos',
+  description = 'Arquitecto profesional con +20 años de experiencia. Diseño arquitectónico y construcción sustentable en Coquimbo, Valparaíso, Biobío, La Araucanía y Los Lagos.',
   canonical = 'https://www.igconstruccionesspa.cl/',
   ogImage = undefined,
   ogType = 'website',
@@ -15,10 +15,11 @@ const {
 <html lang="es">
   <head>
   <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <SEO title={title} description={description} canonical={canonical} image={ogImage} type={ogType} />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="IG Construcciones" />
-  <meta name="keywords" content="arquitectura, construcción, V Región, Chile, diseño arquitectónico, obras nuevas, eficiencia energética, Maitencillo, construcción sustentable, paneles SIP, metalcom, EIFS" />
+  <meta name="keywords" content="arquitecto Chile, arquitecto Valparaíso, arquitecto Coquimbo, arquitecto Biobío, arquitecto La Araucanía, arquitecto Los Lagos, diseño arquitectónico, construcción sustentable, arquitectura bioclimática, eficiencia energética, paneles SIP, metalcom, EIFS, arquitectura residencial, arquitectura comercial" />
     
     <!-- SEO adicional -->
     <meta name="format-detection" content="telephone=yes" />
@@ -44,17 +45,16 @@ const {
     <script type="application/ld+json">
       {JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'LocalBusiness',
+        '@type': 'Architect',
         name: 'IG Construcciones',
-        description:
-          'Arquitectura y construcción en la V Región de Chile. Diseño, obras nuevas y eficiencia energética.',
+        description: 'Arquitecto profesional especializado en diseño y construcción sustentable en Chile',
         url: 'https://www.igconstruccionesspa.cl/',
         telephone: '+56945150212',
         email: 'Y.ordenes.t@gmail.com',
         address: {
           '@type': 'PostalAddress',
           addressLocality: 'Maitencillo',
-          addressRegion: 'V Región',
+          addressRegion: 'Región de Valparaíso',
           addressCountry: 'CL',
         },
         geo: {
@@ -64,11 +64,25 @@ const {
         },
         openingHours: 'Mo-Fr 09:00-18:00',
         priceRange: '$$',
-        serviceType: ['Arquitectura', 'Construcción', 'Diseño'],
-        areaServed: 'V Región, Chile',
+        serviceType: [
+          'Diseño Arquitectónico',
+          'Arquitectura Residencial', 
+          'Arquitectura Comercial',
+          'Construcción Sustentable',
+          'Eficiencia Energética'
+        ],
+        areaServed: [
+          'Región de Coquimbo',
+          'Región de Valparaíso',
+          'Región del Biobío', 
+          'Región de La Araucanía',
+          'Región de Los Lagos'
+        ],
+        hasCredential: 'Arquitecto Profesional',
+        yearsInOperation: 20,
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
-          name: 'Servicios de Construcción',
+          name: 'Servicios de Arquitectura y Construcción',
           itemListElement: [
             {
               '@type': 'Offer',
@@ -93,6 +107,7 @@ const {
             },
           ],
         },
+      })}
       })}
     </script>
   </head>

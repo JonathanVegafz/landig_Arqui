@@ -24,6 +24,10 @@ export function initHeaderMenu() {
         e.preventDefault();
         const hashIndex = href.indexOf('#');
         const hash = href.substring(hashIndex);
+        
+        // Actualizar la URL con el hash
+        history.pushState(null, '', hash);
+        
         smoothScrollTo(hash);
       }
     });

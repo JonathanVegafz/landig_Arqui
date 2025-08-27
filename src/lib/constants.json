@@ -1,14 +1,39 @@
 {
   "COMPANY_INFO": {
     "name": "IG Construcciones",
-    "description": "Arquitectura y construcción en la V Región de Chile",
-    "location": "Maitencillo, V Región, Chile",
+    "description": "Arquitectura y construcción profesional en Chile - Coquimbo, Valparaíso, Biobío, La Araucanía y Los Lagos",
+    "location": "Maitencillo, Región de Valparaíso, Chile",
     "phone": "+56945150212",
     "email": "Y.ordenes.t@gmail.com",
     "whatsapp": "https://wa.me/56945150212",
+    "social_media": {
+      "instagram": {
+        "url": "https://instagram.com/ig_construcciones",
+        "handle": "@ig_construcciones"
+      },
+      "tiktok": {
+        "url": "https://tiktok.com/@ig_construcciones_spa",
+        "handle": "@ig_construcciones_spa"
+      }
+    },
     "experience": "20+",
     "projects": "100+",
-    "satisfaction": "98%"
+    "satisfaction": "98%",
+    "coverage_regions": [
+      "Región de Coquimbo",
+      "Región de Valparaíso", 
+      "Región del Biobío",
+      "Región de La Araucanía",
+      "Región de Los Lagos"
+    ],
+    "specialties": [
+      "Arquitectura residencial y comercial",
+      "Construcción sustentable",
+      "Eficiencia energética",
+      "Diseño bioclimático",
+      "Construcción con paneles SIP",
+      "Sistemas EIFS"
+    ]
   },
   "SERVICES": [
     {
@@ -46,11 +71,25 @@
     }
   ],
   "SEO_CONFIG": {
-    "defaultTitle": "IG Construcciones - Arquitectura y Construcción en la V Región",
-    "defaultDescription": "IG Construcciones: Arquitectura y construcción en la V Región. Diseño, obras nuevas y eficiencia energética.",
+    "defaultTitle": "IG Construcciones - Arquitecto Profesional en Chile | Coquimbo, Valparaíso, Biobío, La Araucanía, Los Lagos",
+    "defaultDescription": "Arquitecto profesional especializado en diseño y construcción sustentable. Servicios de arquitectura en Coquimbo, Valparaíso, Biobío, La Araucanía y Los Lagos. +20 años de experiencia.",
     "canonicalUrl": "https://www.igconstruccionesspa.cl/",
     "locale": "es_CL",
-    "type": "website"
+    "type": "website",
+    "keywords": [
+      "arquitecto Chile",
+      "arquitecto Valparaíso", 
+      "arquitecto Coquimbo",
+      "arquitecto Biobío",
+      "arquitecto La Araucanía",
+      "arquitecto Los Lagos",
+      "diseño arquitectónico",
+      "construcción sustentable",
+      "arquitectura bioclimática",
+      "eficiencia energética",
+      "paneles SIP",
+      "construcción moderna"
+    ]
   },
   "VALIDATION_RULES": {
     "email": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",

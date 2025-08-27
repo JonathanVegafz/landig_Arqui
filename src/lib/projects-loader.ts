@@ -17,6 +17,7 @@ export async function getProjects(): Promise<ProjectProps[]> {
       area: project.area,
       image: imageImportMap[project.imageCard] || project.imageCard,
       imageOriginal: project.imageOriginal ? (imageImportMap[project.imageOriginal] || project.imageOriginal) : undefined,
+      images: project.images,
       details: project.details,
     }));
   return data;
