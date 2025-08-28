@@ -21,4 +21,59 @@ import Cotiza from '../components/sections/Cotiza.astro';
   <Galeria class="scroll-fade" />
   <NuestroProceso class="scroll-fade" />
   <Cotiza class="scroll-fade" />
+
+  <script>
+    // Script para manejar navegación con anclas en la página principal
+    import { initSmoothScroll } from '../lib/interactions/smoothScroll';
+
+    // Función para scroll suave al ancla desde URL
+    function handleHashFromURL() {
+      const hash = window.location.hash;
+      if (hash) {
+        const targetElement = document.querySelector(hash);
+        if (targetElement) {
+          // Esperar a que la página esté completamente cargada
+          setTimeout(() => {
+            const startPosition = window.pageYOffset;
+            const targetPosition = (targetElement as HTMLElement).offsetTop - 80;
+            const distance = targetPosition - startPosition;
+            let startTime: number | null = null;
+
+            function easeInOutCubic(t: number): number {
+              return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+            }
+
+            function animation(currentTime: number) {
+              if (startTime === null) startTime = currentTime;
+              const timeElapsed = currentTime - startTime;
+              const progress = Math.min(timeElapsed / 1200, 1); // 1.2 segundos
+              const ease = easeInOutCubic(progress);
+              
+              window.scrollTo(0, startPosition + distance * ease);
+              
+              if (timeElapsed < 1200) {
+                requestAnimationFrame(animation);
+              }
+            }
+
+            requestAnimationFrame(animation);
+          }, 500); // Esperar medio segundo para que los elementos estén listos
+        }
+      }
+    }
+
+    // Inicializar scroll suave
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        initSmoothScroll();
+        handleHashFromURL();
+      });
+    } else {
+      initSmoothScroll();
+      handleHashFromURL();
+    }
+
+    // Manejar navegación posterior con anclas
+    window.addEventListener('hashchange', handleHashFromURL);
+  </script>
 </Layout>

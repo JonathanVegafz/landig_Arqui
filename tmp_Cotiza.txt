@@ -1,20 +1,6 @@
 ---
 import SectionHeader from '../ui/SectionHeader.astro';
 import ContactInfo from '../ui/ContactInfo.astro';
-// Regiones de cobertura y enlaces a Google Maps
-const COVERAGE_REGIONS = [
-  'Región de Coquimbo',
-  'Región de Valparaíso',
-  'Región del Biobío',
-  'Región de La Araucanía',
-  'Región de Los Lagos'
-];
-
-
-
-// Formspree action desde variable de entorno (evita exponer token)
-const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_ID;
-const formAction = FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : 'https://formspree.io/f/xvgqwkvy';
 ---
 
 <section class="cotiza section section-bg-white" id="cotiza" aria-label="Cotiza tu Proyecto">
@@ -52,13 +38,11 @@ const formAction = FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : 'ht
         />
       </div>
 
-      
-
   <div class="form-messages" aria-live="polite" aria-atomic="true"></div>
   <form
         class="contact-form glassmorphism"
         method="POST"
-        action={formAction}
+        action="https://formspree.io/f/xvgqwkvy"
         aria-label="Formulario de contacto"
         id="contactForm"
       >
@@ -247,6 +231,11 @@ const formAction = FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : 'ht
     margin: var(--spacing-xl) auto 0;
   }
 
+  .contact-info {
+    flex: 1;
+    min-width: 300px;
+  }
+
   .contact-form {
     flex: 1.5;
     min-width: 400px;
@@ -258,7 +247,7 @@ const formAction = FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : 'ht
     gap: var(--spacing-lg);
     padding: var(--spacing-xl);
     border-radius: var(--border-radius-xl);
-    max-height: auto;
+    max-height: 40rem;
   }
 
   .contact-form {
@@ -557,7 +546,6 @@ const formAction = FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : 'ht
       font-size: 0.75rem;
     }
   }
-  /* Enlaces de cobertura: ya no se usan estilos específicos, se usan los del componente */
 </style>
 
 <script>
@@ -579,3 +567,4 @@ const formAction = FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : 'ht
     initContactForm();
   }
 </script>
+

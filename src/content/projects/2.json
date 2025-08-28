@@ -1,25 +1,41 @@
 {
   "id": 2,
-  "title": "Oficinas Corporativas",
-  "description": "Espacios de trabajo modernos con eficiencia energética",
-  "category": "Comercial",
-  "area": "250m²",
+  "title": "Casa Quilén",
+  "description": "Vivienda contemporánea de dos niveles en Horcón, volumenes puros con revestimiento blanco vertical, grandes ventanales y terrazas de madera con vista al mar.",
+  "category": "Residencial",
+  "area": "190 m²",
   "imageCard": "../../assets/optimized/2/Exterior-card.webp",
-  "imageOriginal": "../../assets/optimized/2/Exterior-original.webp",
+  "imageOriginal": "../../assets/optimized/2/exterior1-original.webp",
+  "images": [
+    "../../assets/optimized/2/entrada exterior-hero.webp",
+    "../../assets/optimized/2/Exterior-hero.webp",
+    "../../assets/optimized/2/Patio-hero.webp",
+    "../../assets/optimized/2/living-hero.webp",
+    "../../assets/optimized/2/baño1-hero.webp",
+    "../../assets/optimized/2/parte trasera-hero.webp",
+    "../../assets/optimized/2/exterior1-hero.webp",
+    "../../assets/optimized/2/escaleras-hero.webp",
+    "../../assets/optimized/2/balcon-hero.webp",
+    "../../assets/optimized/2/habitacion-hero.webp"
+  ],
   "details": {
-    "ubicacion": "Viña del Mar, V Región",
-    "duracion": "6 meses",
-    "superficie": "250m²",
-    "habitaciones": "8 oficinas privadas",
-    "baños": "3 baños",
+    "ubicacion": "Horcón, V Región (Valparaíso), Chile",
+    "duracion": "8 meses",
+    "superficie": "190 m²",
+    "habitaciones": "3–4 dormitorios (por confirmar)",
+    "baños": "2–3 baños (por confirmar)",
     "caracteristicas": [
-      "Sistema de iluminación LED inteligente",
-      "Sala de reuniones con tecnología audiovisual",
-      "Área de coworking flexible",
-      "Sistema de climatización centralizado",
-      "Estacionamiento subterráneo",
-      "Terraza con vista panorámica"
+      "Dos niveles con volúmenes ortogonales",
+      "Revestimiento exterior en tinglado/machihembrado vertical pintado blanco",
+      "Casa elevada sobre pilotes; decks y pasarelas de madera",
+      "Grandes ventanales correderos y paños fijos orientados a vistas",
+      "Balcón en segundo nivel con barandas metálicas y tensores de cable",
+      "Escalera metálica con peldaños de madera",
+      "Interiores en revestimiento de madera pintada y pisos tipo madera",
+      "Estar principal con cielo inclinado y vigas a la vista",
+      "Baño con ducha a piso y vanitorio de madera",
+      "Carpinterías en aluminio negro"
     ],
-    "descripcionCompleta": "Oficinas corporativas modernas diseñadas para maximizar la productividad y el bienestar de los empleados. El espacio incluye áreas de trabajo colaborativo, oficinas privadas y zonas de descanso, todo integrado con tecnología de última generación."
+    "descripcionCompleta": "Casa unifamiliar ubicada en Horcón (V Región) que se organiza en dos niveles y se posa sobre pilotes para adaptarse al terreno y ventilar bajo piso. La envolvente blanca con caladura vertical contrasta con perfilería negra y terrazas de madera. El estar-comedor se resuelve con cielo inclinado y vigas a la vista, conectado mediante una escalera metálica de peldaños de madera al nivel superior donde se distribuyen los dormitorios y un balcón con vista al mar. Los baños emplean cerámica neutra y el interior mantiene una paleta cálida de madera clara."
   }
 }

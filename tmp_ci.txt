@@ -16,27 +16,9 @@ interface Props {
 }
 
 const { icon, title, content, link, links, ariaLabel, class: className } = Astro.props as Props;
-// Auto-link de regiones para la tarjeta "Cobertura"
-let autoLinks: LinkItem[] | undefined = undefined;
-try {
-  const isCoverage = typeof title === 'string' && title.trim().toLowerCase() === 'cobertura';
-  const startsWithRegiones = typeof content === 'string' && content.trim().toLowerCase().startsWith('5 regiones');
-  if (!links && isCoverage && startsWithRegiones) {
-    const parts = content.split(':');
-    if (parts.length > 1) {
-      const names = parts[1].split(',').map(s => s.trim()).filter(Boolean);
-      autoLinks = names.map((name) => {
-        const regionName = (name.toLowerCase().includes('biob')) ? 'Región del Biobío' : `Región de ${name}`;
-        const href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(regionName + ', Chile')}`;
-        return { text: name, href, ariaLabel: `Ver ${regionName} en Google Maps` } as LinkItem;
-      });
-    }
-  }
-} catch {}
-const _links = (links && links.length ? links : (autoLinks || []));
 ---
 
-{link && _links.length === 0 ? (
+{link ? (
   <a 
     href={link} 
     class={`contact-item ${className || ''}`}
@@ -48,9 +30,9 @@ const _links = (links && links.length ? links : (autoLinks || []));
     <div class="contact-item__icon" set:html={icon}></div>
     <div class="contact-item__content">
       <h3 class="contact-item__title">{title}</h3>
-      {_links && _links.length ? (
+      {links && links.length ? (
         <span class="contact-item__text">
-          {_links.map((l, idx) => (
+          {links.map((l, idx) => (
             <span class="contact-item__item">
               <a
                 href={l.href}
@@ -61,7 +43,7 @@ const _links = (links && links.length ? links : (autoLinks || []));
               >
                 {l.text}
               </a>
-              {idx < _links.length - 1 ? <span class="contact-item__sep"> · </span> : null}
+              {idx < links.length - 1 ? <span class="contact-item__sep"> · </span> : null}
             </span>
           ))}
         </span>
@@ -76,9 +58,9 @@ const _links = (links && links.length ? links : (autoLinks || []));
     <div class="contact-item__icon" set:html={icon}></div>
     <div class="contact-item__content">
       <h3 class="contact-item__title">{title}</h3>
-      {_links && _links.length ? (
+      {links && links.length ? (
         <span class="contact-item__text">
-          {_links.map((l, idx) => (
+          {links.map((l, idx) => (
             <span class="contact-item__item">
               <a
                 href={l.href}
@@ -89,7 +71,7 @@ const _links = (links && links.length ? links : (autoLinks || []));
               >
                 {l.text}
               </a>
-              {idx < _links.length - 1 ? <span class="contact-item__sep"> · </span> : null}
+              {idx < links.length - 1 ? <span class="contact-item__sep"> · </span> : null}
             </span>
           ))}
         </span>
@@ -107,3 +89,4 @@ const _links = (links && links.length ? links : (autoLinks || []));
   .contact-item__sep { opacity: 0.6; margin: 0 0.25rem; }
   .contact-item__item { white-space: nowrap; }
 </style>
+

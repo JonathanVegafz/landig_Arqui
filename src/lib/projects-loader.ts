@@ -17,7 +17,13 @@ export async function getProjects(): Promise<ProjectProps[]> {
       area: project.area,
       image: imageImportMap[project.imageCard] || project.imageCard,
       imageOriginal: project.imageOriginal ? (imageImportMap[project.imageOriginal] || project.imageOriginal) : undefined,
-      images: project.images,
+      // Resolver imágenes de galería a URLs seguras (strings)
+      images: project.images?.map((src: string) => {
+        const mapped = imageImportMap[src as keyof typeof imageImportMap] as any;
+        if (mapped && typeof mapped === 'object' && 'src' in mapped) return (mapped as { src: string }).src;
+        if (typeof mapped === 'string') return mapped;
+        return src;
+      }),
       details: project.details,
     }));
   return data;

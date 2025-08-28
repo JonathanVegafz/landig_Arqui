@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import { PROJECT_CATEGORIES } from '../../lib/constants-loader';
 import { getProjects } from '../../lib/projects-loader';
 
 const PROJECTS = await getProjects();
@@ -16,24 +15,6 @@ const PROJECTS = await getProjects();
         la funcionalidad.
       </p>
     </hgroup>
-
-  <div class="filter-buttons" aria-label="Filtros de categorías de proyectos">
-      {
-        PROJECT_CATEGORIES.map((categoria: string) => (
-          <button
-            class={`filter-button ${categoria === 'todos' ? 'is-active' : ''}`}
-            data-categoria={categoria.toLowerCase()}
-            aria-pressed={categoria === 'todos' ? 'true' : 'false'}
-            id={`filter-${categoria.toLowerCase()}`}
-            type="button"
-          >
-            {categoria === 'todos'
-              ? 'Todos'
-              : categoria.charAt(0).toUpperCase() + categoria.slice(1)}
-          </button>
-        ))
-      }
-  </div>
 
     <div 
       class="grid-auto-fit galeria__grid" 
@@ -58,7 +39,6 @@ const PROJECTS = await getProjects();
               />
               <figcaption class="image-overlay proyecto-card__overlay">
                 <div class="proyecto-card__info">
-                  <span class="proyecto-card__categoria" aria-label={`Categoría: ${proyecto.category}`}>{proyecto.category}</span>
                   <h3 class="proyecto-card__titulo">{proyecto.title}</h3>
                   <p class="proyecto-card__descripcion">{proyecto.description}</p>
                   <a 
@@ -129,7 +109,22 @@ const PROJECTS = await getProjects();
     const detailLinks = document.querySelectorAll('.proyecto-card a[href^="/proyecto/"]');
     detailLinks.forEach(a => {
       const url = a.getAttribute('href');
+      // Prefetch on hover/focus
       ['mouseenter','focus'].forEach(evt => a.addEventListener(evt, () => prefetch(url), { once: true }));
+      
+      // Agregar transición suave al hacer click
+      a.addEventListener('click', (e) => {
+        // Si la navegación viene de un enlace con hash en la URL actual
+        if (window.location.hash && url) {
+          e.preventDefault();
+          document.body.classList.add('page-transitioning');
+          
+          // Pequeña animación antes de navegar
+          setTimeout(() => {
+            window.location.href = url;
+          }, 150);
+        }
+      });
     });
   });
 </script>
@@ -138,6 +133,9 @@ const PROJECTS = await getProjects();
   /* Estilos específicos únicos de la galería */
   .galeria {
     padding: var(--spacing-2xl) 0;
+  }
+  .section-description {
+    padding-bottom :var(--spacing-2xl)  ;
   }
 
   /* Estilos específicos para las cartas de proyecto */
@@ -174,5 +172,24 @@ const PROJECTS = await getProjects();
     font-size: 1.25rem;
     color: var(--color-neutral-700);
     margin-bottom: var(--spacing-md);
+  }
+
+  /* Transiciones mejoradas para navegación */
+  .proyecto-card a {
+    transition: all var(--transition-base);
+  }
+
+  .proyecto-card:hover a {
+    transform: translateY(-2px);
+  }
+
+  /* Animación de loading para transiciones */
+  .page-transitioning .proyecto-card {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  .page-transitioning .proyecto-card a {
+    transform: scale(0.98);
   }
 </style>

@@ -1,25 +1,37 @@
 {
   "id": 4,
-  "title": "Restaurante Costero",
-  "description": "Local gastronómico con terraza panorámica al océano",
-  "category": "Comercial",
-  "area": "120m²",
-  "imageCard": "../../assets/optimized/4/entrada patio-card.webp",
-  "imageOriginal": "../../assets/optimized/4/entrada patio-original.webp",
+  "title": "Casa Foresta de Zapallar",
+  "description": "Vivienda contemporánea con patio central, quincho y piscina; volúmenes horizontales en estuco blanco y un cuerpo superior tipo mirador.",
+  "category": "Residencial",
+  "area": "280 m²",
+  "imageCard": "../../assets/optimized/3/entrada-card.webp",
+  "imageOriginal": "../../assets/optimized/3/entrada-original.webp",
+  "images": [
+    "../../assets/optimized/3/entrada-hero.webp",
+    "../../assets/optimized/3/entrada2-hero.webp",
+    "../../assets/optimized/3/entrada3-hero.webp",
+    "../../assets/optimized/3/living-hero.webp",
+    "../../assets/optimized/3/baño-hero.webp"
+  ],
   "details": {
-    "ubicacion": "Reñaca, V Región",
-    "duracion": "4 meses",
-    "superficie": "120m²",
-    "habitaciones": "Sala principal y terraza",
-    "baños": "2 baños públicos",
+    "ubicacion": "Foresta de Zapallar, V Región (Valparaíso), Chile",
+    "duracion": "10 meses",
+    "superficie": "280 m²",
+    "habitaciones": "4 dormitorios (por confirmar)",
+    "baños": "3 baños (por confirmar)",
     "caracteristicas": [
-      "Terraza panorámica al océano",
-      "Cocina industrial equipada",
-      "Sistema de ventilación especializado",
-      "Iluminación atmosférica",
-      "Bar con vista al mar",
-      "Área de estacionamiento"
+      "Planta en L que abraza un patio con piscina",
+      "Volumen principal de un nivel y cuerpo superior en esquina a modo de mirador",
+      "Cubiertas planas con aleros profundos",
+      "Fachadas en estuco blanco y paños en piedra laja",
+      "Grandes ventanales y puertas-ventana hacia el patio",
+      "Decks y pasarelas de madera perimetral",
+      "Iluminación exterior empotrada y apliques de muro",
+      "Quincho/cocina exterior techado con campana metálica",
+      "Pasillo longitudinal que organiza la zona privada",
+      "Walk-in closet a medida",
+      "Baños con ducha a piso y nicho integrado"
     ],
-    "descripcionCompleta": "Restaurante costero que aprovecha su ubicación privilegiada para ofrecer una experiencia gastronómica única. El diseño prioriza las vistas al océano y la comodidad de los comensales, con espacios interiores y exteriores perfectamente integrados."
+    "descripcionCompleta": "Casa unifamiliar situada en Foresta de Zapallar, diseñada en torno a un patio central con piscina que articula las áreas públicas y privadas. La volumetría es predominantemente horizontal, con un segundo nivel que actúa como mirador hacia el patio. Las fachadas combinan estuco blanco con revestimientos en piedra, rematadas por aleros que protegen del asoleamiento. Hacia el exterior se proyectan decks de madera y una cocina/quincho techado que extiende el estar–comedor. En el interior predominan pavimentos tipo madera, circulación longitudinal con iluminación empotrada, baños de línea sobria y un amplio walk-in closet. El conjunto privilegia la vida exterior y la continuidad visual entre interior y patio."
   }
 }

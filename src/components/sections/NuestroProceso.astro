@@ -369,6 +369,7 @@
     color: var(--color-neutral-700);
     line-height: 1.6;
     margin-bottom: var(--spacing-lg);
+    text-align: justify;
   }
 
   .timeline-features {
@@ -382,6 +383,7 @@
     align-items: center;
     margin-bottom: var(--spacing-sm);
     color: var(--color-neutral-700);
+    text-align: justify;
   }
 
   .feature-icon {
@@ -415,48 +417,71 @@
       padding: var(--spacing-xl) var(--spacing-md);
     }
 
+    /* Ocultar la línea temporal en móvil */
     .timeline-line {
-      left: 30px;
+      display: none;
     }
 
     .timeline-item {
-      flex-direction: row !important;
-      align-items: flex-start;
+      flex-direction: column !important;
+      align-items: center;
+      text-align: center;
+      margin-bottom: var(--spacing-2xl);
     }
 
     .timeline-item:nth-child(even) .timeline-content,
     .timeline-item:nth-child(odd) .timeline-content {
-      padding-left: var(--spacing-xl);
-      padding-right: 0;
+      padding: 0;
+      margin-top: var(--spacing-lg);
     }
 
     .timeline-marker {
-      align-self: flex-start;
-      margin-top: var(--spacing-md);
+      align-self: center;
+      margin-bottom: var(--spacing-md);
     }
 
     .timeline-number {
-      width: 60px;
-      height: 60px;
-      font-size: 1.25rem;
+      width: 80px;
+      height: 80px;
+      font-size: 1.5rem;
     }
 
     .timeline-icon {
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
     }
 
     .timeline-icon svg {
-      width: 16px;
-      height: 16px;
+      width: 20px;
+      height: 20px;
     }
 
     .timeline-content {
       max-width: none;
+      width: 100%;
+    }
+
+    .timeline-card {
+      text-align: justify;
     }
 
     .timeline-title {
       font-size: 1.25rem;
+      text-align: center;
+    }
+
+    .timeline-badge {
+      display: block;
+      text-align: center;
+      width: fit-content;
+      margin: 0 auto var(--spacing-md) auto;
+    }
+
+    .timeline-duration {
+      display: block;
+      text-align: center;
+      width: fit-content;
+      margin: 0 auto;
     }
   }
 
@@ -465,36 +490,67 @@
       padding: var(--spacing-lg) var(--spacing-sm);
     }
 
+    /* Mantener línea oculta en móviles pequeños */
     .timeline-line {
-      left: 25px;
+      display: none;
+    }
+
+    .timeline-item {
+      flex-direction: column !important;
+      align-items: center;
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
     }
 
     .timeline-number {
-      width: 50px;
-      height: 50px;
-      font-size: 1rem;
+      width: 70px;
+      height: 70px;
+      font-size: 1.25rem;
     }
 
     .timeline-icon {
-      width: 24px;
-      height: 24px;
+      width: 35px;
+      height: 35px;
     }
 
     .timeline-icon svg {
-      width: 14px;
-      height: 14px;
+      width: 18px;
+      height: 18px;
     }
 
     .timeline-card {
       padding: var(--spacing-lg);
+      text-align: justify;
     }
 
     .timeline-title {
       font-size: 1.125rem;
+      text-align: center;
     }
 
     .timeline-description {
       font-size: 0.9rem;
+      text-align: justify;
+    }
+
+    .timeline-badge {
+      display: block;
+      text-align: center;
+      width: fit-content;
+      margin: 0 auto var(--spacing-md) auto;
+    }
+
+    .timeline-duration {
+      display: block;
+      text-align: center;
+      width: fit-content;
+      margin: 0 auto;
+      font-size: 0.8rem;
+    }
+
+    .timeline-features li {
+      text-align: left;
+      justify-content: flex-start;
     }
   }
 

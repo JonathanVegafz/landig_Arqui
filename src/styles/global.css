@@ -500,22 +500,37 @@
   font-weight: 500;
 }
 
-/* 17. Typewriter Effect */
-.typewriter {
-  min-height: 2.5em;
-  font-weight: 400;
-  font-size: 1.25rem;
-  max-width: 100%;
-  margin: 0 auto;
+/* Estilos específicos para regiones de cobertura */
+.contact-item__text .contact-item__item {
   display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 2px solid var(--color-primary);
-  animation: blink 0.7s steps(1) infinite;
-  opacity: 0;
-  animation: fadeIn 0.6s ease-out 0.2s forwards, blink 0.7s steps(1) infinite 0.6s;
-  color: white;
+  margin-bottom: 0.5rem;
 }
+
+.contact-item__text .contact-item__item:last-child {
+  margin-bottom: 0;
+}
+
+.contact-item__text .contact-item__sep {
+  display: none;
+}
+
+.contact-item__text .contact-item__link {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: rgba(var(--color-primary-rgb), 0.1);
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  color: var(--color-primary);
+  font-size: 0.9rem;
+}
+
+.contact-item__text .contact-item__link:hover {
+  background: rgba(var(--color-primary-rgb), 0.2);
+  transform: translateX(4px);
+  opacity: 1;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -617,6 +632,7 @@
   /* Cards responsive */
   .card-base {
     padding: var(--spacing-md);
+    margin-bottom: 2rem;
   }
 
   /* Navigation responsive */
@@ -758,5 +774,118 @@
   
   .proyecto-card__descripcion {
     font-size: 0.875rem;
+  }
+}
+
+/* ===== NAVEGACIÓN SUAVE Y TRANSICIONES DE PÁGINA ===== */
+
+/* Transiciones para navegación entre páginas */
+.page-transitioning {
+  opacity: 0.95;
+  transition: opacity 0.2s ease-out;
+}
+
+/* Efecto suave para carga de página con hash */
+.page-loading-with-hash {
+  animation: fadeInPage 0.6s ease-out;
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll suave global */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Override para navegación con JavaScript (más control) */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: auto; /* JavaScript maneja el scroll suave */
+  }
+}
+
+/* Respeta preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Fade-in para elementos cuando se carga una página con hash */
+.hash-target {
+  animation: fadeInFromHash 0.6s ease-out;
+}
+
+@keyframes fadeInFromHash {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mejora visual para elementos target */
+:target {
+  scroll-margin-top: 100px; /* Offset para header fijo */
+  animation: highlightTarget 2s ease-out;
+}
+
+@keyframes highlightTarget {
+  0% {
+    background-color: rgba(119, 188, 219, 0.1);
+    box-shadow: 0 0 0 2px rgba(119, 188, 219, 0.3);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+/* Indicador visual de carga durante navegación entre páginas */
+.page-loading-with-hash {
+  position: relative;
+}
+
+.page-loading-with-hash::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  animation: loadingBar 1.4s ease-out;
+  z-index: 9999;
+}
+
+@keyframes loadingBar {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  70% {
+    width: 80%;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
   }
 }

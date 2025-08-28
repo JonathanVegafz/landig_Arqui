@@ -116,6 +116,27 @@ const {
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
     <a href="#main-navigation" class="skip-link">Saltar a la navegación</a>
     
+    <!-- Script para manejar navegación con hash desde otras páginas -->
+    <script>
+      // Ejecutar antes de que se renderice el contenido
+      (function() {
+        const hash = window.location.hash;
+        const isExternalNavigation = document.referrer && 
+          !document.referrer.includes(window.location.origin + window.location.pathname);
+        
+        // Si venimos de otra página con hash, ocultar contenido inmediatamente
+        if (hash && isExternalNavigation) {
+          document.documentElement.style.scrollBehavior = 'auto';
+          // Aplicar estilos directamente al body para evitar FOUC
+          document.body.style.visibility = 'hidden';
+          document.body.style.opacity = '0';
+          
+          // Agregar flag para el script posterior
+          (window as any).__hashNavigation = true;
+        }
+      })();
+    </script>
+    
     <div id="main-content">
       <Header id="main-header" />
       <slot />
@@ -124,6 +145,8 @@ const {
     <script>
       // Carga diferida del efecto scroll-fade centralizado
       import('../lib/interactions/scrollFade');
+      // Carga del sistema de navegación suave
+      import('../lib/interactions/smoothScroll');
     </script>
     <style>
       /* Skip links para accesibilidad */

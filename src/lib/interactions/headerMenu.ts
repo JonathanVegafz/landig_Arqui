@@ -19,15 +19,14 @@ export function initHeaderMenu() {
   const allNavLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-link, .mobile-nav-link');
   allNavLinks.forEach(link => {
     link.addEventListener('click', e => {
-      const href = link.getAttribute('href');
-      if (href && href.includes('#')) {
+      const href = link.getAttribute('href') || '';
+      // Solo interceptar anclas internas puras ("#section").
+      // Permitir enlaces absolutos con hash ("/#section") para navegar a inicio.
+      if (href.startsWith('#')) {
         e.preventDefault();
-        const hashIndex = href.indexOf('#');
-        const hash = href.substring(hashIndex);
-        
+        const hash = href;
         // Actualizar la URL con el hash
         history.pushState(null, '', hash);
-        
         smoothScrollTo(hash);
       }
     });

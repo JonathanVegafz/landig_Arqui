@@ -127,23 +127,7 @@ const description = proyecto.description;
             </ul>
           </section>
 
-          <!-- Galería del proyecto -->
-          <section class="proyecto-section" aria-labelledby="galeria-proyecto-titulo">
-            <h2 class="proyecto-section__title" id="galeria-proyecto-titulo">Galería del Proyecto</h2>
-            {
-              Array.isArray(proyecto.images) && proyecto.images.length > 0 ? (
-                <div class="proyecto-galeria-grid">
-                  {
-                    proyecto.images.map((src: string) => (
-                      <figure class="proyecto-galeria-item">
-                        <img src={src} alt={`Proyecto ${proyecto.title} - imagen`} loading="lazy" decoding="async" />
-                      </figure>
-                    ))
-                  }
-                </div>
-              ) : null
-            }
-          </section>
+
         </article>
 
         <aside class="proyecto-sidebar" aria-labelledby="detalles-titulo">
@@ -195,7 +179,23 @@ const description = proyecto.description;
           </section>
         </aside>
       </div>
-
+                <!-- Galería del proyecto -->
+          <section class="proyecto-section" aria-labelledby="galeria-proyecto-titulo">
+            <h2 class="proyecto-section__title" id="galeria-proyecto-titulo">Galería del Proyecto</h2>
+            {
+              Array.isArray(proyecto.images) && proyecto.images.length > 0 ? (
+                <div class="proyecto-galeria-grid">
+                  {
+                    proyecto.images.map((src: string) => (
+                      <figure class="proyecto-galeria-item">
+                        <img src={src} alt={`Proyecto ${proyecto.title} - imagen`} loading="lazy" decoding="async" />
+                      </figure>
+                    ))
+                  }
+                </div>
+              ) : null
+            }
+          </section>
       <!-- Navegación entre proyectos -->
       <nav class="proyecto-navigation">
         {
@@ -345,6 +345,7 @@ const description = proyecto.description;
       line-height: 1.6;
       color: var(--color-neutral-600);
       margin-bottom: var(--spacing-lg);
+      text-align: justify;
     }
 
     .proyecto-header__meta {
@@ -406,6 +407,7 @@ const description = proyecto.description;
       font-size: 1.125rem;
       line-height: 1.7;
       color: var(--color-neutral-700);
+      text-align: justify;
     }
 
     .caracteristicas-list {
@@ -468,6 +470,7 @@ const description = proyecto.description;
       font-size: 0.875rem;
       color: var(--color-neutral-600);
       font-weight: 500;
+      padding-right: 1rem;
     }
 
     .detalle-value {
@@ -481,6 +484,7 @@ const description = proyecto.description;
       line-height: 1.6;
       color: var(--color-neutral-600);
       margin-bottom: var(--spacing-lg);
+      text-align: justify;
     }
 
     .proyecto-navigation {
@@ -595,4 +599,56 @@ const description = proyecto.description;
       }
     }
   </style>
+
+  <script>
+    // Script específico para páginas de proyecto
+    // Mejora la experiencia cuando se navega desde enlaces con hash
+    document.addEventListener('DOMContentLoaded', () => {
+      // Detectar si viene de un referrer con hash
+      const referrer = document.referrer;
+      const currentUrl = window.location.href;
+      
+      // Si viene de la página principal y hay un hash en el referrer
+      if (referrer.includes('#') && !currentUrl.includes('#')) {
+        // Agregar una animación suave de entrada
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.3s ease-in';
+        
+        setTimeout(() => {
+          document.body.style.opacity = '1';
+        }, 50);
+      }
+      
+      // Mejorar el comportamiento de los enlaces en la navegación del proyecto
+      const navLinks = document.querySelectorAll('.nav-btn[href*="#"]');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          // Agregar clase de transición antes de navegar
+          document.body.classList.add('page-transitioning');
+          
+          // Añadir indicador en sessionStorage para la página destino
+          const href = link.getAttribute('href');
+          if (href) {
+            sessionStorage.setItem('smoothScrollFromProject', 'true');
+          }
+        });
+      });
+      
+      // También mejorar los enlaces en breadcrumb y sidebar
+      const breadcrumbLinks = document.querySelectorAll('.breadcrumb__link[href*="#"]');
+      const sidebarLinks = document.querySelectorAll('.btn[href*="#"]');
+      
+      [...breadcrumbLinks, ...sidebarLinks].forEach(link => {
+        link.addEventListener('click', () => {
+          document.body.classList.add('page-transitioning');
+          
+          // Añadir indicador en sessionStorage para la página destino
+          const href = link.getAttribute('href');
+          if (href) {
+            sessionStorage.setItem('smoothScrollFromProject', 'true');
+          }
+        });
+      });
+    });
+  </script>
 </Layout>
