@@ -10,6 +10,72 @@ const {
   ogImage = undefined,
   ogType = 'website',
 } = Astro.props;
+
+const layoutStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Architect',
+  name: 'IG Construcciones',
+  description: 'Arquitecto profesional especializado en diseño y construcción sustentable en Chile',
+  url: 'https://www.igconstruccionesspa.cl/',
+  telephone: '+56945150212',
+  email: 'Y.ordenes.t@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Maitencillo',
+    addressRegion: 'Región de Valparaíso',
+    addressCountry: 'CL',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '-32.5',
+    longitude: '-71.5',
+  },
+  openingHours: 'Mo-Fr 09:00-18:00',
+  priceRange: '$$',
+  serviceType: [
+    'Diseño Arquitectónico',
+    'Arquitectura Residencial',
+    'Arquitectura Comercial',
+    'Construcción Sustentable',
+    'Eficiencia Energética',
+  ],
+  areaServed: [
+    'Región de Coquimbo',
+    'Región de Valparaíso',
+    'Región del Biobío',
+    'Región de La Araucanía',
+    'Región de Los Lagos',
+  ],
+  hasCredential: 'Arquitecto Profesional',
+  yearsInOperation: 20,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Servicios de Arquitectura y Construcción',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Diseño Arquitectónico Personalizado',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Construcción de Obras Nuevas',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Eficiencia Energética y Climatización',
+        },
+      },
+    ],
+  },
+};
 ---
 
 <html lang="es">
@@ -42,74 +108,7 @@ const {
 
 
     <!-- Structured Data -->
-    <script type="application/ld+json">
-      {JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Architect',
-        name: 'IG Construcciones',
-        description: 'Arquitecto profesional especializado en diseño y construcción sustentable en Chile',
-        url: 'https://www.igconstruccionesspa.cl/',
-        telephone: '+56945150212',
-        email: 'Y.ordenes.t@gmail.com',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'Maitencillo',
-          addressRegion: 'Región de Valparaíso',
-          addressCountry: 'CL',
-        },
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: '-32.5',
-          longitude: '-71.5',
-        },
-        openingHours: 'Mo-Fr 09:00-18:00',
-        priceRange: '$$',
-        serviceType: [
-          'Diseño Arquitectónico',
-          'Arquitectura Residencial', 
-          'Arquitectura Comercial',
-          'Construcción Sustentable',
-          'Eficiencia Energética'
-        ],
-        areaServed: [
-          'Región de Coquimbo',
-          'Región de Valparaíso',
-          'Región del Biobío', 
-          'Región de La Araucanía',
-          'Región de Los Lagos'
-        ],
-        hasCredential: 'Arquitecto Profesional',
-        yearsInOperation: 20,
-        hasOfferCatalog: {
-          '@type': 'OfferCatalog',
-          name: 'Servicios de Arquitectura y Construcción',
-          itemListElement: [
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Diseño Arquitectónico Personalizado',
-              },
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Construcción de Obras Nuevas',
-              },
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Eficiencia Energética y Climatización',
-              },
-            },
-          ],
-        },
-      })}
-      })}
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(layoutStructuredData)} />
   </head>
   <body>
     <!-- Skip links para accesibilidad -->

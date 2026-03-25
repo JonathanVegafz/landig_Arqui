@@ -106,7 +106,7 @@ const description = proyecto.description;
             <h2 class="proyecto-section__title" id="caracteristicas-titulo">Características Principales</h2>
             <ul class="caracteristicas-list" role="list">
               {
-                proyecto.details.caracteristicas.map(caracteristica => (
+                proyecto.details.caracteristicas.map((caracteristica: string) => (
                   <li class="caracteristica-item">
                     <svg
                       class="caracteristica-icon"

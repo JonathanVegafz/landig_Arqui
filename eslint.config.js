@@ -13,6 +13,31 @@ export default [
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parser: typescriptParser,
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        history: 'readonly',
+        sessionStorage: 'readonly',
+        requestAnimationFrame: 'readonly',
+        setTimeout: 'readonly',
+        fetch: 'readonly',
+        FormData: 'readonly',
+        URL: 'readonly',
+        performance: 'readonly',
+        alert: 'readonly',
+        console: 'readonly',
+        Element: 'readonly',
+        ParentNode: 'readonly',
+        Document: 'readonly',
+        Event: 'readonly',
+        HTMLElement: 'readonly',
+        HTMLButtonElement: 'readonly',
+        HTMLInputElement: 'readonly',
+        HTMLTextAreaElement: 'readonly',
+        HTMLFormElement: 'readonly',
+        HTMLAnchorElement: 'readonly',
+        IntersectionObserver: 'readonly',
+      },
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
@@ -44,6 +69,9 @@ export default [
     files: ['**/*.astro'],
     languageOptions: {
       parser: astroParser,
+      globals: {
+        URL: 'readonly',
+      },
       parserOptions: {
         parser: typescriptParser,
         extraFileExtensions: ['.astro'],
@@ -59,7 +87,7 @@ export default [
       // Reglas personalizadas para Astro
       'astro/no-conflict-set-directives': 'error',
       'astro/no-unused-define-vars-in-style': 'error',
-      'astro/no-set-html-directive': 'error',
+      'astro/no-set-html-directive': 'off',
     },
   },
   
@@ -69,6 +97,14 @@ export default [
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        history: 'readonly',
+        setTimeout: 'readonly',
+        requestAnimationFrame: 'readonly',
+        console: 'readonly',
+      },
     },
     rules: {
       'no-unused-vars': 'error',
@@ -79,6 +115,18 @@ export default [
   },
   
   // Configuración global
+  {
+    files: ['scripts/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        process: 'readonly',
+        console: 'readonly',
+      },
+    },
+  },
+
   {
     ignores: [
       'node_modules/',

@@ -21,6 +21,41 @@ const site = Astro.site?.toString().replace(/\/$/, '') || '';
 const fullTitle = title.includes('IG Construcciones') ? title : `${title} | IG Construcciones`;
 const url = canonical ?? (site + Astro.url.pathname);
 const imageUrl = image.startsWith('http') ? image : site + image;
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Architect',
+	name: 'IG Construcciones',
+	description,
+	url,
+	telephone: '+56945150212',
+	email: 'Y.ordenes.t@gmail.com',
+	sameAs: [
+		'https://instagram.com/ig_construcciones',
+		'https://tiktok.com/@ig_construcciones_spa',
+	],
+	address: {
+		'@type': 'PostalAddress',
+		addressLocality: 'Maitencillo',
+		addressRegion: 'Región de Valparaíso',
+		addressCountry: 'CL',
+	},
+	areaServed: [
+		'Región de Coquimbo',
+		'Región de Valparaíso',
+		'Región del Biobío',
+		'Región de La Araucanía',
+		'Región de Los Lagos',
+	],
+	serviceType: [
+		'Diseño Arquitectónico',
+		'Arquitectura Residencial',
+		'Arquitectura Comercial',
+		'Construcción Sustentable',
+		'Eficiencia Energética',
+	],
+	hasCredential: 'Arquitecto Profesional',
+	yearsInOperation: 20,
+};
 ---
 
 <Fragment>
@@ -51,41 +86,5 @@ const imageUrl = image.startsWith('http') ? image : site + image;
 	<meta name="robots" content="index, follow" />
 	
 	<!-- Schema.org para arquitectos -->
-	<script type="application/ld+json">
-		{JSON.stringify({
-			"@context": "https://schema.org",
-			"@type": "Architect",
-			"name": "IG Construcciones",
-			"description": description,
-			"url": url,
-			"telephone": "+56945150212",
-			"email": "Y.ordenes.t@gmail.com",
-			"sameAs": [
-				"https://instagram.com/ig_construcciones",
-				"https://tiktok.com/@ig_construcciones_spa"
-			],
-			"address": {
-				"@type": "PostalAddress",
-				"addressLocality": "Maitencillo",
-				"addressRegion": "Región de Valparaíso",
-				"addressCountry": "CL"
-			},
-			"areaServed": [
-				"Región de Coquimbo",
-				"Región de Valparaíso", 
-				"Región del Biobío",
-				"Región de La Araucanía",
-				"Región de Los Lagos"
-			],
-			"serviceType": [
-				"Diseño Arquitectónico",
-				"Arquitectura Residencial",
-				"Arquitectura Comercial",
-				"Construcción Sustentable",
-				"Eficiencia Energética"
-			],
-			"hasCredential": "Arquitecto Profesional",
-			"yearsInOperation": 20
-		})}
-	</script>
+	<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 </Fragment>

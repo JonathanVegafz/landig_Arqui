@@ -4,8 +4,6 @@
 
 import { VALIDATION_RULES_WITH_REGEX as VALIDATION_RULES } from './constants-loader';
 
-/* global URL */
-
 /**
  * Valida un campo de texto
  */

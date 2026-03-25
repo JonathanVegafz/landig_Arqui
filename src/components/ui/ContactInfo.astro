@@ -23,8 +23,9 @@ try {
   const startsWithRegiones = typeof content === 'string' && content.trim().toLowerCase().startsWith('5 regiones');
   if (!links && isCoverage && startsWithRegiones) {
     const parts = content.split(':');
-    if (parts.length > 1) {
-      const names = parts[1].split(',').map(s => s.trim()).filter(Boolean);
+    const regionChunk = parts.at(1);
+    if (regionChunk) {
+      const names = regionChunk.split(',').map((s: string) => s.trim()).filter(Boolean);
       autoLinks = names.map((name) => {
         const regionName = (name.toLowerCase().includes('biob')) ? 'Región del Biobío' : `Región de ${name}`;
         const href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(regionName + ', Chile')}`;
@@ -32,7 +33,9 @@ try {
       });
     }
   }
-} catch {}
+} catch {
+  // Ignora errores de parseo en contenido no estructurado.
+}
 const _links = (links && links.length ? links : (autoLinks || []));
 ---
 
@@ -44,7 +47,6 @@ const _links = (links && links.length ? links : (autoLinks || []));
     target={link.startsWith('http') ? '_blank' : undefined}
     rel={link.startsWith('http') ? 'noopener noreferrer' : undefined}
   >
-    <!-- set:html seguro: icon SVG definido en código fuente, no proviene de entrada del usuario -->
     <div class="contact-item__icon" set:html={icon}></div>
     <div class="contact-item__content">
       <h3 class="contact-item__title">{title}</h3>
@@ -72,7 +74,6 @@ const _links = (links && links.length ? links : (autoLinks || []));
   </a>
 ) : (
   <div class={`contact-item ${className || ''}`}>
-    <!-- set:html seguro: icon SVG definido en código fuente, no proviene de entrada del usuario -->
     <div class="contact-item__icon" set:html={icon}></div>
     <div class="contact-item__content">
       <h3 class="contact-item__title">{title}</h3>
