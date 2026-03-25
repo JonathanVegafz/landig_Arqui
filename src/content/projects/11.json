@@ -1,0 +1,25 @@
+{
+  "id": 11,
+  "title": "Cabildo",
+  "description": "Proyecto en Cabildo, con una superficie aproximada de 120 m2 y un exterior de 25 m2.",
+  "category": "Arquitectura",
+  "area": "120 m2",
+  "imageCard": "../../assets/proyectos/11/1.jpeg",
+  "imageOriginal": "../../assets/proyectos/11/1.jpeg",
+  "images": [
+    "../../assets/proyectos/11/1.jpeg"
+  ],
+  "details": {
+    "ubicacion": "V región chile",
+    "duracion": "No informado",
+    "superficie": "120 m2",
+    "habitaciones": "No informado",
+    "baños": "No informado",
+    "caracteristicas": [
+      "Superficie interior: 120 m2",
+      "Superficie exterior: 25 m2",
+      "Ubicación: V región chile"
+    ],
+    "descripcionCompleta": "Proyecto en Cabildo, con una superficie aproximada de 120 m2 y un exterior de 25 m2."
+  }
+}

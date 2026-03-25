@@ -21,6 +21,18 @@ const PROJECTS = await getProjects();
 // Generar metadatos dinámicos
 const title = `${proyecto.title} - IG Construcciones`;
 const description = proyecto.description;
+const esInformado = (value?: string) => Boolean(value && value.trim() && value.trim().toLowerCase() !== 'no informado');
+const descripcionProyecto = esInformado(proyecto.details?.descripcionCompleta)
+  ? proyecto.details.descripcionCompleta
+  : proyecto.description;
+const caracteristicasFiltradas = (proyecto.details?.caracteristicas ?? []).filter((item: string) => esInformado(item));
+const detalleRows = [
+  { label: 'Superficie', value: proyecto.details?.superficie },
+  { label: 'Habitaciones', value: proyecto.details?.habitaciones },
+  { label: 'Baños', value: proyecto.details?.baños },
+  { label: 'Duración', value: proyecto.details?.duracion },
+  { label: 'Ubicación', value: proyecto.details?.ubicacion },
+].filter(row => esInformado(row.value));
 ---
 
 <Layout title={title} description={description}>
@@ -46,20 +58,23 @@ const description = proyecto.description;
         <div class="proyecto-header__content">
           <span class="proyecto-header__categoria" aria-label={`Categoría: ${proyecto.category}`}>{proyecto.category}</span>
           <h1 class="proyecto-header__titulo">{proyecto.title}</h1>
-          <p class="proyecto-header__descripcion">{proyecto.description}</p>
           <dl class="proyecto-header__meta">
             <div class="meta-item">
               <dt class="meta-label">Superficie</dt>
               <dd class="meta-value">{proyecto.area}</dd>
             </div>
-            <div class="meta-item">
-              <dt class="meta-label">Duración</dt>
-              <dd class="meta-value">{proyecto.details.duracion}</dd>
-            </div>
-            <div class="meta-item">
-              <dt class="meta-label">Ubicación</dt>
-              <dd class="meta-value">{proyecto.details.ubicacion}</dd>
-            </div>
+            {esInformado(proyecto.details?.duracion) && (
+              <div class="meta-item">
+                <dt class="meta-label">Duración</dt>
+                <dd class="meta-value">{proyecto.details.duracion}</dd>
+              </div>
+            )}
+            {esInformado(proyecto.details?.ubicacion) && (
+              <div class="meta-item">
+                <dt class="meta-label">Ubicación</dt>
+                <dd class="meta-value">{proyecto.details.ubicacion}</dd>
+              </div>
+            )}
           </dl>
         </div>
         <figure class="proyecto-header__image">
@@ -99,63 +114,53 @@ const description = proyecto.description;
         <article class="proyecto-content__main">
           <section class="proyecto-section" aria-labelledby="descripcion-titulo">
             <h2 class="proyecto-section__title" id="descripcion-titulo">Descripción del Proyecto</h2>
-            <p class="proyecto-section__text">{proyecto.details.descripcionCompleta}</p>
+            <p class="proyecto-section__text">{descripcionProyecto}</p>
           </section>
 
-          <section class="proyecto-section" aria-labelledby="caracteristicas-titulo">
-            <h2 class="proyecto-section__title" id="caracteristicas-titulo">Características Principales</h2>
-            <ul class="caracteristicas-list" role="list">
-              {
-                proyecto.details.caracteristicas.map((caracteristica: string) => (
-                  <li class="caracteristica-item">
-                    <svg
-                      class="caracteristica-icon"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      aria-hidden="true"
-                    >
-                      <path d="M20 6L9 17l-5-5" />
-                    </svg>
-                    <span>{caracteristica}</span>
-                  </li>
-                ))
-              }
-            </ul>
-          </section>
+          {caracteristicasFiltradas.length > 0 && (
+            <section class="proyecto-section" aria-labelledby="caracteristicas-titulo">
+              <h2 class="proyecto-section__title" id="caracteristicas-titulo">Características Principales</h2>
+              <ul class="caracteristicas-list" role="list">
+                {
+                  caracteristicasFiltradas.map((caracteristica: string) => (
+                    <li class="caracteristica-item">
+                      <svg
+                        class="caracteristica-icon"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        aria-hidden="true"
+                      >
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg>
+                      <span>{caracteristica}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </section>
+          )}
 
 
         </article>
 
         <aside class="proyecto-sidebar" aria-labelledby="detalles-titulo">
-          <section class="proyecto-sidebar__card">
-            <h3 class="proyecto-sidebar__title" id="detalles-titulo">Detalles del Proyecto</h3>
-            <dl class="detalles-list">
-              <div class="detalle-item">
-                <dt class="detalle-label">Superficie</dt>
-                <dd class="detalle-value">{proyecto.details.superficie}</dd>
-              </div>
-              <div class="detalle-item">
-                <dt class="detalle-label">Habitaciones</dt>
-                <dd class="detalle-value">{proyecto.details.habitaciones}</dd>
-              </div>
-              <div class="detalle-item">
-                <dt class="detalle-label">Baños</dt>
-                <dd class="detalle-value">{proyecto.details.baños}</dd>
-              </div>
-              <div class="detalle-item">
-                <dt class="detalle-label">Duración</dt>
-                <dd class="detalle-value">{proyecto.details.duracion}</dd>
-              </div>
-              <div class="detalle-item">
-                <dt class="detalle-label">Ubicación</dt>
-                <dd class="detalle-value">{proyecto.details.ubicacion}</dd>
-              </div>
-            </dl>
-          </section>
+          {detalleRows.length > 0 && (
+            <section class="proyecto-sidebar__card">
+              <h3 class="proyecto-sidebar__title" id="detalles-titulo">Detalles del Proyecto</h3>
+              <dl class="detalles-list">
+                {detalleRows.map(row => (
+                  <div class="detalle-item">
+                    <dt class="detalle-label">{row.label}</dt>
+                    <dd class="detalle-value">{row.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          )}
 
           <section class="proyecto-sidebar__card" aria-labelledby="cotiza-titulo">
             <h3 class="proyecto-sidebar__title" id="cotiza-titulo">¿Te gusta este proyecto?</h3>

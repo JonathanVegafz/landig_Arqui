@@ -1,36 +1,26 @@
 {
   "id": 3,
-  "title": "Casa Boldo del Pangal",
-  "description": "Vivienda de 250 m² articulada en volúmenes conectados por una galería longitudinal, elevada sobre pilotes, con grandes paños vidriados y estructura en madera que se abre a las vistas de Maitencillo.",
-  "category": "Residencial",
-  "area": "250 m²",
-  "imageCard": "../../assets/optimized/3/entrada-card.webp",
-  "imageOriginal": "../../assets/optimized/3/entrada-original.webp",
+  "title": "Parque maitencillo",
+  "description": "Proyecto en Parque maitencillo, con una superficie aproximada de 187 m2 y un exterior de 50 m2.",
+  "category": "Arquitectura",
+  "area": "187 m2",
+  "imageCard": "../../assets/proyectos/3/1.jpeg",
+  "imageOriginal": "../../assets/proyectos/3/2.jpeg",
   "images": [
-    "../../assets/optimized/3/entrada-hero.webp",
-    "../../assets/optimized/3/entrada2-hero.webp",
-    "../../assets/optimized/3/entrada3-hero.webp",
-    "../../assets/optimized/3/living-hero.webp",
-    "../../assets/optimized/3/baño-hero.webp"
+    "../../assets/proyectos/3/1.jpeg",
+    "../../assets/proyectos/3/2.jpeg"
   ],
   "details": {
-    "ubicacion": "Maitencillo, V Región (Valparaíso), Chile",
-    "duracion": "10 meses",
-    "superficie": "250 m²",
-    "habitaciones": "3–4 dormitorios (por confirmar)",
-    "baños": "2–3 baños (por confirmar)",
+    "ubicacion": "Maitencillo V región",
+    "duracion": "No informado",
+    "superficie": "187 m2",
+    "habitaciones": "No informado",
+    "baños": "No informado",
     "caracteristicas": [
-      "Composición de volúmenes conectados por galería longitudinal",
-      "Extremos a doble altura con ventanales de piso a cielo",
-      "Casa elevada sobre pilotes para adaptarse a la topografía",
-      "Revestimiento exterior en plancha metálica acanalada color grafito",
-      "Estructura y terminaciones interiores en madera clara",
-      "Cielos con vigas a la vista en el estar",
-      "Grandes correderas y paños fijos orientados a las vistas",
-      "Deck perimetral de madera como expansión",
-      "Carpinterías de aluminio negro",
-      "Baño con cerámica tipo madera y ventana abatible"
+      "Superficie interior: 187 m2",
+      "Superficie exterior: 50 m2",
+      "Ubicación: Maitencillo V región"
     ],
-    "descripcionCompleta": "Casa unifamiliar ubicada en Maitencillo (V Región) que se organiza en varios volúmenes longitudinales unidos por una galería central. Los extremos trabajan a doble altura con ventanales de gran formato para enmarcar el paisaje. La vivienda se posa sobre pilotes, permitiendo ventilación bajo piso y mínima intervención del terreno. La envolvente exterior en chapa metálica grafito contrasta con interiores cálidos de madera clara y cielos con vigas a la vista. El programa se vuelca hacia un deck perimetral que extiende el estar hacia el exterior, privilegiando asoleamiento, ventilación cruzada y relación constante con el entorno natural."
+    "descripcionCompleta": "Proyecto en Parque maitencillo, con una superficie aproximada de 187 m2 y un exterior de 50 m2."
   }
 }

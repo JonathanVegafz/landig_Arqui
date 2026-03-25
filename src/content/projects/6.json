@@ -1,0 +1,25 @@
+{
+  "id": 6,
+  "title": "Costa Quilen",
+  "description": "Proyecto en Costa Quilen, con una superficie aproximada de 105 m2 y un exterior de 40 m2.",
+  "category": "Arquitectura",
+  "area": "105 m2",
+  "imageCard": "../../assets/proyectos/6/1.jpeg",
+  "imageOriginal": "../../assets/proyectos/6/1.jpeg",
+  "images": [
+    "../../assets/proyectos/6/1.jpeg"
+  ],
+  "details": {
+    "ubicacion": "Horcon",
+    "duracion": "No informado",
+    "superficie": "105 m2",
+    "habitaciones": "No informado",
+    "baños": "No informado",
+    "caracteristicas": [
+      "Superficie interior: 105 m2",
+      "Superficie exterior: 40 m2",
+      "Ubicación: Horcon"
+    ],
+    "descripcionCompleta": "Proyecto en Costa Quilen, con una superficie aproximada de 105 m2 y un exterior de 40 m2."
+  }
+}

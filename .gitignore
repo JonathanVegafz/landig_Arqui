@@ -143,3 +143,6 @@ Temporary Items
 
 # Package lock (opcional, algunos prefieren incluirlo)
 # package-lock.json 
+
+.github
+.astro

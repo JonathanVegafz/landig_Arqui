@@ -1,0 +1,25 @@
+{
+  "id": 9,
+  "title": "Chañaral de aceituno",
+  "description": "Proyecto en Chañaral de aceituno, con una superficie aproximada de 95 m2 y un exterior de 35 m2.",
+  "category": "Arquitectura",
+  "area": "95 m2",
+  "imageCard": "../../assets/proyectos/9/1.jpeg",
+  "imageOriginal": "../../assets/proyectos/9/1.jpeg",
+  "images": [
+    "../../assets/proyectos/9/1.jpeg"
+  ],
+  "details": {
+    "ubicacion": "Chañaral",
+    "duracion": "No informado",
+    "superficie": "95 m2",
+    "habitaciones": "No informado",
+    "baños": "No informado",
+    "caracteristicas": [
+      "Superficie interior: 95 m2",
+      "Superficie exterior: 35 m2",
+      "Ubicación: Chañaral"
+    ],
+    "descripcionCompleta": "Proyecto en Chañaral de aceituno, con una superficie aproximada de 95 m2 y un exterior de 35 m2."
+  }
+}

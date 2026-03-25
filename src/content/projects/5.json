@@ -1,0 +1,26 @@
+{
+  "id": 5,
+  "title": "La foresta de Zapallar",
+  "description": "Proyecto en La foresta de Zapallar, con una superficie aproximada de 250 m2 y un exterior de 90 m2.",
+  "category": "Arquitectura",
+  "area": "250 m2",
+  "imageCard": "../../assets/proyectos/5/'2.jpeg",
+  "imageOriginal": "../../assets/proyectos/5/1.jpeg",
+  "images": [
+    "../../assets/proyectos/5/'2.jpeg",
+    "../../assets/proyectos/5/1.jpeg"
+  ],
+  "details": {
+    "ubicacion": "V región",
+    "duracion": "No informado",
+    "superficie": "250 m2",
+    "habitaciones": "No informado",
+    "baños": "No informado",
+    "caracteristicas": [
+      "Superficie interior: 250 m2",
+      "Superficie exterior: 90 m2",
+      "Ubicación: V región"
+    ],
+    "descripcionCompleta": "Proyecto en La foresta de Zapallar, con una superficie aproximada de 250 m2 y un exterior de 90 m2."
+  }
+}

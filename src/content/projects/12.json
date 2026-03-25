@@ -1,0 +1,39 @@
+{
+  "id": 12,
+  "title": "Galería de Interiores",
+  "description": "Galería de interiores del proyecto, con registro fotográfico de distintos espacios.",
+  "category": "Arquitectura",
+  "area": "No informado",
+  "imageCard": "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.31 PM (1).jpeg",
+  "imageOriginal": "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.31 PM (2).jpeg",
+  "images": [
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.31 PM (1).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.31 PM (2).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.31 PM (3).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.31 PM.jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.32 PM (1).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.32 PM (2).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.32 PM (3).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.32 PM (4).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.32 PM (5).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.32 PM.jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.33 PM (1).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.33 PM (2).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.33 PM (3).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.33 PM.jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.34 PM (1).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.34 PM (2).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.34 PM (3).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.34 PM (4).jpeg",
+    "../../assets/proyectos/12/WhatsApp Image 2026-03-23 at 11.23.34 PM.jpeg"
+  ],
+  "details": {
+    "ubicacion": "No informado",
+    "duracion": "No informado",
+    "superficie": "No informado",
+    "habitaciones": "No informado",
+    "baños": "No informado",
+    "caracteristicas": [],
+    "descripcionCompleta": "Galería de interiores del proyecto."
+  }
+}

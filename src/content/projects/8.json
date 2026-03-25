@@ -1,0 +1,25 @@
+{
+  "id": 8,
+  "title": "Agua dulce",
+  "description": "Proyecto en Agua dulce, con una superficie aproximada de 151 m2 y un exterior de 30 m2.",
+  "category": "Arquitectura",
+  "area": "151 m2",
+  "imageCard": "../../assets/proyectos/8/1.jpeg",
+  "imageOriginal": "../../assets/proyectos/8/1.jpeg",
+  "images": [
+    "../../assets/proyectos/8/1.jpeg"
+  ],
+  "details": {
+    "ubicacion": "Huentelauquen",
+    "duracion": "No informado",
+    "superficie": "151 m2",
+    "habitaciones": "No informado",
+    "baños": "No informado",
+    "caracteristicas": [
+      "Superficie interior: 151 m2",
+      "Superficie exterior: 30 m2",
+      "Ubicación: Huentelauquen"
+    ],
+    "descripcionCompleta": "Proyecto en Agua dulce, con una superficie aproximada de 151 m2 y un exterior de 30 m2."
+  }
+}

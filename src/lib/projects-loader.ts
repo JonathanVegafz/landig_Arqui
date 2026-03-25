@@ -1,6 +1,25 @@
 import type { ProjectProps } from '../types';
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { imageImportMap } from './static-image-map';
+import type { ImageMetadata } from 'astro';
+
+type ImportedAsset = ImageMetadata | string;
+
+const assetModules = import.meta.glob('../assets/**/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', {
+  eager: true,
+  import: 'default',
+}) as Record<string, ImportedAsset>;
+
+function resolveAssetPath(contentPath: string): ImportedAsset | string {
+  const key = contentPath.replace('../../assets/', '../assets/');
+  return assetModules[key] ?? contentPath;
+}
+
+function toPublicSrc(asset: ImportedAsset | string): string {
+  if (asset && typeof asset === 'object' && 'src' in asset) {
+    return asset.src;
+  }
+  return asset;
+}
 
 // Carga y transforma los proyectos desde content collections
 export async function getProjects(): Promise<ProjectProps[]> {
@@ -15,15 +34,14 @@ export async function getProjects(): Promise<ProjectProps[]> {
       description: project.description,
       category: project.category,
       area: project.area,
-      image: imageImportMap[project.imageCard] || project.imageCard,
-      imageOriginal: project.imageOriginal ? (imageImportMap[project.imageOriginal] || project.imageOriginal) : undefined,
-      // Resolver imágenes de galería a URLs seguras (strings)
-      images: project.images?.map((src: string) => {
-        const mapped = imageImportMap[src as keyof typeof imageImportMap] as any;
-        if (mapped && typeof mapped === 'object' && 'src' in mapped) return (mapped as { src: string }).src;
-        if (typeof mapped === 'string') return mapped;
-        return src;
-      }),
+      image: resolveAssetPath(project.imageCard),
+      ...(project.imageOriginal
+        ? { imageOriginal: toPublicSrc(resolveAssetPath(project.imageOriginal)) }
+        : {}),
+      // Resolver imágenes de galería a URLs públicas aptas para <img>
+      ...(project.images
+        ? { images: project.images.map((src: string) => toPublicSrc(resolveAssetPath(src))) }
+        : {}),
       details: project.details,
     }));
   return data;

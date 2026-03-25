@@ -1,0 +1,25 @@
+{
+  "id": 10,
+  "title": "Cabildo",
+  "description": "Proyecto en Cabildo, con una superficie aproximada de 60 m2 y un exterior de 25 m2.",
+  "category": "Arquitectura",
+  "area": "60 m2",
+  "imageCard": "../../assets/proyectos/10/1.jpeg",
+  "imageOriginal": "../../assets/proyectos/10/1.jpeg",
+  "images": [
+    "../../assets/proyectos/10/1.jpeg"
+  ],
+  "details": {
+    "ubicacion": "V región",
+    "duracion": "No informado",
+    "superficie": "60 m2",
+    "habitaciones": "No informado",
+    "baños": "No informado",
+    "caracteristicas": [
+      "Superficie interior: 60 m2",
+      "Superficie exterior: 25 m2",
+      "Ubicación: V región"
+    ],
+    "descripcionCompleta": "Proyecto en Cabildo, con una superficie aproximada de 60 m2 y un exterior de 25 m2."
+  }
+}

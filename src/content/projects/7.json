@@ -1,0 +1,25 @@
+{
+  "id": 7,
+  "title": "Cachagua",
+  "description": "Proyecto en Cachagua, con una superficie aproximada de 190 m2 y un exterior de 90 m2.",
+  "category": "Arquitectura",
+  "area": "190 m2",
+  "imageCard": "../../assets/proyectos/7/1.jpeg",
+  "imageOriginal": "../../assets/proyectos/7/1.jpeg",
+  "images": [
+    "../../assets/proyectos/7/1.jpeg"
+  ],
+  "details": {
+    "ubicacion": "Cachagua",
+    "duracion": "No informado",
+    "superficie": "190 m2",
+    "habitaciones": "No informado",
+    "baños": "No informado",
+    "caracteristicas": [
+      "Superficie interior: 190 m2",
+      "Superficie exterior: 90 m2",
+      "Ubicación: Cachagua"
+    ],
+    "descripcionCompleta": "Proyecto en Cachagua, con una superficie aproximada de 190 m2 y un exterior de 90 m2."
+  }
+}

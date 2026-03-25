@@ -1,3 +1,5 @@
+import type { ImageMetadata } from 'astro';
+
 export interface ImageProps {
   src: string;
   alt: string;
@@ -38,7 +40,7 @@ export interface ProjectProps {
   description: string;
   category: string;
   area: string;
-  image: string;
+  image: ImageMetadata | string;
   imageOriginal?: string;
   images?: string[];
   details: ProjectDetails;

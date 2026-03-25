@@ -1,44 +1,26 @@
 {
   "id": 1,
-  "title": "Casa Agua Dulce orientada al mar",
-  "description": "Vivienda en ladera, dos niveles y volumetría en U, elevada sobre pilotes y abierta a las vistas costeras",
-  "category": "Residencial",
-  "area": "200 m²",
-  "imageCard": "../../assets/optimized/1/parte delantera-card.webp",
-  "imageOriginal": "../../assets/optimized/1/parte delantera-original.webp",
+  "title": "Proyecto 1",
+  "description": "Información no disponible.",
+  "category": "Arquitectura",
+  "area": "No informado",
+  "imageCard": "../../assets/proyectos/1/foto 1.jpeg",
+  "imageOriginal": "../../assets/proyectos/1/foto 2.jpeg",
   "images": [
-    "../../assets/optimized/1/baño-hero.webp",
-    "../../assets/optimized/1/baño2-hero.webp",
-    "../../assets/optimized/1/cocina-hero.webp",
-    "../../assets/optimized/1/habitacion-hero.webp",
-    "../../assets/optimized/1/living-hero.webp",
-    "../../assets/optimized/1/parte delantera 1-hero.webp",
-    "../../assets/optimized/1/parte delantera-hero.webp",
-    "../../assets/optimized/1/parte trasera-hero.webp",
-    "../../assets/optimized/1/pasillo-hero.webp"
+    "../../assets/proyectos/1/foto 1.jpeg",
+    "../../assets/proyectos/1/foto 2.jpeg"
   ],
   "details": {
-    "ubicacion": "Condominio Agua Dulce 88, IV Región (Coquimbo)",
-    "duracion": "10 meses",
-    "superficie": "200 m²",
-    "habitaciones": "3 dormitorios",
-    "baños": "2 baños, uno con tina hidromasaje",
+    "ubicacion": "No informado",
+    "duracion": "No informado",
+    "superficie": "No informado",
+    "habitaciones": "No informado",
+    "baños": "No informado",
     "caracteristicas": [
-      "Volumetría en U con cuerpo central de dos niveles",
-      "Elevada sobre pilotes para ventilar y adaptarse a la topografía",
-      "Revestimiento exterior en plancha metálica acanalada color grafito",
-      "Grandes ventanales correderos orientados al mar",
-      "Terraza cubierta a doble altura tipo logia/pergolado en el volumen central",
-      "Balcón en segundo nivel",
-      "Interior en tinglado/machihembrado de madera pintado blanco",
-      "Pisos tipo madera/ingeniería en áreas interiores",
-      "Cocina en U con cubiertas claras y repisas abiertas",
-      "Baño principal con tina hidromasaje esquinera; baño secundario con ducha a piso",
-      "Pasillo longitudinal como eje de distribución",
-      "Carpinterías en aluminio negro con termopanel (según se aprecia)",
-      "Barandas livianas metálicas en terrazas",
-      "Diseño pensado para control solar y vistas predominantes al océano"
+      "Superficie interior: No informado",
+      "Superficie exterior: No informado",
+      "Ubicación: No informado"
     ],
-    "descripcionCompleta": "Casa unifamiliar ubicada en el Condominio Agua Dulce (lote 88), en la IV Región. El proyecto se posa sobre pilotes para minimizar la intervención del terreno y mejorar la ventilación bajo piso. La composición volumétrica en U abre todos los recintos principales hacia el mar, con un volumen central de dos alturas que contiene una terraza cubierta y un balcón superior. La envolvente exterior en plancha metálica acanalada color grafito contrasta con interiores cálidos de madera pintada y pisos de aspecto natural. Los cerramientos de gran formato maximizan la luz y la relación con el paisaje costero, mientras que la distribución se organiza mediante un pasillo longitudinal que conecta dormitorios, baños y el estar–comedor con salida a la terraza."
+    "descripcionCompleta": "Información no disponible."
   }
 }
